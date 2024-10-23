@@ -65,8 +65,7 @@ class TProductCardVertical extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TProductTitleText(title: 'Green Nike Air Shoe',smallSize: true,),
-                  const SizedBox(height: TSizes.spaceBtwItems/2,),
+                  const TProductTitleText(title: 'Green Nike Air Shoe fsdfsd sdfdgdf dfhfhfgetert etertfsdfs sdfsdf',smallSize: true,),
                   Row(
                     children: [
                       Text('Nike', overflow: TextOverflow.ellipsis,maxLines: 1,style: Theme.of(context).textTheme.labelMedium,),
