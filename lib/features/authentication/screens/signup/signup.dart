@@ -1,13 +1,9 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:app_t_shop/common/widgets/login_signup/form_divider.dart';
 import 'package:app_t_shop/common/widgets/login_signup/social_buttons.dart';
-import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/constants/text_strings.dart';
-import 'package:app_t_shop/utils/helpers/helper_functions.dart';
 import 'package:app_t_shop/features/authentication/screens/signup/widgets/signup_form.dart';
 
 class SignupScreen extends StatelessWidget {

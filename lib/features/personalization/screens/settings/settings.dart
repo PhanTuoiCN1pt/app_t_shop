@@ -1,12 +1,9 @@
 import 'package:app_t_shop/common/widgets/appbar/appbar.dart';
 import 'package:app_t_shop/common/widgets/custom_shapes/containers/primary_header_container.dart';
-import 'package:app_t_shop/common/widgets/images/circular_image.dart';
 import 'package:app_t_shop/common/widgets/list_titles/settings_menu_title.dart';
 import 'package:app_t_shop/common/widgets/list_titles/user_profile_title.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
 import 'package:app_t_shop/features/authentication/screens/login/login.dart';
-import 'package:app_t_shop/features/authentication/screens/login/widgets/login_form.dart';
-import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +34,7 @@ class SettingScreen extends StatelessWidget {
                 ),
             ),
             Padding(
-              padding: EdgeInsets.all(TSizes.defaultSpace),
+              padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
                   /// Account Setting

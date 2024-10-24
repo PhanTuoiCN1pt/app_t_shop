@@ -1,22 +1,14 @@
 import 'package:app_t_shop/common/widgets/appbar/appbar.dart';
 import 'package:app_t_shop/common/widgets/appbar/tabbar.dart';
 import 'package:app_t_shop/common/widgets/brands/brand_card.dart';
-import 'package:app_t_shop/common/widgets/brands/brand_show_case.dart';
 import 'package:app_t_shop/common/widgets/custom_shapes/containers/search_container.dart';
-import 'package:app_t_shop/common/widgets/images/circular_image.dart';
-import 'package:app_t_shop/common/widgets/images/rounded_container.dart';
 import 'package:app_t_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:app_t_shop/common/widgets/products/cart/cart_menu_icon.dart';
-import 'package:app_t_shop/common/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
-import 'package:app_t_shop/features/shop/screens/store/store.dart';
 import 'package:app_t_shop/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
-import 'package:app_t_shop/utils/constants/enums.dart';
-import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
 class StoreScreen extends StatelessWidget{

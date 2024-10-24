@@ -2,7 +2,6 @@ import 'package:app_t_shop/common/widgets/custom_shapes/containers/circular_cont
 import 'package:app_t_shop/common/widgets/images/rounded_image.dart';
 import 'package:app_t_shop/features/shop/controllers/home_controller.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
-import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';

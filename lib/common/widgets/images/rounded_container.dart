@@ -1,5 +1,4 @@
 import 'package:app_t_shop/utils/constants/colors.dart';
-import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 

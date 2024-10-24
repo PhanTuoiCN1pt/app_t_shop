@@ -1,21 +1,16 @@
 
-import 'package:app_t_shop/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:app_t_shop/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:app_t_shop/common/widgets/custom_shapes/containers/search_container.dart';
-import 'package:app_t_shop/common/widgets/images/rounded_image.dart';
 import 'package:app_t_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:app_t_shop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
-import 'package:app_t_shop/features/shop/screens/home/home.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/promo_slider.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

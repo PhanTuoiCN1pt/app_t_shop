@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:app_t_shop/features/authentication/screens/onboarding/onboarding_dot_navigation.dart';
 import 'package:app_t_shop/features/authentication/screens/onboarding/onboarding_next_button.dart';
 import 'package:app_t_shop/features/authentication/screens/onboarding/onboarding_page.dart';
 import 'package:app_t_shop/features/authentication/screens/onboarding/onboarding_skip.dart';
 
-import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/text_strings.dart';
-import 'package:app_t_shop/utils/helpers/helper_functions.dart';
-import 'package:app_t_shop/utils/constants/sizes.dart';
-import 'package:app_t_shop/utils/device/device_utility.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../controllers/onboarding/onboarding_controller.dart';
 class OnBoardingScreen extends StatelessWidget {

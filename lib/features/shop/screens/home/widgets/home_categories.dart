@@ -1,6 +1,5 @@
 import 'package:app_t_shop/common/widgets/image_text_widgets/vertical_image_text.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
-import 'package:app_t_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 class THomeCategories extends StatelessWidget {

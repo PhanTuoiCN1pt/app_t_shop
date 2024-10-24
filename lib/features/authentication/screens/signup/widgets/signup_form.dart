@@ -1,11 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:app_t_shop/features/authentication/screens/signup/verify_email.dart';
 import 'package:app_t_shop/features/authentication/screens/signup/widgets/term_condition_checkbox.dart';
-import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/constants/text_strings.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
