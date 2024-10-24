@@ -52,7 +52,8 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
 
-                    )
+                    ),
+                    SizedBox(height: TSizes.spaceBtwSections,),
 
 
 
@@ -74,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwItems,),
 
                   /// Popular product
-                  GridLayout(itemCount: 2,itemBuilder: (_, index) => const TProductCardVertical(),),
+                  GridLayout(itemCount: 5,itemBuilder: (_, index) => const TProductCardVertical(),),
 
                 ],
               ),

@@ -2,6 +2,7 @@ import 'package:app_t_shop/common/stype/shadow.dart';
 import 'package:app_t_shop/common/widgets/icons/cicular_icon.dart';
 import 'package:app_t_shop/common/widgets/images/rounded_container.dart';
 import 'package:app_t_shop/common/widgets/images/rounded_image.dart';
+import 'package:app_t_shop/common/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:app_t_shop/common/widgets/texts/product_price_text.dart';
 import 'package:app_t_shop/common/widgets/texts/product_title_text.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
@@ -53,7 +54,7 @@ class TProductCardVertical extends StatelessWidget {
                   const Positioned(
                       top: 0,
                       right: 0 ,
-                      child: TCircularIcon(width: 40,height: 40, icon: Iconsax.heart5, color: Colors.red,size: 20,))
+                      child: TCircularIcon(icon: Iconsax.heart5, color: Colors.red,))
                 ],
               ),
             ),
@@ -62,20 +63,24 @@ class TProductCardVertical extends StatelessWidget {
             /// Details
             Padding(
               padding: const EdgeInsets.only(left: TSizes.sm),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const TProductTitleText(title: 'Green Nike Air Shoe fsdfsd sdfdgdf dfhfhfgetert etertfsdfs sdfsdf',smallSize: true,),
-                  Row(
-                    children: [
-                      Text('Nike', overflow: TextOverflow.ellipsis,maxLines: 1,style: Theme.of(context).textTheme.labelMedium,),
-                      const SizedBox(width: TSizes.xs,),
-                      const Icon(Iconsax.verify5, color: TColors.primary,size: TSizes.iconXs,)
-                    ],
-                  ),
-                ],
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const TProductTitleText(title: 'Green Nike Air Shoe fsdfsd sdfdgdf dfhfhfgetert etertfsdfs sdfsdf',smallSize: true,),
+                    Row(
+                      children: [
+                        Text('Nike', overflow: TextOverflow.ellipsis,maxLines: 1,style: Theme.of(context).textTheme.labelMedium,),
+                        const SizedBox(height: TSizes.spaceBtwItems/2,),
+                        const TBrandTitleWithVerifiedIcon(title: 'Nike')
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
+
             const Spacer(),
 
             /// Price Now
@@ -85,7 +90,7 @@ class TProductCardVertical extends StatelessWidget {
                 /// Price
                 const Padding(
                   padding: EdgeInsets.only(right: TSizes.sm),
-                  child: ProductPriceText(price: '30',),
+                  child: ProductPriceText(price: '35',),
                 ),
                 Container(
                   decoration: const BoxDecoration(
