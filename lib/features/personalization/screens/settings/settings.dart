@@ -4,6 +4,7 @@ import 'package:app_t_shop/common/widgets/list_titles/settings_menu_title.dart';
 import 'package:app_t_shop/common/widgets/list_titles/user_profile_title.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
 import 'package:app_t_shop/features/authentication/screens/login/login.dart';
+import 'package:app_t_shop/features/personalization/screens/profile/profile.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,7 @@ class SettingScreen extends StatelessWidget {
                     ),
 
                     /// User Profile Card
-                    const UserProfileTile(),
+                    UserProfileTile(onPressed: () => Get.to(() => const ProfileScreen()),),
                     const SizedBox(height: TSizes.spaceBtwSections,),
                   ],
                 ),
