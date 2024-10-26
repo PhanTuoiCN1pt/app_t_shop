@@ -4,9 +4,12 @@ import 'package:app_t_shop/features/shop/screens/product_details/widgets/product
 import 'package:app_t_shop/features/shop/screens/product_details/widgets/product_detail_image_slider.dart';
 import 'package:app_t_shop/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:app_t_shop/features/shop/screens/product_details/widgets/rating_share_widget.dart';
+import 'package:app_t_shop/features/shop/screens/product_reviews/product_reviews.dart';
+import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 
@@ -52,8 +55,8 @@ class ProductDetail extends StatelessWidget {
                     trimMode: TrimMode.Line,
                     trimCollapsedText: ' Show more',
                     trimExpandedText: ' Less',
-                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900),
-                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900),
+                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900,color: TColors.primary),
+                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900,color: TColors.primary),
                   ),
 
                   /// - Reviews
@@ -63,18 +66,14 @@ class ProductDetail extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const TSectionHeading(title: 'Reviews (199)',showActionButton: false,),
-                      IconButton(onPressed: (){}, icon: const Icon(Iconsax.arrow_right_3)),
+                      IconButton(onPressed: () => Get.to(() => const ProductReviewsScreen()), icon: const Icon(Iconsax.arrow_right_3)),
                     ],
                   ),
                   const SizedBox(height: TSizes.spaceBtwItems,)
                 ],
               ),
             )
-
           ],
-
-
-
         ),
       ),
     );
