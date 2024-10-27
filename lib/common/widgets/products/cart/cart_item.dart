@@ -42,7 +42,6 @@ class CartItem extends StatelessWidget {
                       TextSpan(text: 'Green',style: Theme.of(context).textTheme.bodyLarge),
                       TextSpan(text: 'Size',style: Theme.of(context).textTheme.bodySmall),
                       TextSpan(text: 'UK 08',style: Theme.of(context).textTheme.bodyLarge),
-
                     ]
                 ),
               ),
