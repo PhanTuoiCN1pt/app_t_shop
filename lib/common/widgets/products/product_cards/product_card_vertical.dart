@@ -31,6 +31,7 @@ class TProductCardVertical extends StatelessWidget {
           color: dark ? TColors.darkGrey : TColors.white,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TRoundedContainer(
               height: 180,
@@ -91,7 +92,7 @@ class TProductCardVertical extends StatelessWidget {
               children: [
                 /// Price
                 const Padding(
-                  padding: EdgeInsets.only(right: TSizes.sm),
+                  padding: EdgeInsets.only(left: TSizes.sm),
                   child: ProductPriceText(price: '35',),
                 ),
                 Container(
