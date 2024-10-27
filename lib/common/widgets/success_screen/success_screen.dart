@@ -1,3 +1,4 @@
+import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:app_t_shop/common/stype/spacing_stypes.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
@@ -37,7 +38,8 @@ class SuccessScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF5C97A7)
+                    backgroundColor: TColors.colorApp,
+                    side: const BorderSide(color: TColors.colorApp),
                   ),
                   onPressed: onPressed, child: const Text(TTexts.tContinue),),
 

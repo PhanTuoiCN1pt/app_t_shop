@@ -24,7 +24,7 @@ class NavigationMenuScreen extends StatelessWidget {
             selectedIndex: controller.selectedIndex.value,
             onDestinationSelected: (index) => controller.selectedIndex.value = index,
             backgroundColor: darkMode ? TColors.black : TColors.white,
-            indicatorColor: darkMode ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
+            indicatorColor: darkMode ? TColors.white.withOpacity(0.1) : TColors.colorApp.withOpacity(0.5),
         
             destinations:const [
               NavigationDestination(icon: Icon(Iconsax.home), label: 'Trang chủ'),

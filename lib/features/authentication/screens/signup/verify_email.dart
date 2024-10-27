@@ -1,3 +1,4 @@
+import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,7 +46,8 @@ class VerifyEmailScreen extends StatelessWidget{
               SizedBox(width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF5C97A7)
+                    backgroundColor: TColors.colorApp,
+                    side: const BorderSide(color: TColors.colorApp),
                   ),
                     onPressed: () => Get.to(() => SuccessScreen(
                       image: TImages.staticSuccessIllustration,

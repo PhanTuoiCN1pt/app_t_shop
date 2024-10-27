@@ -1,4 +1,5 @@
 
+import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -88,7 +89,8 @@ class TSignupForm extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF5C97A7)
+                  backgroundColor: TColors.colorApp,
+                  side: const BorderSide(color: TColors.colorApp),
                 ),
                 onPressed: () => Get.to(()=> const VerifyEmailScreen()), child: const Text(TTexts.createAccount))
         ),

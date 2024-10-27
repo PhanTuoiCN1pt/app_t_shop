@@ -4,7 +4,9 @@ import 'package:app_t_shop/common/widgets/list_titles/settings_menu_title.dart';
 import 'package:app_t_shop/common/widgets/list_titles/user_profile_title.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
 import 'package:app_t_shop/features/authentication/screens/login/login.dart';
+import 'package:app_t_shop/features/personalization/screens/address/address.dart';
 import 'package:app_t_shop/features/personalization/screens/profile/profile.dart';
+import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,7 +43,7 @@ class SettingScreen extends StatelessWidget {
                   /// Account Setting
                   const TSectionHeading(title: 'Account Setting',showActionButton: false,),
                   const SizedBox(height: TSizes.spaceBtwSections,),
-                  SettingsMenuTile(icon: Iconsax.safe_home, title: 'My Addresses', subtitle: 'Set shopping delivery address',onTap: (){},),
+                  SettingsMenuTile(icon: Iconsax.safe_home, title: 'My Addresses', subtitle: 'Set shopping delivery address',onTap: ()=>Get.to(()=>const UserAddressScreen()),),
                   SettingsMenuTile(icon: Iconsax.shopping_cart, title: 'My Cart', subtitle: 'Add, remove products and move to checkout',onTap: (){},),
                   SettingsMenuTile(icon: Iconsax.bag_tick, title: 'My Order', subtitle: 'In-progress and Completed Order',onTap: (){},),
                   SettingsMenuTile(icon: Iconsax.bank, title: 'Bank Account', subtitle: 'Withdraw balance to registered',onTap: (){},),
@@ -62,24 +64,27 @@ class SettingScreen extends StatelessWidget {
                       icon: Iconsax.location,
                       title: 'Geolocation',
                       subtitle: 'Set recommendation based on location',
-                      trailing: Switch(value: true, onChanged: (value) {}),),
+                      trailing: Switch(
+                          value: true,
+                          activeColor: TColors.colorApp,
+                          onChanged: (value) {}),
+                  ),
                   SettingsMenuTile(
                       icon: Iconsax.security,
                       title: 'Safe Mode',
                       subtitle: 'Search result is safe for all ages',
-                      trailing: Switch(value: false, onChanged: (value) {}),),
+                      trailing: Switch(value: false, activeColor: TColors.colorApp, onChanged: (value) {}),),
                   SettingsMenuTile(
                       icon: Iconsax.image,
                       title: 'HD Image Quality',
                       subtitle: 'Set image quality to be seen',
-                      trailing: Switch(value: false, onChanged: (value) {}),
+                      trailing: Switch(value: false, activeColor: TColors.colorApp, onChanged: (value) {}),
                   ),
                   const SizedBox(height: TSizes.spaceBtwSections,),
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(onPressed: () => Get.to(() => const LoginScreen()), child: const Text('Logout')),
                   ),
-                  const SizedBox(height: TSizes.spaceBtwSections*2.5,),
 
                 ],
               ),
