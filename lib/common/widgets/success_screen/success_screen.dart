@@ -2,6 +2,7 @@ import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:app_t_shop/common/stype/spacing_stypes.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../utils/constants/text_strings.dart';
 import '../../../utils/helpers/helper_functions.dart';
@@ -27,10 +28,7 @@ class SuccessScreen extends StatelessWidget {
           child: Column(
             children: [
               /// Image
-              Image(
-                image: AssetImage(image),
-                width: THelperFunctions.screenWidth() * 0.6,
-              ),
+              Lottie.asset(image, width: MediaQuery.of(context).size.width * 0.6),
               const SizedBox(height: TSizes.spaceBtwSections,),
 
             /// Title & SubTitle

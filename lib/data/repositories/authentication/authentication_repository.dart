@@ -1,5 +1,7 @@
 import 'package:app_t_shop/features/authentication/screens/login/login.dart';
 import 'package:app_t_shop/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:app_t_shop/features/authentication/screens/signup/verify_email.dart';
+import 'package:app_t_shop/navigation_menu.dart';
 import 'package:app_t_shop/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:app_t_shop/utils/exceptions/firebase_exceptions.dart';
 import 'package:app_t_shop/utils/exceptions/format_exceptions.dart';
@@ -25,13 +27,41 @@ class AuthenticationRepository extends GetxController {
 
   /// Function to Show Relevant Screen
   screenRedirect() async{
-    /// Local Storage
-    deviceStorage.writeIfNull('IsFirstTime', true);
-    deviceStorage.read('IsFirstTime') != true ? Get.offAll(() => const LoginScreen()) : Get.offAll(const OnBoardingScreen());
+    final user = _auth.currentUser;
+    if(user != null){
+      if(user.emailVerified){
+        Get.offAll(() => const NavigationMenuScreen());
+      }else{
+        Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email,));
+      }
+    } else {
+      /// Local Storage
+      deviceStorage.writeIfNull('IsFirstTime', true);
+      deviceStorage.read('IsFirstTime') != true
+          ? Get.offAll(() => const LoginScreen())
+          : Get.offAll(const OnBoardingScreen());
+    }
+
   }
   /*----------------------------------------- Email & Password sign-up --------------------------------------- */
 
-  /// [EmailAuthentication] - SignIn
+  /// [EmailAuthentication] - LOGIN
+  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async{
+    try{
+      return await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e){
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e){
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong, Please try again';
+    }
+  }
+
   /// [EmailAuthentication] - REGISTER
   Future<UserCredential> registerWithEmailAndPassword(String email, String password) async{
     try{
@@ -50,6 +80,21 @@ class AuthenticationRepository extends GetxController {
   }
 
   /// [MAIL VERIFICATION] - MAIL VERIFICATION
+  Future<void> sendEmailVerification() async{
+    try{
+      return await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e){
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e){
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong, Please try again';
+    }
+  }
   /// [ReAuthenticate] - ReAuthenticate User
   /// [EmailAuthentication] - FORGET PASSWORD
 
@@ -61,5 +106,21 @@ class AuthenticationRepository extends GetxController {
 /*----------------------------------------- ./end Federate identify & social sign-in --------------------------------------- */
 
 /// [LogoutUser] - valid for authentication.
+   Future<void> logout() async {
+     try{
+       await FirebaseAuth.instance.signOut();
+       Get.offAll(() => const LoginScreen());
+     } on FirebaseAuthException catch (e){
+       throw TFirebaseAuthException(e.code).message;
+     } on FirebaseException catch (e) {
+       throw TFirebaseException(e.code).message;
+     } on FormatException catch (_) {
+       throw const TFormatException();
+     } on PlatformException catch (e){
+       throw TPlatformException(e.code).message;
+     } catch (e) {
+       throw 'Something went wrong, Please try again';
+     }
+   }
 /// [DeleteUser] - Remove user Auth and Firesstore Account
 }
