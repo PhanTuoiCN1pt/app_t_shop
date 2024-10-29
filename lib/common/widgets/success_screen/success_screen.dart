@@ -1,3 +1,4 @@
+import 'package:app_t_shop/data/repositories/authentication/authentication_repository.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:app_t_shop/common/stype/spacing_stypes.dart';
@@ -5,7 +6,6 @@ import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../utils/constants/text_strings.dart';
-import '../../../utils/helpers/helper_functions.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen({
@@ -45,7 +45,7 @@ class SuccessScreen extends StatelessWidget {
                     backgroundColor: TColors.colorApp,
                     side: const BorderSide(color: TColors.colorApp),
                   ),
-                  onPressed: onPressed, child: const Text(TTexts.tContinue),),
+                  onPressed: () async {await AuthenticationRepository.instance.logout();}, child: const Text(TTexts.tContinue),),
 
               ),
             ],

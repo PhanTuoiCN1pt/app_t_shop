@@ -3,7 +3,7 @@ import 'package:app_t_shop/common/widgets/custom_shapes/containers/primary_heade
 import 'package:app_t_shop/common/widgets/list_titles/settings_menu_title.dart';
 import 'package:app_t_shop/common/widgets/list_titles/user_profile_title.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
-import 'package:app_t_shop/features/authentication/screens/login/login.dart';
+import 'package:app_t_shop/data/repositories/authentication/authentication_repository.dart';
 import 'package:app_t_shop/features/personalization/screens/address/address.dart';
 import 'package:app_t_shop/features/personalization/screens/profile/profile.dart';
 import 'package:app_t_shop/features/shop/screens/cart/cart.dart';
@@ -85,7 +85,9 @@ class SettingScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections,),
                   SizedBox(
                     width: double.infinity,
-                    child: OutlinedButton(onPressed: () => Get.to(() => const LoginScreen()), child: const Text('Logout')),
+                    child: OutlinedButton(onPressed: () async {
+                      await AuthenticationRepository.instance.logout();
+                    }, child: const Text('Logout')),
                   ),
 
                 ],
