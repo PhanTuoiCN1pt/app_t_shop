@@ -11,11 +11,13 @@ import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
   final profileLoading = false.obs;
+  final imageUploading = false.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final hidePassword = false.obs;
@@ -44,23 +46,28 @@ class UserController extends GetxController {
 
   Future<void> saveUserRecord(UserCredential? userCredentials) async{
     try{
-      if(userCredentials != null){
-        /// Convert Name to First and Last Name
-        final namePart = UserModel.nameParts(userCredentials.user!.displayName ?? '');
-        final username = UserModel.generateUsername(userCredentials.user!.displayName ?? '');
+      await fetchUserRecord();
+      if (user.value.id.isEmpty) {
+        if (userCredentials != null) {
+          /// Convert Name to First and Last Name
+          final namePart = UserModel.nameParts(
+              userCredentials.user!.displayName ?? '');
+          final username = UserModel.generateUsername(
+              userCredentials.user!.displayName ?? '');
 
-        final user = UserModel(
+          final user = UserModel(
             id: userCredentials.user!.uid,
             username: username,
             email: userCredentials.user!.email ?? '',
             firstName: namePart[0],
-            lastName: namePart.length > 1 ? namePart.sublist(1).join(' ') : '' ,
+            lastName: namePart.length > 1 ? namePart.sublist(1).join(' ') : '',
             phoneNumber: userCredentials.user!.phoneNumber ?? '',
             profilePicture: userCredentials.user!.photoURL ?? '',
-        );
+          );
 
-        /// Save Data
-        await userRepository.saveUserRecord(user);
+          /// Save Data
+          await userRepository.saveUserRecord(user);
+        }
       }
     }catch (e) {
       TLoaders.warningSnackBar(
@@ -142,6 +149,30 @@ class UserController extends GetxController {
     }catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.warningSnackBar(title: 'Oh Snap', message: e.toString());
+    }
+  }
+
+  /// Upload Image
+  uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512, maxWidth: 512);
+      if(image != null){
+        imageUploading.value = true;
+      /// Upload Image
+        final imageUrl = await userRepository.uploadImage('Users/Image/Profile/', image);
+
+      /// Update User Image Record
+        Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+        TLoaders.successSnackBar(title: 'Hoàn thành', message: 'Your profile Image has been upload.');
+      }
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'On Snap', message: 'Something went wrong.');
+    } finally {
+      imageUploading.value = false;
     }
   }
 }
