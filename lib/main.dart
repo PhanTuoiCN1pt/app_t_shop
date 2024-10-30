@@ -31,6 +31,7 @@ Future<void> main() async {
 
   Get.put(UserController());
 
+  Get.put(CategoryController());
 
 
 
