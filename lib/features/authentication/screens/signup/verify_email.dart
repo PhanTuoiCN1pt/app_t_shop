@@ -4,8 +4,6 @@ import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app_t_shop/common/widgets/success_screen/success_screen.dart';
-import 'package:app_t_shop/features/authentication/screens/login/login.dart';
 import 'package:app_t_shop/utils/constants/text_strings.dart';
 
 import '../../../../utils/constants/image_strings.dart';

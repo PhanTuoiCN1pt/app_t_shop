@@ -1,6 +1,8 @@
 
 
-import 'package:app_t_shop/features/authentication/screens/password_configuration/reset_password.dart';
+import 'package:app_t_shop/features/authentication/controllers/forget_password/forget_password_controller.dart';
+import 'package:app_t_shop/utils/constants/colors.dart';
+import 'package:app_t_shop/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -13,6 +15,7 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ForgetPasswordController());
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -24,8 +27,13 @@ class ForgetPasswordScreen extends StatelessWidget {
             Text(TTexts.forgetPasswordTitle, style: Theme.of(context).textTheme.headlineMedium,),
             const SizedBox(height: TSizes.spaceBtwItems,),
             /// Text field
-            TextFormField(
-              decoration: const InputDecoration(labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct_right)),
+            Form(
+              key: controller.forgetPasswordFormKey,
+              child: TextFormField(
+                controller: controller.email,
+                validator: TValidator.validateEmail,
+                decoration: const InputDecoration(labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct_right)),
+              ),
             ),
             const SizedBox(height: TSizes.spaceBtwItems1,),
             Text(TTexts.forgetPasswordSubTitle, style: Theme.of(context).textTheme.labelMedium,),
@@ -35,9 +43,10 @@ class ForgetPasswordScreen extends StatelessWidget {
                 width: double.infinity ,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF5C97A7)
+                      backgroundColor: TColors.colorApp,
+                      side: const BorderSide(color: TColors.colorApp),
                     ),
-                    onPressed: () => Get.to(()=>const ResetPasswordScreen()),
+                    onPressed: () => controller.sendPasswordResetEmail(),
                     child: const Text(TTexts.submit))),
           ],
         ),
