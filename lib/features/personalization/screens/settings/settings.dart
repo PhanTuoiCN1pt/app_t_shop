@@ -3,13 +3,18 @@ import 'package:app_t_shop/common/widgets/custom_shapes/containers/primary_heade
 import 'package:app_t_shop/common/widgets/list_titles/settings_menu_title.dart';
 import 'package:app_t_shop/common/widgets/list_titles/user_profile_title.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
+import 'package:app_t_shop/data/dummy_data.dart';
 import 'package:app_t_shop/data/repositories/authentication/authentication_repository.dart';
+import 'package:app_t_shop/data/services/category_firestore_service.dart';
 import 'package:app_t_shop/features/personalization/screens/address/address.dart';
 import 'package:app_t_shop/features/personalization/screens/profile/profile.dart';
+import 'package:app_t_shop/features/shop/controllers/category_controller.dart';
 import 'package:app_t_shop/features/shop/screens/cart/cart.dart';
 import 'package:app_t_shop/features/shop/screens/order/order.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
+import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
+import 'package:app_t_shop/utils/popups/full_screen_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -56,11 +61,40 @@ class SettingScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections,),
                   const TSectionHeading(title: 'App Setting', showActionButton: false,),
                   const SizedBox(height: TSizes.spaceBtwItems,),
-                  const SettingsMenuTile(
+                  SettingsMenuTile(
                     icon: Iconsax.document_upload,
                     title: 'Load Data',
                     subtitle: 'Upload Data to your Cloud FireBase',
-                    ),
+                    onTap: () async {
+                      final categoryService = CategoryFirestoreService();
+                      final categoryController = Get.find<CategoryController>(); // Lấy instance của CategoryController
+
+                      try {
+                        TFullScreenLoader.openLoadingDialog('Đang tải lên', TImages.docerAnimation);
+
+                        // Tải lên danh mục
+                        await categoryService.uploadCategoriesToFirestore(TDummyData.categories);
+                        TFullScreenLoader.stopLoading();
+                        print("All categories uploaded successfully!");
+
+                        // Hiển thị thông báo thành công cho người dùng
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Categories uploaded successfully!'))
+                        );
+
+                        // Gọi phương thức fetchCategories để reload lại dữ liệu
+                        await categoryController.fetchCategories(); // Tải lại danh sách danh mục từ Firestore
+
+                      } catch (e) {
+                        print("Error uploading categories: $e");
+                        // Hiển thị thông báo lỗi cho người dùng
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Failed to upload categories.'))
+                        );
+                      }
+                    },
+                  ),
+
                   SettingsMenuTile(
                       icon: Iconsax.location,
                       title: 'Geolocation',

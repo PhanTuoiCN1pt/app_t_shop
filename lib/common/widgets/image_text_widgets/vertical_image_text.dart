@@ -12,7 +12,9 @@ class TVerticalImageText extends StatelessWidget {
     this.backgroundColor = TColors.white,
     this.onTap,
   });
-  final String image,title;
+
+  final String image;
+  final String title;
   final Color textColor;
   final Color? backgroundColor;
   final void Function()? onTap;
@@ -36,17 +38,20 @@ class TVerticalImageText extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child: Image(image: AssetImage(image),fit: BoxFit.cover,color: TColors.black,),
+                child: image.startsWith('http')
+                    ? Image.network(image, fit: BoxFit.cover)  // Sử dụng Image.network cho URL
+                    : Image.asset(image, fit: BoxFit.cover),    // Sử dụng Image.asset cho hình trong assets
               ),
             ),
-            const SizedBox(height: TSizes.spaceBtwItems / 3,),
+            const SizedBox(height: TSizes.spaceBtwItems / 3),
             SizedBox(
               child: Text(
                 title,
                 style: Theme.of(context).textTheme.labelMedium!.apply(color: textColor),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-              ),),
+              ),
+            ),
           ],
         ),
       ),
