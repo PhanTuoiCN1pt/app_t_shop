@@ -24,20 +24,20 @@ class SuccessScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: TSpacingStype.paddingWithAppBarHeight *2 ,
+          padding: TSpacingStype.paddingWithAppBarHeight * 2,
           child: Column(
             children: [
-              /// Image
+              /// Hình ảnh
               Lottie.asset(image, width: MediaQuery.of(context).size.width * 0.6),
               const SizedBox(height: TSizes.spaceBtwSections,),
 
-            /// Title & SubTitle
+              /// Tiêu đề & Phụ đề
               Text(title, style: Theme.of(context).textTheme.headlineMedium, textAlign: TextAlign.center,),
               const SizedBox(height: TSizes.spaceBtwSections,),
               Text(subTitle, style: Theme.of(context).textTheme.labelMedium, textAlign: TextAlign.center,),
               const SizedBox(height: TSizes.spaceBtwSections,),
 
-              /// Button
+              /// Nút bấm
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -45,8 +45,11 @@ class SuccessScreen extends StatelessWidget {
                     backgroundColor: TColors.colorApp,
                     side: const BorderSide(color: TColors.colorApp),
                   ),
-                  onPressed: () async {await AuthenticationRepository.instance.logout();}, child: const Text(TTexts.tContinue),),
-
+                  onPressed: () async {
+                    await AuthenticationRepository.instance.logout();
+                  },
+                  child: const Text(TTexts.tContinue),
+                ),
               ),
             ],
           ),

@@ -12,7 +12,7 @@ class AddNewAddressScreen extends StatelessWidget {
     return Scaffold(
       appBar: const TAppBar(
         showBackArrow: true,
-        title: Text('Add new Address'),
+        title: Text('Thêm địa chỉ mới'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -20,27 +20,27 @@ class AddNewAddressScreen extends StatelessWidget {
           child: Form(
             child: Column(
               children: [
-                TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.user),labelText: 'Name'),),
+                TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.user),labelText: 'Tên'),),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
-                TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.mobile),labelText: 'Phone Number'),),
+                TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.mobile),labelText: 'Số điện thoại'),),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
                 Row(
                   children: [
-                    Expanded(child: TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.building_31), labelText: 'Street'),)),
+                    Expanded(child: TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.building_31), labelText: 'Địa chỉ'),)),
                     const SizedBox(width: TSizes.spaceBtwInputFields,),
-                    Expanded(child: TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.code),labelText: 'Postal Code'),)),
+                    Expanded(child: TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.code),labelText: 'Mã bưu điện'),)),
                   ],
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
                 Row(
                   children: [
-                    Expanded(child: TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.building), labelText: 'City'),)),
+                    Expanded(child: TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.building), labelText: 'Thành phố'),)),
                     const SizedBox(width: TSizes.spaceBtwInputFields,),
-                    Expanded(child: TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.activity),labelText: 'State'),)),
+                    Expanded(child: TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.activity),labelText: 'Huyện'),)),
                   ],
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
-                TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.global),labelText: 'Country'),),
+                TextFormField(decoration: const InputDecoration(prefixIcon: Icon(Iconsax.global),labelText: 'Quốc gia'),),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
                 SizedBox(
                   width: double.infinity,
@@ -49,8 +49,8 @@ class AddNewAddressScreen extends StatelessWidget {
                       backgroundColor: TColors.colorApp,
                       side: const BorderSide(color: TColors.colorApp),
                     ),
-                      onPressed: (){},
-                      child: const Text('Save'),
+                    onPressed: (){},
+                    child: const Text('Lưu'),
                   ),
                 ),
               ],

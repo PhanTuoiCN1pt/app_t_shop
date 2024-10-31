@@ -38,8 +38,8 @@ class CartItem extends StatelessWidget {
               Text.rich(
                 TextSpan(
                     children:  [
-                      TextSpan(text: 'Color',style: Theme.of(context).textTheme.bodySmall),
-                      TextSpan(text: 'Green',style: Theme.of(context).textTheme.bodyLarge),
+                      TextSpan(text: 'Màu',style: Theme.of(context).textTheme.bodySmall),
+                      TextSpan(text: 'Xanh',style: Theme.of(context).textTheme.bodyLarge),
                       TextSpan(text: 'Size',style: Theme.of(context).textTheme.bodySmall),
                       TextSpan(text: 'UK 08',style: Theme.of(context).textTheme.bodyLarge),
                     ]

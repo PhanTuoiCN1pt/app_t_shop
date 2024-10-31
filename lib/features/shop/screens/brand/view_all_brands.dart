@@ -13,14 +13,14 @@ class ViewAllBrandScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TAppBar(title: Text('Brand'), showBackArrow: true,),
+      appBar: const TAppBar(title: Text('Thương hiệu'), showBackArrow: true,),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
               /// Heading
-              const TSectionHeading(title: 'Brands',showActionButton: false,),
+              const TSectionHeading(title: 'Thương hiệu',showActionButton: false,),
               const SizedBox(height: TSizes.spaceBtwItems,),
 
               /// Brands

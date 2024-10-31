@@ -7,22 +7,20 @@ import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
-/// A card widget representing a brand.
+
+/// Widget đại diện cho một thương hiệu.
 class TBrandCard extends StatelessWidget {
-  /// Default constructor for the TBrandCard.
+  /// Constructor mặc định cho TBrandCard.
   ///
-  /// Parameters:
-  ///   - brand: The brand model to display.
-  ///   - showBorder: A flag indicating whether to show a border around the card.
-  ///   - onTap: Callback function when the card is tapped.
+  /// Tham số:
+  ///   - showBorder: Cờ chỉ định có hiển thị đường viền quanh thẻ hay không.
+  ///   - onTap: Hàm callback khi thẻ được chạm.
   const TBrandCard({
     super.key,
-    ///required this.brand,
     required this.showBorder,
     this.onTap,
   });
 
-  ///final TBrandModel brand;
   final bool showBorder;
   final void Function()? onTap;
 
@@ -32,7 +30,7 @@ class TBrandCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      /// Container Design
+      /// Thiết kế Container
       child: TRoundedContainer(
         showBorder: showBorder,
         backgroundColor: Colors.transparent,
@@ -40,10 +38,9 @@ class TBrandCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            /// -- Icon
+            /// -- Biểu tượng
             Flexible(
               child: CircularImage(
-                ///image: brand.image,
                 image: TImages.clothIcon,
                 isNetworkImage: false,
                 backgroundColor: Colors.transparent,
@@ -52,9 +49,7 @@ class TBrandCard extends StatelessWidget {
             ),
             const SizedBox(width: TSizes.spaceBtwItems / 2),
 
-            /// -- Texts
-            // [Expanded] & Column [MainAxisSize.min] is important to keep the elements in the vertical center and also
-            // to keep text inside the boundaries.
+            /// -- Văn bản
             Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -62,7 +57,7 @@ class TBrandCard extends StatelessWidget {
                 children: [
                   const TBrandTitleWithVerifiedIcon(title: 'Nike', brandTextSize: TextSizes.large),
                   Text(
-                    '25 Products',
+                    '25 Sản phẩm',
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),

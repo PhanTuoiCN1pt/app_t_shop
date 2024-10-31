@@ -19,43 +19,43 @@ class ProductMetaData extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        /// Price, Sale
+        /// Giá, Giảm giá
         Row(
           children: [
-            /// Sale Tag
+            /// Mã giảm giá
             TRoundedContainer(
               radius: TSizes.sm,
               backgroundColor: TColors.secondary.withOpacity(0.8),
               padding: const EdgeInsets.symmetric(horizontal: TSizes.sm,vertical: TSizes.xs),
-              child: Text('25%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),),
+              child: Text('25%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),), // Giảm giá 25%
             ),
             const SizedBox(width: TSizes.spaceBtwItems,),
 
-            /// Price
-            Text('\$250',style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
+            /// Giá
+            Text('\$250',style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),), // Giá cũ: $250
             const SizedBox(width: TSizes.spaceBtwItems,),
-            const ProductPriceText(price: '175',isLarge: true,),
+            const ProductPriceText(price: '175',isLarge: true,), // Giá: $175
 
           ],
         ),
         const SizedBox(height: TSizes.spaceBtwItems/1.5,),
 
-        /// Title
-        const TProductTitleText(title: 'Green Nike Sports Shirt'),
+        /// Tiêu đề
+        const TProductTitleText(title: 'Green Nike Sports Shirt'), // Áo thể thao Nike xanh lá
         const SizedBox(height: TSizes.spaceBtwItems/1.5,),
 
-        /// Stock Status
+        /// Tình trạng hàng tồn kho
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const TProductTitleText(title: 'Stock:',smallSize: true,),
+            const TProductTitleText(title: 'Tồn kho:',smallSize: true,), // Tồn kho:
             const SizedBox(width: TSizes.spaceBtwItems/3,),
-            Text('In Stock',style: Theme.of(context).textTheme.titleMedium,),
+            Text('In Stock',style: Theme.of(context).textTheme.titleMedium,), // Còn hàng
           ],
         ),
         const SizedBox(height: TSizes.spaceBtwItems/1.5,),
 
-        /// Brand
+        /// Thương hiệu
         Row(
           children: [
             CircularImage(
@@ -64,7 +64,7 @@ class ProductMetaData extends StatelessWidget {
               height: 32,
               overlayColor: dark ? TColors.white : TColors.black,
             ),
-            const TBrandTitleWithVerifiedIcon(title: 'Nike',brandTextSize: TextSizes.medium,),
+            const TBrandTitleWithVerifiedIcon(title: 'Nike',brandTextSize: TextSizes.medium,), // Thương hiệu: Nike
           ],
         )
       ],

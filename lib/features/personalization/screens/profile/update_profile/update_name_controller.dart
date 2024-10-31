@@ -29,42 +29,41 @@ class UpdateNameController extends GetxController {
     lastName.text = userController.user.value.lastName;
   }
 
-
   Future<void> updateUserName() async {
     try {
-      /// Start Loading
-      TFullScreenLoader.openLoadingDialog('We are updating your information...', TImages.docerAnimation);
+      /// Bắt đầu loading
+      TFullScreenLoader.openLoadingDialog('Chúng tôi đang cập nhật thông tin của bạn...', TImages.docerAnimation);
 
-      /// Check Internet Connectivity
+      /// Kiểm tra kết nối Internet
       final isConnected = await NetworkManager.instance.isConnected();
       if(!isConnected) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      /// Form Validate
+      /// Kiểm tra form
       if(!updateUserNameFormKey.currentState!.validate()){
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      /// Update
+      /// Cập nhật
       Map<String, dynamic> name = {'FirstName': firstName.text.trim(), 'LastName': lastName.text.trim()};
       await userRepository.updateSingleField(name);
 
       userController.user.value.firstName = firstName.text.trim();
       userController.user.value.lastName = lastName.text.trim();
 
-      /// Remove Loader
+      /// Dừng loader
       TFullScreenLoader.stopLoading();
 
-      TLoaders.successSnackBar(title: 'Hoàn thành', message: 'Your Name Has Been Update');
+      TLoaders.successSnackBar(title: 'Hoàn thành', message: 'Tên của bạn đã được cập nhật');
 
       Get.off(() => const ProfileScreen());
 
     } catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+      TLoaders.errorSnackBar(title: 'Ôi không', message: e.toString());
     }
   }
 }

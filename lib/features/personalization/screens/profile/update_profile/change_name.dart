@@ -16,7 +16,7 @@ class ChangeName extends StatelessWidget {
     return Scaffold(
       appBar: TAppBar(
         showBackArrow: true,
-        title: Text('Change Name',style: Theme.of(context).textTheme.headlineSmall,),
+        title: Text('Đổi tên',style: Theme.of(context).textTheme.headlineSmall,),
       ),
       body: Padding(
         padding: const EdgeInsets.all(TSizes.defaultSpace),
@@ -25,7 +25,7 @@ class ChangeName extends StatelessWidget {
           children: [
             /// Heading
             Text(
-              'Use real name for easy veritification. This name will appear on several',
+              'Sử dụng tên thật để đặt tên.',
               style: Theme.of(context).textTheme.labelMedium,
             ),
             const SizedBox(height: TSizes.spaceBtwSections,),
@@ -54,7 +54,7 @@ class ChangeName extends StatelessWidget {
             
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(onPressed: () =>  controller.updateUserName(), child: const Text('Save')),
+              child: ElevatedButton(onPressed: () =>  controller.updateUserName(), child: const Text('Cập nhật')),
             )
           ],
         ),

@@ -27,7 +27,7 @@ class TLoaders {
     );
   }
 
-  static successSnackBar({required title, message = '', duration = 3}) {
+  static successSnackBar({required title, message = '', duration = 2}) {
     Get.snackbar(
       title,
       message,
@@ -35,7 +35,7 @@ class TLoaders {
       shouldIconPulse: true,
       colorText: Colors.white,
       backgroundColor: TColors.colorApp,
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: SnackPosition.TOP,
       duration: Duration(seconds: duration),
       margin: const EdgeInsets.all(10),
       icon: const Icon(Iconsax.check, color: TColors.white),

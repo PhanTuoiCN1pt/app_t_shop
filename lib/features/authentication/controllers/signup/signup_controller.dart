@@ -13,40 +13,38 @@ class SignupController extends GetxController {
   static SignupController get instance => Get.find();
   SignupController();
 
-  /// Variable
-  final hidePassword = true.obs; // Hien thi xem mat khau
-  final privacyPolicy = false.obs; // Hien thi dong y yeu cau
-  final email = TextEditingController(); // Controller email input
+  /// Biến
+  final hidePassword = true.obs; // Hiện thị xem mật khẩu
+  final privacyPolicy = false.obs; // Hiện thị đồng ý yêu cầu
+  final email = TextEditingController(); // Controller cho input email
   final lastname = TextEditingController();
   final username = TextEditingController();
   final password = TextEditingController();
   final firstname = TextEditingController();
   final phoneNumber = TextEditingController();
-  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>(); // Form key for form validation
+  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>(); // Khóa form để xác thực
 
-  /// -- SIGNUP
-  Future<void> signup() async{
-    try{
-      /// Start Loading
-      TFullScreenLoader.openLoadingDialog('We are processing your information...',TImages.docerAnimation);
+  /// -- ĐĂNG KÝ
+  Future<void> signup() async {
+    try {
+      /// Bắt đầu tải
+      TFullScreenLoader.openLoadingDialog('Chúng tôi đang xử lý thông tin của bạn...', TImages.docerAnimation);
 
-      /// Check Internet Connectivity
+      /// Kiểm tra kết nối Internet
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected) {
+      if (!isConnected) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-
-      /// Form Validation
-      if(!signupFormKey.currentState!.validate()){
+      /// Kiểm tra tính hợp lệ của biểu mẫu
+      if (!signupFormKey.currentState!.validate()) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-
-      /// Privacy Policy Check
-      if(!privacyPolicy.value){
+      /// Kiểm tra Chính sách Quyền riêng tư
+      if (!privacyPolicy.value) {
         TLoaders.warningSnackBar(
           title: 'Đồng ý điều khoản',
           message: 'Khi đăng ký tài khoản, bạn phải đồng ý với Chính sách và Điều khoản',
@@ -54,10 +52,10 @@ class SignupController extends GetxController {
         return;
       }
 
-      /// Register user in the Firebase Authentication & Save user in the Firebase
+      /// Đăng ký người dùng trong Firebase Authentication & Lưu người dùng trong Firebase
       final userCredential = await AuthenticationRepository.instance.registerWithEmailAndPassword(email.text.trim(), password.text.trim());
 
-      /// Save Authentication user data in the Firebase Firestore
+      /// Lưu dữ liệu người dùng vào Firebase Firestore
       final newUser = UserModel(
           id: userCredential.user!.uid,
           firstName: firstname.text.trim(),
@@ -70,17 +68,16 @@ class SignupController extends GetxController {
       final userRepository = Get.put(UserRepository());
       await userRepository.saveUserRecord(newUser);
 
-
       TFullScreenLoader.stopLoading();
 
-      /// Show Success Message
-      TLoaders.successSnackBar(title: 'Congratulations',message:'Your account has been created! Verify email to continue.' );
-      /// Move to Verify Email Screen
+      /// Hiện thông báo thành công
+      TLoaders.successSnackBar(title: 'Chúc mừng', message: 'Tài khoản của bạn đã được tạo! Vui lòng xác thực email để tiếp tục.');
+      /// Chuyển đến màn hình xác thực email
       Get.to(() => VerifyEmailScreen(email: email.text.trim(),));
     } catch (e) {
       TFullScreenLoader.stopLoading();
-      // Show some Generic Error to the user
-      TLoaders.errorSnackBar(title: 'On Snap!', message: e.toString());
+      // Hiện thông báo lỗi chung cho người dùng
+      TLoaders.errorSnackBar(title: 'Có lỗi xảy ra!', message: e.toString());
     }
   }
 }

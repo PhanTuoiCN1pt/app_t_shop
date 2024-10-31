@@ -26,7 +26,7 @@ class ProductCartHorizontal extends StatelessWidget {
       ),
       child: Row(
         children: [
-          /// Thumbnail
+          /// Ảnh đại diện
           TRoundedContainer(
             width: 120,
             padding: const EdgeInsets.all(TSizes.sm),
@@ -36,16 +36,16 @@ class ProductCartHorizontal extends StatelessWidget {
                 const SizedBox(
                   height: 120,
                   width: 120,
-                  child: TRoundedImage(imageUrl: TImages.productImage1,applyImageRadius: true,),
+                  child: TRoundedImage(imageUrl: TImages.productImage1, applyImageRadius: true,),
                 ),
                 Positioned(
                   top: 5,
-                    child: TRoundedContainer(
-                      radius: TSizes.sm,
-                      backgroundColor: TColors.secondary.withOpacity(0.8),
-                      padding: const EdgeInsets.symmetric(horizontal: TSizes.sm,vertical: TSizes.xs),
-                      child: Text('25%',style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),),
-                    ),
+                  child: TRoundedContainer(
+                    radius: TSizes.sm,
+                    backgroundColor: TColors.secondary.withOpacity(0.8),
+                    padding: const EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
+                    child: Text('25%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),),
+                  ),
                 ),
 
                 const Positioned(
@@ -53,24 +53,24 @@ class ProductCartHorizontal extends StatelessWidget {
                   right: 0,
                   width: 35,
                   height: 35,
-                  child: TCircularIcon(icon: Iconsax.heart5,color: Colors.red,size: 20,),
+                  child: TCircularIcon(icon: Iconsax.heart5, color: Colors.red, size: 20,),
                 ),
               ],
             ),
           ),
 
-          /// Details
+          /// Chi tiết sản phẩm
           SizedBox(
             width: 188,
             child: Padding(
-              padding: const EdgeInsets.only(top: TSizes.sm,left: TSizes.sm),
+              padding: const EdgeInsets.only(top: TSizes.sm, left: TSizes.sm),
               child: Column(
                 children: [
                   const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TProductTitleText(title: 'Green Nike hajkdh adhsad aksdh askdh adsadhs ', smallSize: true,),
-                      SizedBox(height: TSizes.spaceBtwItems/2,),
+                      TProductTitleText(title: 'Giày Nike xanh lá cây hajkdh adhsad aksdh askdh adsadhs ', smallSize: true,),
+                      SizedBox(height: TSizes.spaceBtwItems / 2,),
                       TBrandTitleWithVerifiedIcon(title: 'Nike'),
                     ],
                   ),
@@ -80,10 +80,10 @@ class ProductCartHorizontal extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      /// Pricing
-                        const Flexible(child: ProductPriceText(price: '256')),
+                      /// Giá cả
+                      const Flexible(child: ProductPriceText(price: '256')),
 
-                      /// Add to Cart
+                      /// Thêm vào giỏ
                       Container(
                         decoration: const BoxDecoration(
                             color: TColors.dark,
@@ -93,8 +93,8 @@ class ProductCartHorizontal extends StatelessWidget {
                             )
                         ),
                         child: const SizedBox(
-                            width: TSizes.iconLg*1.2,
-                            height: TSizes.iconLg*1.2,
+                            width: TSizes.iconLg * 1.2,
+                            height: TSizes.iconLg * 1.2,
                             child: Center(child: Icon(Iconsax.add, color: TColors.white,))
                         ),
                       ),

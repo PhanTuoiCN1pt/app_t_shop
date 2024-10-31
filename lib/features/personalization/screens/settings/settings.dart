@@ -15,6 +15,7 @@ import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/popups/full_screen_loader.dart';
+import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -29,45 +30,44 @@ class SettingScreen extends StatelessWidget {
         child: Column(
           children: [
             TPrimaryHeaderContainer(
-                child: Column(
-                  children: [
-                    /// App Bar
-                    TAppBar(
-                      title: Text('Account', style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white),),
-                    ),
+              child: Column(
+                children: [
+                  /// App Bar
+                  TAppBar(
+                    title: Text('Tài khoản', style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white),),
+                  ),
 
-                    /// User Profile Card
-                    UserProfileTile(onPressed: () => Get.to(() => const ProfileScreen()),),
-                    const SizedBox(height: TSizes.spaceBtwSections,),
-                  ],
-                ),
+                  /// User Profile Card
+                  UserProfileTile(onPressed: () => Get.to(() => const ProfileScreen()),),
+                  const SizedBox(height: TSizes.spaceBtwSections,),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
                   /// Account Setting
-                  const TSectionHeading(title: 'Account Setting',showActionButton: false,),
-                  const SizedBox(height: TSizes.spaceBtwSections,),
-                  SettingsMenuTile(icon: Iconsax.safe_home, title: 'My Addresses', subtitle: 'Set shopping delivery address',onTap: ()=>Get.to(()=>const UserAddressScreen()),),
-                  SettingsMenuTile(icon: Iconsax.shopping_cart, title: 'My Cart', subtitle: 'Add, remove products and move to checkout',onTap: ()=>Get.to(() => const CartScreen()),),
-                  SettingsMenuTile(icon: Iconsax.bag_tick, title: 'My Order', subtitle: 'In-progress and Completed Order',onTap: () => Get.to(()=>const OrderScreen()),),
-                  SettingsMenuTile(icon: Iconsax.bank, title: 'Bank Account', subtitle: 'Withdraw balance to registered',onTap: (){},),
-                  SettingsMenuTile(icon: Iconsax.discount_shape, title: 'My Coupons', subtitle: 'List of all the discounted coupons',onTap: (){},),
-                  SettingsMenuTile(icon: Iconsax.notification, title: 'Notifications', subtitle: 'Set any kind of notification message',onTap: (){},),
-                  SettingsMenuTile(icon: Iconsax.security, title: 'Account Privacy', subtitle: 'Manage data usage and connected accounts',onTap: (){},),
+                  const TSectionHeading(title: 'Cài đặt tài khoản', showActionButton: false,),
+                  const SizedBox(height: TSizes.spaceBtwSections/3,),
+                  SettingsMenuTile(icon: Iconsax.safe_home, title: 'Địa chỉ', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () => Get.to(() => const UserAddressScreen()),),
+                  SettingsMenuTile(icon: Iconsax.shopping_cart, title: 'Giỏ hàng', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () => Get.to(() => const CartScreen()),),
+                  SettingsMenuTile(icon: Iconsax.bag_tick, title: 'Đơn hàng', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () => Get.to(() => const OrderScreen()),),
+                  SettingsMenuTile(icon: Iconsax.bank, title: 'Tài khoản', trailing: const Icon(Icons.arrow_forward_ios, size: 16),  onTap: () {},),
+                  SettingsMenuTile(icon: Iconsax.discount_shape, title: 'Phiếu giảm giá', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () {},),
+                  SettingsMenuTile(icon: Iconsax.notification, title: 'Thông báo', trailing: const Icon(Icons.arrow_forward_ios, size: 16),onTap: () {},),
+                  SettingsMenuTile(icon: Iconsax.security, title: 'Quyền riêng tư tài khoản', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () {},),
 
                   /// App Setting
-                  const SizedBox(height: TSizes.spaceBtwSections,),
-                  const TSectionHeading(title: 'App Setting', showActionButton: false,),
-                  const SizedBox(height: TSizes.spaceBtwItems,),
+                  const SizedBox(height: TSizes.spaceBtwSections/2,),
+                  const TSectionHeading(title: 'Cài đặt ứng dụng', showActionButton: false,),
+                  const SizedBox(height: TSizes.spaceBtwItems/3,),
                   SettingsMenuTile(
                     icon: Iconsax.document_upload,
-                    title: 'Load Data',
-                    subtitle: 'Upload Data to your Cloud FireBase',
+                    title: 'Tải dữ liệu',
                     onTap: () async {
                       final categoryService = CategoryFirestoreService();
-                      final categoryController = Get.find<CategoryController>(); // Lấy instance của CategoryController
+                      final categoryController = Get.find<CategoryController>();
 
                       try {
                         TFullScreenLoader.openLoadingDialog('Đang tải lên', TImages.docerAnimation);
@@ -75,52 +75,47 @@ class SettingScreen extends StatelessWidget {
                         // Tải lên danh mục
                         await categoryService.uploadCategoriesToFirestore(TDummyData.categories);
                         TFullScreenLoader.stopLoading();
-                        print("All categories uploaded successfully!");
+                        print("Tất cả danh mục đã được tải lên thành công!");
 
                         // Hiển thị thông báo thành công cho người dùng
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Categories uploaded successfully!'))
-                        );
+                        TLoaders.successSnackBar(title: 'Thành công', message: 'Tải dữ liệu thành công!');
 
                         // Gọi phương thức fetchCategories để reload lại dữ liệu
-                        await categoryController.fetchCategories(); // Tải lại danh sách danh mục từ Firestore
+                        await categoryController.fetchCategories();
 
                       } catch (e) {
-                        print("Error uploading categories: $e");
+                        print("Lỗi tải lên: $e");
                         // Hiển thị thông báo lỗi cho người dùng
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Failed to upload categories.'))
+                            const SnackBar(content: Text('Lỗi tải lên.'))
                         );
                       }
                     },
                   ),
 
                   SettingsMenuTile(
-                      icon: Iconsax.location,
-                      title: 'Geolocation',
-                      subtitle: 'Set recommendation based on location',
-                      trailing: Switch(
-                          value: true,
-                          activeColor: TColors.colorApp,
-                          onChanged: (value) {}),
+                    icon: Iconsax.location,
+                    title: 'Vị trí địa lý',
+                    trailing: Switch(
+                        value: true,
+                        activeColor: TColors.colorApp,
+                        onChanged: (value) {}),
                   ),
                   SettingsMenuTile(
-                      icon: Iconsax.security,
-                      title: 'Safe Mode',
-                      subtitle: 'Search result is safe for all ages',
-                      trailing: Switch(value: false, activeColor: TColors.colorApp, onChanged: (value) {}),),
+                    icon: Iconsax.security,
+                    title: 'Chế độ an toàn',
+                    trailing: Switch(value: false, activeColor: TColors.colorApp, onChanged: (value) {}),),
                   SettingsMenuTile(
-                      icon: Iconsax.image,
-                      title: 'HD Image Quality',
-                      subtitle: 'Set image quality to be seen',
-                      trailing: Switch(value: false, activeColor: TColors.colorApp, onChanged: (value) {}),
+                    icon: Iconsax.image,
+                    title: 'Chất lượng hình ảnh',
+                    trailing: Switch(value: false, activeColor: TColors.colorApp, onChanged: (value) {}),
                   ),
                   const SizedBox(height: TSizes.spaceBtwSections,),
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(onPressed: () async {
                       await AuthenticationRepository.instance.logout();
-                    }, child: const Text('Logout')),
+                    }, child: const Text('Đăng xuất')),
                   ),
 
                 ],

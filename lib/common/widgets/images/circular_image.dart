@@ -13,8 +13,8 @@ class CircularImage extends StatelessWidget {
     this.isNetworkImage = false,
     this.overlayColor,
     this.backgroundColor,
-    this.width = 56,
-    this.height = 56,
+    this.width = 100,
+    this.height = 100,
     this.padding = TSizes.sm,
   });
   final BoxFit? fit;
@@ -43,8 +43,8 @@ class CircularImage extends StatelessWidget {
                 imageUrl: image,
                 fit: fit,
                 color: overlayColor,
-                progressIndicatorBuilder: (context, url, downloadProgress) => TShimmerEffect(width: 55, height: 55,radius: 55,),
-                errorWidget: (context, url, error) => Icon(Icons.error),)
+                progressIndicatorBuilder: (context, url, downloadProgress) => const TShimmerEffect(width: 100, height: 100,radius: 100,),
+                errorWidget: (context, url, error) => const Icon(Icons.error),)
               : Image(
                 fit: fit,
                 image: AssetImage(image),

@@ -18,49 +18,49 @@ class VerifyEmailController extends GetxController {
     super.onInit();
   }
 
-  /// Send Email Verification
+  /// Gửi Email xác thực
   sendEmailVerification() async {
-    try{
+    try {
       await AuthenticationRepository.instance.sendEmailVerification();
-      TLoaders.successSnackBar(title: 'Email Sent',message: 'Please Check Your Email.');
-    }catch (e) {
-      TLoaders.errorSnackBar(title: 'Oh Snap',message: e.toString());
+      TLoaders.successSnackBar(title: 'Email đã được gửi', message: 'Vui lòng kiểm tra email của bạn.');
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Có lỗi xảy ra', message: e.toString());
     }
   }
 
-  /// Timer to automatically redirect on email verigication
+  /// Bộ đếm thời gian để tự động chuyển hướng khi xác thực email
   setTimeForAutoRedirect() {
     Timer.periodic(
-        const Duration(seconds: 1),
-        (timer) async {
-          await FirebaseAuth.instance.currentUser?.reload();
-          final user = FirebaseAuth.instance.currentUser;
-          if(user?.emailVerified ?? false){
-            timer.cancel();
-            Get.off(
+      const Duration(seconds: 1),
+          (timer) async {
+        await FirebaseAuth.instance.currentUser?.reload();
+        final user = FirebaseAuth.instance.currentUser;
+        if (user?.emailVerified ?? false) {
+          timer.cancel();
+          Get.off(
                 () => SuccessScreen(
-                    image: TImages.docerAnimation,
-                    title: TTexts.yourAccountCreatedTitle,
-                    subTitle: TTexts.yourAccountCreatedSubTitle,
-                    onPressed: ()  => AuthenticationRepository.instance.screenRedirect(),
-                ),
-            );
-          }
-        }
-    );
-  }
-
-  /// Manually Check if Email Verified
-  checkEmailVerificationStatus() {
-    final currentUser = FirebaseAuth.instance.currentUser;
-    if(currentUser != null && currentUser.emailVerified){
-      Get.off(
-          () => SuccessScreen(
               image: TImages.docerAnimation,
               title: TTexts.yourAccountCreatedTitle,
               subTitle: TTexts.yourAccountCreatedSubTitle,
               onPressed: () => AuthenticationRepository.instance.screenRedirect(),
-          ),
+            ),
+          );
+        }
+      },
+    );
+  }
+
+  /// Kiểm tra thủ công xem Email đã được xác thực
+  checkEmailVerificationStatus() {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null && currentUser.emailVerified) {
+      Get.off(
+            () => SuccessScreen(
+          image: TImages.docerAnimation,
+          title: TTexts.yourAccountCreatedTitle,
+          subTitle: TTexts.yourAccountCreatedSubTitle,
+          onPressed: () => AuthenticationRepository.instance.screenRedirect(),
+        ),
       );
     }
   }

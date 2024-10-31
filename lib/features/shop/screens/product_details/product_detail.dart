@@ -18,54 +18,55 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark= THelperFunctions.isDarkMode(context);
-    return  Scaffold(
+    final dark = THelperFunctions.isDarkMode(context);
+    return Scaffold(
       bottomNavigationBar: const BottomAddToCart(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            /// 1 - Product Image Slider
+            /// 1 - Bộ trượt hình ảnh sản phẩm
             const ProductImageSlider(),
 
-            /// 2 - Product Details
+            /// 2 - Chi tiết sản phẩm
             Padding(
-              padding: const EdgeInsets.only(right: TSizes.defaultSpace,left: TSizes.defaultSpace,bottom: TSizes.defaultSpace),
+              padding: const EdgeInsets.only(right: TSizes.defaultSpace, left: TSizes.defaultSpace, bottom: TSizes.defaultSpace),
               child: Column(
                 children: [
-                  /// - Rating & Share
+                  /// - Đánh giá & Chia sẻ
                   const RatingAndShare(),
-                  
-                  /// - Price, Title, Stock, Brand
+
+                  /// - Giá, Tiêu đề, Tồn kho, Thương hiệu
                   const ProductMetaData(),
 
-                  /// - Attributes
+                  /// - Thuộc tính
                   const ProductAttributes(),
                   const SizedBox(height: TSizes.spaceBtwItems,),
 
-                  /// - Checkout Button
-                  SizedBox(width: double.infinity, child: ElevatedButton(onPressed: (){}, child: const Text('Checkout')),),
+                  /// - Nút Thanh toán
+                  SizedBox(width: double.infinity, child: ElevatedButton(onPressed: (){}, child: const Text('Thanh toán')),),
                   const SizedBox(height: TSizes.spaceBtwItems,),
 
-                  /// - Description
-                  const TSectionHeading(title: 'Decription',showActionButton: false,),
+                  /// - Mô tả
+                  const TSectionHeading(title: 'Mô tả', showActionButton: false,),
                   const SizedBox(height: TSizes.spaceBtwItems,),
                   const ReadMoreText(
-                    'This is a Product descrition for Blue Nike Sleeve less vest. There are more things that can be added but i am sdfsddhfsddjfhsdfhsdjf fdkjasnf',trimLines: 2,
+                    'Đây là mô tả sản phẩm cho áo ba lỗ Nike màu xanh. Có nhiều thông tin khác có thể được thêm vào, nhưng tôi ',
+                    trimLines: 2,
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     trimMode: TrimMode.Line,
-                    trimCollapsedText: ' Show more',
-                    trimExpandedText: ' Less',
-                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900,color: TColors.primary),
-                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900,color: TColors.primary),
+                    trimCollapsedText: 'Xem thêm',
+                    trimExpandedText: 'Ẩn bớt',
+                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: TColors.primary),
+                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: TColors.primary),
                   ),
 
-                  /// - Reviews
+                  /// - Đánh giá
                   const Divider(),
                   const SizedBox(height: TSizes.spaceBtwItems,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const TSectionHeading(title: 'Reviews (199)',showActionButton: false,),
+                      const TSectionHeading(title: 'Đánh giá (199)', showActionButton: false,),
                       IconButton(onPressed: () => Get.to(() => const ProductReviewsScreen()), icon: const Icon(Iconsax.arrow_right_3)),
                     ],
                   ),
@@ -79,5 +80,3 @@ class ProductDetail extends StatelessWidget {
     );
   }
 }
-
-

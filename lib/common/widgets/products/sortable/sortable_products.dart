@@ -13,17 +13,16 @@ class SortableProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        /// Dropdow
+        /// Dropdown
         DropdownButtonFormField(
           decoration: const InputDecoration(prefixIcon: Icon(Iconsax.sort)),
-          onChanged: (value){},
-          items: ['Name','Higher Price', 'Lower Price', 'Sale', 'Newest', 'Popularity']
+          onChanged: (value) {},
+          items: ['Tên', 'Giá Cao Nhất', 'Giá Thấp Nhất', 'Giảm Giá', 'Mới Nhất', 'Phổ Biến']
               .map((option) => DropdownMenuItem(value: option, child: Text(option)))
               .toList(),
-
         ),
         const SizedBox(height: TSizes.spaceBtwItems,),
-        /// Product
+        /// Sản phẩm
         GridLayout(itemCount: 8, itemBuilder: (_, index) => const TProductCardVertical()),
       ],
     );

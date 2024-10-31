@@ -16,16 +16,16 @@ class ProductAttributes extends StatelessWidget {
     final dark = THelperFunctions.isDarkMode(context);
     return Column(
       children: [
-        /// Selected Attributes Pricing & Description
+        /// Giá và Mô tả thuộc tính đã chọn
         TRoundedContainer(
           padding: const EdgeInsets.all(TSizes.md),
           backgroundColor: dark ? TColors.darkerGrey : TColors.grey,
           child: Column(
             children: [
-              /// Title, Price, Stock Status
+              /// Tiêu đề, Giá, Tình trạng hàng
               Row(
                 children: [
-                  const TSectionHeading(title: 'Variation',showActionButton: false,),
+                  const TSectionHeading(title: 'Tình trạng:', showActionButton: false,),
                   const SizedBox(width: TSizes.spaceBtwItems,),
 
                   Column(
@@ -33,55 +33,46 @@ class ProductAttributes extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const TProductTitleText(title: 'Price : ',smallSize: true,),
+                          const TProductTitleText(title: 'Giá : ', smallSize: true,),
                           const SizedBox(width: TSizes.spaceBtwItems,),
 
-                          /// Actual Price
-                          Text('\$25',style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
+                          /// Giá gốc
+                          Text('\$25', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
                           const SizedBox(width: TSizes.spaceBtwItems,),
 
-
-                          /// Sale Price
+                          /// Giá khuyến mãi
                           const ProductPriceText(price: '20'),
-
                         ],
                       ),
-                      /// Stock
+                      /// Tình trạng
                       Row(
                         children: [
-                          const TProductTitleText(title:'Stock : ',smallSize: true,),
+                          const TProductTitleText(title: 'Kho hàng : ', smallSize: true,),
                           const SizedBox(width: TSizes.spaceBtwItems,),
-                          Text('In Stock',style: Theme.of(context).textTheme.titleMedium,),
+                          Text('Còn hàng', style: Theme.of(context).textTheme.titleMedium,),
                         ],
                       ),
                     ],
                   ),
                 ],
               ),
-              
-              /// Variation Description
-              const TProductTitleText(
-                title: 'This is the Description of the Product and it con go upto max 4 lines.',
-                smallSize: true,
-                maxLines: 4,
-              ),
             ],
           ),
         ),
         const SizedBox(height: TSizes.spaceBtwItems,),
 
-        /// Attributes
+        /// Thuộc tính
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TSectionHeading(title: 'Colors',showActionButton: false,),
+            const TSectionHeading(title: 'Màu sắc', showActionButton: false,),
             const SizedBox(height: TSizes.spaceBtwItems/2,),
             Wrap(
               spacing: 8,
               children: [
-                TChoiceChip(text: 'Green', selected: false,onSelected: (value){},),
-                TChoiceChip(text: 'Blue', selected: true, onSelected: (value){},),
-                TChoiceChip(text: 'Yellow', selected: false, onSelected: (value){},),
+                TChoiceChip(text: 'Xanh lá', selected: false, onSelected: (value){},),
+                TChoiceChip(text: 'Xanh dương', selected: true, onSelected: (value){},),
+                TChoiceChip(text: 'Vàng', selected: false, onSelected: (value){},),
               ],
             ),
           ],
@@ -89,7 +80,7 @@ class ProductAttributes extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TSectionHeading(title: 'Size',showActionButton: false,),
+            const TSectionHeading(title: 'Kích cỡ', showActionButton: false,),
             const SizedBox(height: TSizes.spaceBtwItems/2,),
             Wrap(
               spacing: 8,
@@ -97,7 +88,6 @@ class ProductAttributes extends StatelessWidget {
                 TChoiceChip(text: 'EU 34', selected: true, onSelected: (value){},),
                 TChoiceChip(text: 'EU 36', selected: true, onSelected: (value){},),
                 TChoiceChip(text: 'EU 38', selected: false, onSelected: (value){},),
-
               ],
             ),
           ],

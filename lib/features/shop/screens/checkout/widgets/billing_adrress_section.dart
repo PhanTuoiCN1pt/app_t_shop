@@ -10,7 +10,7 @@ class BillingAddressSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TSectionHeading(title: 'Shipping Adress', buttonTitle: 'Change', onPressed:(){} ,),
+        TSectionHeading(title: 'Địa chỉ nhận hàng', buttonTitle: 'Đổi', onPressed:(){} ,),
         Text('Coding with T', style: Theme.of(context).textTheme.bodyLarge,),
         const SizedBox(height: TSizes.spaceBtwItems/2,),
         Row(

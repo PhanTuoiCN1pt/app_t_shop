@@ -21,7 +21,7 @@ class TProductCardVertical extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () => Get.to(()=>const ProductDetail()),
+      onTap: () => Get.to(() => const ProductDetail()),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -39,31 +39,31 @@ class TProductCardVertical extends StatelessWidget {
               backgroundColor: dark ? TColors.dark : TColors.light,
               child: Stack(
                 children: [
-                  /// Thumbnail Image
-                  const TRoundedImage(imageUrl: TImages.productImage1,applyImageRadius: true,),
+                  /// Ảnh đại diện
+                  const TRoundedImage(imageUrl: TImages.productImage1, applyImageRadius: true,),
 
-                  /// Sale Tag
+                  /// Nhãn giảm giá
                   Positioned(
                     top: 12,
                     child: TRoundedContainer(
                       radius: TSizes.sm,
                       backgroundColor: TColors.secondary.withOpacity(0.8),
-                      padding: const EdgeInsets.symmetric(horizontal: TSizes.sm,vertical: TSizes.xs),
+                      padding: const EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
                       child: Text('25%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),),
                     ),
                   ),
 
-                  /// Favourite Icon Button
+                  /// Nút yêu thích
                   const Positioned(
                       top: 0,
-                      right: 0 ,
+                      right: 0,
                       child: TCircularIcon(icon: Iconsax.heart5, color: Colors.red,))
                 ],
               ),
             ),
             const SizedBox(height: TSizes.spaceBtwItems / 2,),
 
-            /// Details
+            /// Chi tiết sản phẩm
             Padding(
               padding: const EdgeInsets.only(left: TSizes.sm),
               child: SizedBox(
@@ -71,11 +71,11 @@ class TProductCardVertical extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TProductTitleText(title: 'Green Nike Air Shoe fsdfsd sdfdgdf dfhfhfgetert etertfsdfs sdfsdf',smallSize: true,),
+                    const TProductTitleText(title: 'Giày Nike Air xanh lá cây fsdfsd sdfdgdf dfhfhfgetert etertfsdfs sdfsdf', smallSize: true,),
                     Row(
                       children: [
-                        Text('Nike', overflow: TextOverflow.ellipsis,maxLines: 1,style: Theme.of(context).textTheme.labelMedium,),
-                        const SizedBox(height: TSizes.spaceBtwItems/2,),
+                        Text('Nike', overflow: TextOverflow.ellipsis, maxLines: 1, style: Theme.of(context).textTheme.labelMedium,),
+                        const SizedBox(height: TSizes.spaceBtwItems / 2,),
                         const TBrandTitleWithVerifiedIcon(title: 'Nike')
                       ],
                     ),
@@ -86,11 +86,11 @@ class TProductCardVertical extends StatelessWidget {
 
             const Spacer(),
 
-            /// Price Now
+            /// Giá hiện tại
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                /// Price
+                /// Giá
                 const Padding(
                   padding: EdgeInsets.only(left: TSizes.sm),
                   child: ProductPriceText(price: '35',),
@@ -104,8 +104,8 @@ class TProductCardVertical extends StatelessWidget {
                       )
                   ),
                   child: const SizedBox(
-                      width: TSizes.iconLg*1.2,
-                      height: TSizes.iconLg*1.2,
+                      width: TSizes.iconLg * 1.2,
+                      height: TSizes.iconLg * 1.2,
                       child: Center(child: Icon(Iconsax.add, color: TColors.white,))
                   ),
                 )
@@ -117,15 +117,3 @@ class TProductCardVertical extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

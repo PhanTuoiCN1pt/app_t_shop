@@ -16,10 +16,9 @@ class UserRepository extends GetxController {
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-
-  /// Function to save user data to Firestore
-  Future<void> saveUserRecord(UserModel user) async{
-    try{
+  /// Hàm lưu dữ liệu người dùng vào Firestore
+  Future<void> saveUserRecord(UserModel user) async {
+    try {
       await _db.collection("Users").doc(user.id).set(user.toJson());
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
@@ -28,15 +27,15 @@ class UserRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Some went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
 
-  /// Function to fetch user detail based on user ID
-  Future<UserModel> fetchUserDetails() async{
-    try{
+  /// Hàm lấy chi tiết người dùng dựa trên ID người dùng
+  Future<UserModel> fetchUserDetails() async {
+    try {
       final documentSnapshot = await _db.collection('Users').doc(AuthenticationRepository.instance.authUser?.uid).get();
-      if (documentSnapshot.exists){
+      if (documentSnapshot.exists) {
         return UserModel.fromSnapshot(documentSnapshot);
       } else {
         return UserModel.empty();
@@ -48,13 +47,13 @@ class UserRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Some went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
 
-  /// Update Data User
-  Future<void> updateUserDetails(UserModel updateUser) async{
-    try{
+  /// Cập nhật dữ liệu người dùng
+  Future<void> updateUserDetails(UserModel updateUser) async {
+    try {
       await _db.collection("Users").doc(updateUser.id).update(updateUser.toJson());
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
@@ -63,13 +62,13 @@ class UserRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Some went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
 
-  /// Update any field in specific User Collection
-  Future<void> updateSingleField(Map<String, dynamic> json) async{
-    try{
+  /// Cập nhật bất kỳ trường nào trong bộ sưu tập người dùng cụ thể
+  Future<void> updateSingleField(Map<String, dynamic> json) async {
+    try {
       await _db.collection("Users").doc(AuthenticationRepository.instance.authUser?.uid).update(json);
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
@@ -78,13 +77,13 @@ class UserRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Some went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
 
-  /// Function to Remove User Data from FireBase
-  Future<void> removeUserRecord(String userId) async{
-    try{
+  /// Hàm xóa dữ liệu người dùng khỏi Firebase
+  Future<void> removeUserRecord(String userId) async {
+    try {
       await _db.collection("Users").doc(userId).delete();
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
@@ -93,13 +92,13 @@ class UserRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Some went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
 
-  /// Upload any Image
-  Future<String> uploadImage(String path, XFile image) async{
-    try{
+  /// Tải lên bất kỳ hình ảnh nào
+  Future<String> uploadImage(String path, XFile image) async {
+    try {
       final ref = FirebaseStorage.instance.ref(path).child(image.name);
       await ref.putFile(File(image.path));
       final url = await ref.getDownloadURL();
@@ -111,8 +110,7 @@ class UserRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Some went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
-
 }

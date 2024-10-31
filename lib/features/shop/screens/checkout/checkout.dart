@@ -21,7 +21,7 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
-      appBar: TAppBar(showBackArrow: true,title: Text('Order Review',style: Theme.of(context).textTheme.headlineSmall,),),
+      appBar: TAppBar(showBackArrow: true,title: Text('Đánh giá',style: Theme.of(context).textTheme.headlineSmall,),),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
@@ -74,12 +74,12 @@ class CheckoutScreen extends StatelessWidget {
           ),
           onPressed: ()=>Get.to(()=>SuccessScreen(
               image: TImages.successfulPaymentIcon,
-              title: 'Payment Success!',
-              subTitle: 'Your item will be shipped soon!',
+              title: 'Thanh toán thành công!',
+              subTitle: 'Đơn hàng của bạn sẽ được gửi đến sớm!',
               onPressed: () => Get.offAll(() => const NavigationMenuScreen()) ,
           )
           ),
-          child: const Text('Checkout \$256'),
+          child: const Text('Giá \$256'),
         ),
       ),
     );

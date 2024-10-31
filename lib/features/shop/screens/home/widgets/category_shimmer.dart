@@ -13,10 +13,10 @@ class TCategoryShimmer extends StatelessWidget {
       height: 80,
       child: ListView.separated(
         shrinkWrap: true,
-        separatorBuilder: (_, __) => SizedBox(width: TSizes.spaceBtwItems,),
+        separatorBuilder: (_, __) => const SizedBox(width: TSizes.spaceBtwItems,),
         itemCount: itemCount,
         itemBuilder: (_, __){
-          return Column(
+          return const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TShimmerEffect(width: 55, height: 55, radius: 55,),

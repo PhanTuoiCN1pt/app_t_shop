@@ -18,11 +18,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
-  /// Variable
+  /// Biến
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
 
-  /// GetAuthentication User Data
+  /// Lấy dữ liệu người dùng đã xác thực
   User? get authUser => _auth.currentUser;
 
   @override
@@ -31,118 +31,118 @@ class AuthenticationRepository extends GetxController {
     screenRedirect();
   }
 
-  /// Function to Show Relevant Screen
-  screenRedirect() async{
+  /// Hàm để hiển thị màn hình liên quan
+  screenRedirect() async {
     final user = _auth.currentUser;
 
-    if(user != null){
-      if(user.emailVerified){
+    if (user != null) {
+      if (user.emailVerified) {
         Get.offAll(() => const NavigationMenuScreen());
-      }else{
+      } else {
         Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email,));
       }
     } else {
-      /// Local Storage
+      /// Lưu trữ cục bộ
       deviceStorage.writeIfNull('IsFirstTime', true);
       deviceStorage.read('IsFirstTime') != true
           ? Get.offAll(() => const LoginScreen())
           : Get.offAll(const OnBoardingScreen());
     }
-
   }
-  /*----------------------------------------- Email & Password sign-up --------------------------------------- */
 
-  /// [EmailAuthentication] - LOGIN
-  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async{
-    try{
+  /*----------------------------------------- Đăng ký & Đăng nhập bằng Email --------------------------------------- */
+
+  /// [EmailAuthentication] - ĐĂNG NHẬP
+  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
+    try {
       return await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch (_) {
       throw const TFormatException();
-    } on PlatformException catch (e){
+    } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Something went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
 
-  /// [EmailAuthentication] - REGISTER
-  Future<UserCredential> registerWithEmailAndPassword(String email, String password) async{
-    try{
+  /// [EmailAuthentication] - ĐĂNG KÝ
+  Future<UserCredential> registerWithEmailAndPassword(String email, String password) async {
+    try {
       return await _auth.createUserWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch (_) {
       throw const TFormatException();
-    } on PlatformException catch (e){
+    } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Something went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
 
-  /// [MAIL VERIFICATION] - MAIL VERIFICATION
-  Future<void> sendEmailVerification() async{
-    try{
+  /// [XÁC THỰC EMAIL] - XÁC THỰC EMAIL
+  Future<void> sendEmailVerification() async {
+    try {
       return await _auth.currentUser?.sendEmailVerification();
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch (_) {
       throw const TFormatException();
-    } on PlatformException catch (e){
+    } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Something went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
-  /// [ReAuthenticate] - ReAuthenticate User
-  Future<void> reAuthenticateWithEmailAndPassword(String email, String password) async{
-    try{
+
+  /// [Xác thực lại] - Xác thực lại người dùng
+  Future<void> reAuthenticateWithEmailAndPassword(String email, String password) async {
+    try {
       AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
       await _auth.currentUser!.reauthenticateWithCredential(credential);
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch (_) {
       throw const TFormatException();
-    } on PlatformException catch (e){
+    } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Something went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
 
-  /// [EmailAuthentication] - FORGET PASSWORD
-  Future<void> sendPasswordResetEmail(String email) async{
-    try{
+  /// [EmailAuthentication] - QUÊN MẬT KHẨU
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
       await _auth.sendPasswordResetEmail(email: email);
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch (_) {
       throw const TFormatException();
-    } on PlatformException catch (e){
+    } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Something went wrong, Please try again';
+      throw 'Có gì đó không đúng, vui lòng thử lại';
     }
   }
 
-/*----------------------------------------- Federate identify & social sign-in --------------------------------------- */
+  /*----------------------------------------- Xác thực liên bang & Đăng nhập xã hội --------------------------------------- */
 
-  /// Google - Sign
-  Future<UserCredential?> signInWithGoogle() async{
-    try{
-
+  /// Google - Đăng nhập
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
 
       final GoogleSignInAuthentication? googleAuth = await userAccount?.authentication;
@@ -151,57 +151,58 @@ class AuthenticationRepository extends GetxController {
 
       return await _auth.signInWithCredential(credentials);
 
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch (_) {
       throw const TFormatException();
-    } on PlatformException catch (e){
+    } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      if(kDebugMode) print('Something went wrong: $e');
+      if (kDebugMode) print('Có gì đó không đúng: $e');
       return null;
     }
   }
 
-  /// Facebook - Sign
+  /// Facebook - Đăng nhập
 
-/*----------------------------------------- ./end Federate identify & social sign-in --------------------------------------- */
+  /*----------------------------------------- ./kết thúc Xác thực liên bang & Đăng nhập xã hội --------------------------------------- */
 
-/// [LogoutUser] - valid for authentication.
-   Future<void> logout() async {
-     try{
-       await GoogleSignIn().signOut();
-       await FirebaseAuth.instance.signOut();
-       Get.offAll(() => const LoginScreen());
-     } on FirebaseAuthException catch (e){
-       throw TFirebaseAuthException(e.code).message;
-     } on FirebaseException catch (e) {
-       throw TFirebaseException(e.code).message;
-     } on FormatException catch (_) {
-       throw const TFormatException();
-     } on PlatformException catch (e){
-       throw TPlatformException(e.code).message;
-     } catch (e) {
-       throw 'Something went wrong, Please try again';
-     }
-   }
-/// [DeleteUser] - Remove user Auth and Firesstore Account
-   Future<void> deleteAccount() async {
-     try{
-       await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
-       await _auth.currentUser?.delete();
-     } on FirebaseAuthException catch (e){
-       throw TFirebaseAuthException(e.code).message;
-     } on FirebaseException catch (e) {
-       throw TFirebaseException(e.code).message;
-     } on FormatException catch (_) {
-       throw const TFormatException();
-     } on PlatformException catch (e){
-       throw TPlatformException(e.code).message;
-     } catch (e) {
-       throw 'Something went wrong, Please try again';
-     }
-   }
+  /// [Đăng xuất người dùng] - hợp lệ cho xác thực.
+  Future<void> logout() async {
+    try {
+      await GoogleSignIn().signOut();
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Có gì đó không đúng, vui lòng thử lại';
+    }
+  }
+
+  /// [Xóa người dùng] - Xóa tài khoản xác thực và tài khoản Firestore
+  Future<void> deleteAccount() async {
+    try {
+      await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await _auth.currentUser?.delete();
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Có gì đó không đúng, vui lòng thử lại';
+    }
+  }
 }

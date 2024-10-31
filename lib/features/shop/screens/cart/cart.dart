@@ -15,7 +15,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: TAppBar(
         showBackArrow: true,
-        title: Text('Cart',style: Theme.of(context).textTheme.headlineSmall,),
+        title: Text('Giỏ hàng',style: Theme.of(context).textTheme.headlineSmall,),
       ),
       body: const Padding(
         padding: EdgeInsets.all(TSizes.defaultSpace),
@@ -31,7 +31,7 @@ class CartScreen extends StatelessWidget {
             side: const BorderSide(color: TColors.colorApp),
           ),
           onPressed: ()=>Get.to(()=>const CheckoutScreen()),
-          child: const Text('Checkout \$256'),
+          child: const Text('Giá \$256'),
         ),
       ),
     );

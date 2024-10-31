@@ -15,9 +15,8 @@ class TFirebaseStorageService extends GetxController {
       final byteData = await rootBundle.load(path);
       final imageData = byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
       return imageData;
-    }catch (e) {
-      throw 'Error loading image data ';
-
+    } catch (e) {
+      throw 'Lỗi khi tải dữ liệu hình ảnh';
     }
   }
 
@@ -29,18 +28,18 @@ class TFirebaseStorageService extends GetxController {
       return url;
     } catch (e) {
       if (e is FirebaseException) {
-        throw 'Error loading image data ';
-      } else if(e is SocketException) {
-        throw 'Network Error';
+        throw 'Lỗi khi tải dữ liệu hình ảnh';
+      } else if (e is SocketException) {
+        throw 'Lỗi mạng';
       } else if (e is PlatformException) {
-        throw 'Platform Exception';
+        throw 'Lỗi nền tảng';
       } else {
-        throw 'Something Went Wrong';
+        throw 'Có gì đó không đúng';
       }
     }
   }
 
-  Future<String> uploadImageFile(String path,XFile image) async {
+  Future<String> uploadImageFile(String path, XFile image) async {
     try {
       final ref = _firebaseStorage.ref(path).child(image.name);
       await ref.putFile(File(image.path));
@@ -48,13 +47,13 @@ class TFirebaseStorageService extends GetxController {
       return url;
     } catch (e) {
       if (e is FirebaseException) {
-        throw 'Error loading image data ';
-      } else if(e is SocketException) {
-        throw 'Network Error';
+        throw 'Lỗi khi tải dữ liệu hình ảnh';
+      } else if (e is SocketException) {
+        throw 'Lỗi mạng';
       } else if (e is PlatformException) {
-        throw 'Platform Exception';
+        throw 'Lỗi nền tảng';
       } else {
-        throw 'Something Went Wrong';
+        throw 'Có gì đó không đúng';
       }
     }
   }

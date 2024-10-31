@@ -10,62 +10,64 @@ import 'package:get/get.dart';
 class ForgetPasswordController extends GetxController {
   static ForgetPasswordController get instance => Get.find();
 
-  /// Variable
+  /// Biến
   final email = TextEditingController();
   GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
 
-  /// Send Reset Password Email
+  /// Gửi Email đặt lại mật khẩu
   sendPasswordResetEmail() async {
-    try{
-      /// Loading
-      TFullScreenLoader.openLoadingDialog('Processing your request...', TImages.docerAnimation);
+    try {
+      /// Tải
+      TFullScreenLoader.openLoadingDialog('Đang xử lý yêu cầu của bạn...', TImages.docerAnimation);
 
-      /// Check Internet
+      /// Kiểm tra Internet
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected) {TFullScreenLoader.stopLoading(); return;}
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
 
-      /// Form Validation
+      /// Kiểm tra tính hợp lệ của biểu mẫu
       if (!forgetPasswordFormKey.currentState!.validate()) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      /// Send Email to Reset Password
+      /// Gửi Email để đặt lại mật khẩu
       await AuthenticationRepository.instance.sendPasswordResetEmail(email.text.trim());
 
       TFullScreenLoader.stopLoading();
 
-      TLoaders.successSnackBar(title: 'Email Sent', message: 'Email Link Sent to Reset your Password'.tr);
+      TLoaders.successSnackBar(title: 'Email đã được gửi', message: 'Liên kết email đã được gửi để đặt lại mật khẩu của bạn'.tr);
 
       Get.to(() => ResetPasswordScreen(email: email.text.trim(),));
 
-    }catch (e) {
+    } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Lỗi', message: e.toString());
     }
   }
 
-
-  /// Resend
+  /// Gửi lại
   resendPasswordResetEmail(String email) async {
-    try{
-      /// Loading
-      TFullScreenLoader.openLoadingDialog('Processing your request...', TImages.docerAnimation);
+    try {
+      /// Tải
+      TFullScreenLoader.openLoadingDialog('Đang xử lý yêu cầu của bạn...', TImages.docerAnimation);
 
-      /// Check Internet
+      /// Kiểm tra Internet
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected) {TFullScreenLoader.stopLoading(); return;}
-
-
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
 
       await AuthenticationRepository.instance.sendPasswordResetEmail(email);
 
       TFullScreenLoader.stopLoading();
 
-      TLoaders.successSnackBar(title: 'Email Sent', message: 'Email Link Sent to Reset your Password'.tr);
+      TLoaders.successSnackBar(title: 'Email đã được gửi', message: 'Liên kết email đã được gửi để đặt lại mật khẩu của bạn'.tr);
 
-
-    }catch (e) {
+    } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Lỗi', message: e.toString());
     }

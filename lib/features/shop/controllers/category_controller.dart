@@ -1,7 +1,5 @@
 import 'package:app_t_shop/data/repositories/categories/category_repository.dart';
 import 'package:app_t_shop/features/shop/models/category_model.dart';
-import 'package:app_t_shop/utils/constants/image_strings.dart';
-import 'package:app_t_shop/utils/popups/full_screen_loader.dart';
 import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 

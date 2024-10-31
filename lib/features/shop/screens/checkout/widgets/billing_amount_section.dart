@@ -8,41 +8,41 @@ class BillingAmountSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        /// SubTotal
+        /// Tổng phụ
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Subtotal', style: Theme.of(context).textTheme.bodyMedium,),
+            Text('Tổng phụ', style: Theme.of(context).textTheme.bodyMedium,),
             Text('\$256', style: Theme.of(context).textTheme.bodyMedium,),
           ],
         ),
 
-        /// Shipping Fee
+        /// Phí vận chuyển
         const SizedBox(height: TSizes.spaceBtwItems/2,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Shipping Fee', style: Theme.of(context).textTheme.bodyMedium,),
+            Text('Phí vận chuyển', style: Theme.of(context).textTheme.bodyMedium,),
             Text('\$6', style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
 
-        /// Tax Fee
+        /// Phí thuế
         const SizedBox(height: TSizes.spaceBtwItems/2,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Tax Fee', style: Theme.of(context).textTheme.bodyMedium,),
+            Text('Thuế', style: Theme.of(context).textTheme.bodyMedium,),
             Text('\$6', style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
 
-        /// Order Total
+        /// Tổng đơn hàng
         const SizedBox(height: TSizes.spaceBtwItems/2,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Order Total', style: Theme.of(context).textTheme.bodyMedium,),
+            Text('Tổng đơn hàng', style: Theme.of(context).textTheme.bodyMedium,),
             Text('\$6', style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),

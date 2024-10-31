@@ -22,21 +22,21 @@ class OrderListItems extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            /// Row 1
+            /// Dòng 1
             Row(
               children: [
-                /// 1 -- Icon
+                /// 1 -- Biểu tượng
                 const Icon(Iconsax.ship),
                 const SizedBox(width: TSizes.spaceBtwItems/2,),
 
-                /// 2 -- Status & Date
+                /// 2 -- Trạng thái & Ngày
                 Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Processing',
+                        'Đang xử lý',
                         style: Theme.of(context).textTheme.bodyLarge!.apply(color: TColors.colorApp),
                       ),
                       Text('24 07 2003', style: Theme.of(context).textTheme.headlineSmall,),
@@ -45,30 +45,30 @@ class OrderListItems extends StatelessWidget {
                 ),
 
 
-                /// 3 -- Icon
-                IconButton(onPressed: (){}, icon: const Icon(Iconsax.arrow_right_34,size: TSizes.iconSm,)),
+                /// 3 -- Biểu tượng
+                IconButton(onPressed: (){}, icon: const Icon(Iconsax.arrow_right_34, size: TSizes.iconSm,)),
               ],
             ),
             const SizedBox(height: TSizes.spaceBtwItems,),
 
-            /// Row 2
+            /// Dòng 2
             Row(
               children: [
                 Expanded(
                   child: Row(
                     children: [
-                      /// 1 -- Icon
+                      /// 1 -- Biểu tượng
                       const Icon(Iconsax.tag),
                       const SizedBox(width: TSizes.spaceBtwItems/2,),
 
-                      /// 2 -- Status & Date
+                      /// 2 -- Trạng thái & Ngày
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Order', style: Theme.of(context).textTheme.labelMedium),
-                            Text('[#22003]',style: Theme.of(context).textTheme.titleMedium,),
+                            Text('Đơn hàng', style: Theme.of(context).textTheme.labelMedium),
+                            Text('[#22003]', style: Theme.of(context).textTheme.titleMedium,),
                           ],
                         ),
                       ),
@@ -78,18 +78,18 @@ class OrderListItems extends StatelessWidget {
                 Expanded(
                   child: Row(
                     children: [
-                      /// 1 -- Icon
+                      /// 1 -- Biểu tượng
                       const Icon(Iconsax.calendar),
                       const SizedBox(width: TSizes.spaceBtwItems/2,),
 
-                      /// 2 -- Status & Date
+                      /// 2 -- Trạng thái & Ngày
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Shipping Date', style: Theme.of(context).textTheme.labelMedium),
-                            Text('24 07 2003',style: Theme.of(context).textTheme.titleMedium,),
+                            Text('Ngày giao hàng', style: Theme.of(context).textTheme.labelMedium),
+                            Text('24 07 2003', style: Theme.of(context).textTheme.titleMedium,),
                           ],
                         ),
                       ),

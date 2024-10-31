@@ -12,22 +12,22 @@ class SubCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TAppBar(title: Text('Sports'),showBackArrow: true,),
+      appBar: const TAppBar(title: Text('Thể Thao'), showBackArrow: true,),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              /// Banner
-              const TRoundedImage(width: double.infinity, imageUrl: TImages.promoBanner2,applyImageRadius: true,),
+              /// Biển quảng cáo
+              const TRoundedImage(width: double.infinity, imageUrl: TImages.promoBanner2, applyImageRadius: true,),
               const SizedBox(height: TSizes.spaceBtwSections,),
 
-              /// Sub - Categories
+              /// Danh mục phụ
               Column(
                 children: [
-                  /// Heading
-                  TSectionHeading(title: 'Sports shirts',onPressed: (){},),
-                  const SizedBox(height: TSizes.spaceBtwItems/2,),
+                  /// Tiêu đề
+                  TSectionHeading(title: 'Áo thể thao', onPressed: (){},),
+                  const SizedBox(height: TSizes.spaceBtwItems / 2,),
 
                   SizedBox(
                     height: 120,
@@ -36,7 +36,6 @@ class SubCategoryScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       separatorBuilder: (context, index) => const SizedBox(width: TSizes.spaceBtwItems,),
                       itemBuilder: (context, index) => const ProductCartHorizontal(),
-
                     ),
                   ),
                 ],

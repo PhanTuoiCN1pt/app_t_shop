@@ -30,7 +30,7 @@ class UserReviewCard extends StatelessWidget {
         ),
         const SizedBox(width: TSizes.spaceBtwItems,),
 
-        /// Review
+        /// Đánh giá
         Row(
           children: [
             const TRatingBarIndicator(rating: 4),
@@ -40,17 +40,17 @@ class UserReviewCard extends StatelessWidget {
         ),
         const SizedBox(height: TSizes.spaceBtwItems,),
         const ReadMoreText(
-          'The nsdad adsd adkj skd ff sfw wqeh  kadj kajsdh asd kdjd akddj ad a adakda a adads adawk akdaskd aksdhh asdh adhhih  udhid  daidad ad lkajsdsa k s',
+          'Đánh giá của người dùng: nsdad adsd adkj skd ff sfw wqeh  kadj kajsdh asd kdjd akddj ad a adakda a adads adawk akdaskd aksdhh asdh adhhih  udhid  daidad ad lkajsdsa k s',
           trimLines: 2,
           trimMode: TrimMode.Line,
-          trimExpandedText: ' show less',
-          trimCollapsedText: ' show more',
+          trimExpandedText: ' bớt',
+          trimCollapsedText: ' thêm',
           moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900,color: TColors.primary),
           lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: TColors.primary),
         ),
         const SizedBox(height: TSizes.spaceBtwItems,),
 
-        /// Company Review
+        /// Đánh giá công ty
         TRoundedContainer(
           backgroundColor: dark ? TColors.darkerGrey : TColors.grey,
           child: Padding(
@@ -60,17 +60,17 @@ class UserReviewCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("T's Store",style: Theme.of(context).textTheme.titleMedium,),
+                    Text("Cửa hàng của T",style: Theme.of(context).textTheme.titleMedium,),
                     Text('24/07/2024',style: Theme.of(context).textTheme.bodyMedium,),
                   ],
                 ),
                 const SizedBox(height: TSizes.spaceBtwItems,),
                 const ReadMoreText(
-                  'The nsdad adsd adkj skd ff sfw wqeh  kadj kajsdh asd kdjd akddj ad a adakda a adads adawk akdaskd aksdhh asdh adhhih  udhid  daidad ad lkajsdsa k s',
+                  'Đánh giá công ty: nsdad adsd adkj skd ff sfw wqeh  kadj kajsdh asd kdjd akddj ad a adakda a adads adawk akdaskd aksdhh asdh adhhih  udhid  daidad ad lkajsdsa k s',
                   trimLines: 2,
                   trimMode: TrimMode.Line,
-                  trimExpandedText: ' show less',
-                  trimCollapsedText: ' show more',
+                  trimExpandedText: ' bớt',
+                  trimCollapsedText: ' thêm',
                   moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900,color: TColors.primary),
                   lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: TColors.primary),
                 ),

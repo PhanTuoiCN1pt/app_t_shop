@@ -22,10 +22,10 @@ class THomeAppBar extends StatelessWidget {
           Text(TTexts.homeAppbarTitle, style: Theme.of(context).textTheme.labelMedium!.apply(color: TColors.grey)),
           Obx( () {
             if (controller.profileLoading.value){
-              /// Display a shimmer loader while user profile is being loaded
+              /// Hiển thị một bộ tải shimmer trong khi thông tin người dùng đang được tải
               return const TShimmerEffect(width: 80, height: 15,);
             } else {
-              return Text(controller.user.value.fullName, style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white));
+              return Text(controller.user.value.fullName, style: Theme.of(context).textTheme.headlineMedium!.apply(color: TColors.white));
             }
           },
           ),

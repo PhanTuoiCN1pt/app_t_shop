@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           /// Heading
-                          TSectionHeading(title: 'Popular Categories', showActionButton: false,textColor: Colors.white,),
+                          TSectionHeading(title: 'Danh mục', showActionButton: false,textColor: Colors.white,),
                           SizedBox(height: TSizes.spaceBtwItems1,),
 
                           /// Categories
@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections1,),
 
                   /// Heading
-                  TSectionHeading(title: 'Popular Product',onPressed: () => Get.to(()=>const ViewAllProduct()),),
+                  TSectionHeading(title: 'Sản phẩm phổ biến',onPressed: () => Get.to(()=>const ViewAllProduct()),),
                   const SizedBox(height: TSizes.spaceBtwItems,),
 
                   /// Popular product

@@ -9,7 +9,6 @@ class CouponCode extends StatelessWidget {
     super.key,
   });
 
-
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
@@ -22,7 +21,7 @@ class CouponCode extends StatelessWidget {
           Flexible(
             child: TextFormField(
               decoration: const InputDecoration(
-                hintText: 'Have a promo code? Enter here.',
+                hintText: 'Bạn có mã khuyến mãi? Nhập ở đây.',
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 disabledBorder: InputBorder.none,
@@ -32,11 +31,11 @@ class CouponCode extends StatelessWidget {
             ),
           ),
 
-          /// Button
+          /// Nút
           SizedBox(
               width: 80,
               child: ElevatedButton(
-                onPressed: (){},
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   foregroundColor: TColors.dark.withOpacity(0.9),
                   backgroundColor: TColors.colorApp.withOpacity(0.4),

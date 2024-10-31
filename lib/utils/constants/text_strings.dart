@@ -62,7 +62,7 @@ class TTexts {
   static const String popularProducts = "Sản phẩm phổ biến";
 
   // -- Home
-  static const String homeAppbarTitle = "Ngày đẹp trời để mua sắm";
+  static const String homeAppbarTitle = "Xin chào!";
   static const String homeAppbarSubTitle = "Phan Tuoi";
 
 
