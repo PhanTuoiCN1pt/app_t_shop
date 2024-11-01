@@ -31,7 +31,7 @@ class UserController extends GetxController {
     fetchUserRecord();
   }
 
-  /// Fetch User Record
+  /// Lấy thông tin người dùng
   Future<void> fetchUserRecord() async {
     try {
       profileLoading.value = true;
@@ -39,17 +39,17 @@ class UserController extends GetxController {
       this.user(user);
     } catch (e) {
       user(UserModel.empty());
-    } finally{
+    } finally {
       profileLoading.value = false;
     }
   }
 
-  Future<void> saveUserRecord(UserCredential? userCredentials) async{
-    try{
+  Future<void> saveUserRecord(UserCredential? userCredentials) async {
+    try {
       await fetchUserRecord();
       if (user.value.id.isEmpty) {
         if (userCredentials != null) {
-          /// Convert Name to First and Last Name
+          /// Chuyển tên thành họ và tên
           final namePart = UserModel.nameParts(
               userCredentials.user!.displayName ?? '');
           final username = UserModel.generateUsername(
@@ -65,50 +65,46 @@ class UserController extends GetxController {
             profilePicture: userCredentials.user!.photoURL ?? '',
           );
 
-          /// Save Data
+          /// Lưu thông tin
           await userRepository.saveUserRecord(user);
         }
       }
-    }catch (e) {
+    } catch (e) {
       TLoaders.warningSnackBar(
-          title: 'Data not save',
-        message: 'Something went wrong',
+        title: 'Không thể lưu dữ liệu',
+        message: 'Đã xảy ra lỗi',
       );
     }
-
   }
 
-  ///Delete Account
-  void deleteAccountWarningPopup () {
+  /// Xóa tài khoản
+  void deleteAccountWarningPopup() {
     Get.defaultDialog(
       contentPadding: const EdgeInsets.all(TSizes.md),
-      title: 'Delete Account',
+      title: 'Xóa Tài Khoản',
       middleText:
-        'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
+      'Bạn có chắc chắn muốn xóa tài khoản của mình vĩnh viễn không? Hành động này không thể hoàn tác và tất cả dữ liệu của bạn sẽ bị xóa vĩnh viễn.',
       confirm: ElevatedButton(
           onPressed: () async => deleteUserAccount(),
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.red,side: const BorderSide(color: Colors.red)),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              side: const BorderSide(color: Colors.red)),
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
-            child: Text('Delete'),
-          )
-      ),
+            child: Text('Xóa'),
+          )),
       cancel: OutlinedButton(
           onPressed: () => Navigator.of(Get.overlayContext!).pop(),
-          child: const Text('Cancel')
-      ),
+          child: const Text('Hủy')),
     );
   }
 
   void deleteUserAccount() async {
     try {
-      TFullScreenLoader.openLoadingDialog('Processing', TImages.docerAnimation);
+      TFullScreenLoader.openLoadingDialog('Đang xử lý', TImages.docerAnimation);
 
       final auth = AuthenticationRepository.instance;
-      final provider = auth.authUser!
-          .providerData
-          .map((e) => e.providerId)
-          .first;
+      final provider = auth.authUser!.providerData.map((e) => e.providerId).first;
       if (provider.isNotEmpty) {
         if (provider == 'google.com') {
           await auth.signInWithGoogle();
@@ -122,17 +118,17 @@ class UserController extends GetxController {
       }
     } catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.warningSnackBar(title: 'Oh Snap', message: e.toString());
+      TLoaders.warningSnackBar(title: 'Lỗi', message: e.toString());
     }
   }
 
   Future<void> reAuthenticateEmailAndPasswordUser() async {
-    try{
-      TFullScreenLoader.openLoadingDialog('Processing', TImages.docerAnimation);
+    try {
+      TFullScreenLoader.openLoadingDialog('Đang xử lý', TImages.docerAnimation);
 
-      /// Check Internet Connectivity
+      /// Kiểm tra kết nối mạng
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected) {
+      if (!isConnected) {
         TFullScreenLoader.stopLoading();
         return;
       }
@@ -141,36 +137,42 @@ class UserController extends GetxController {
         return;
       }
 
-      await AuthenticationRepository.instance.reAuthenticateWithEmailAndPassword(verifyEmail.text.trim(),verifyPassword.text.trim());
+      await AuthenticationRepository.instance.reAuthenticateWithEmailAndPassword(
+          verifyEmail.text.trim(), verifyPassword.text.trim());
       await AuthenticationRepository.instance.deleteAccount();
       TFullScreenLoader.stopLoading();
       Get.offAll(() => const LoginScreen());
-
-    }catch (e) {
+    } catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.warningSnackBar(title: 'Oh Snap', message: e.toString());
+      TLoaders.warningSnackBar(title: 'Lỗi', message: e.toString());
     }
   }
 
-  /// Upload Image
+  /// Tải ảnh lên
   uploadUserProfilePicture() async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512, maxWidth: 512);
-      if(image != null){
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 70,
+          maxHeight: 512,
+          maxWidth: 512);
+      if (image != null) {
         imageUploading.value = true;
-      /// Upload Image
-        final imageUrl = await userRepository.uploadImage('Users/Image/Profile/', image);
+        /// Tải ảnh lên
+        final imageUrl =
+        await userRepository.uploadImage('Users/Image/Profile/', image);
 
-      /// Update User Image Record
+        /// Cập nhật ảnh đại diện người dùng
         Map<String, dynamic> json = {'ProfilePicture': imageUrl};
         await userRepository.updateSingleField(json);
 
         user.value.profilePicture = imageUrl;
         user.refresh();
-        TLoaders.successSnackBar(title: 'Hoàn thành', message: 'Your profile Image has been upload.');
+        TLoaders.successSnackBar(
+            title: 'Hoàn thành', message: 'Ảnh đại diện của bạn đã được tải lên.');
       }
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'On Snap', message: 'Something went wrong.');
+      TLoaders.errorSnackBar(title: 'Lỗi', message: 'Đã xảy ra lỗi.');
     } finally {
       imageUploading.value = false;
     }

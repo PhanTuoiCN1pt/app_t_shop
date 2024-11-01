@@ -13,8 +13,8 @@ class CircularImage extends StatelessWidget {
     this.isNetworkImage = false,
     this.overlayColor,
     this.backgroundColor,
-    this.width = 100,
-    this.height = 100,
+    this.width = 56,
+    this.height = 56,
     this.padding = TSizes.sm,
   });
   final BoxFit? fit;

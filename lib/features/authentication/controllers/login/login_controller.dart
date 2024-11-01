@@ -7,6 +7,7 @@ import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginController extends GetxController {
 
@@ -55,6 +56,8 @@ class LoginController extends GetxController {
       /// Login user using Email & Password Authentication
       final userCredentials = await AuthenticationRepository.instance.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
 
+      await userController.fetchUserRecord();
+
       /// Remove Loader
       TFullScreenLoader.stopLoading();
 
@@ -62,37 +65,45 @@ class LoginController extends GetxController {
       AuthenticationRepository.instance.screenRedirect();
     }catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackBar(title: 'Oh Snap',message: e.toString());
+      TLoaders.errorSnackBar(title: 'Lỗi',message: e.toString());
     }
   }
 
   /// Google SignIn Authentication
   Future<void> googleSignIn() async {
     try {
-      /// Start Loading
-      TFullScreenLoader.openLoadingDialog('Logging you in...', TImages.docerAnimation);
+      // Bắt đầu hiển thị màn hình tải
+      TFullScreenLoader.openLoadingDialog('Đang đăng nhập...', TImages.docerAnimation);
 
-      /// Check Internet Connectivity
+      // Kiểm tra kết nối internet
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected) {
+      if (!isConnected) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      /// Google Authentication
+      // Đăng xuất tài khoản Google hiện tại nếu có
+      final googleSignIn = GoogleSignIn();
+      await googleSignIn.signOut(); // Đảm bảo không có phiên Google nào còn lại
+
+      // Xác thực Google
       final userCredentials = await AuthenticationRepository.instance.signInWithGoogle();
 
-      /// Save user record
+      // Lưu thông tin người dùng
       await userController.saveUserRecord(userCredentials);
 
-      /// Remove Loader
+      await userController.fetchUserRecord();
+
+      // Tắt màn hình tải
       TFullScreenLoader.stopLoading();
 
-      /// Redirect
+      // Điều hướng tới màn hình tương ứng
       AuthenticationRepository.instance.screenRedirect();
 
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Lỗi', message: e.toString());
     }
   }
+
 }

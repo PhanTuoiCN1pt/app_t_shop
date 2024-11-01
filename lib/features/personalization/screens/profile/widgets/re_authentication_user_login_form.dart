@@ -13,7 +13,9 @@ class ReAuthLoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = UserController.instance;
     return Scaffold(
-      appBar: AppBar(title: const Text('Re-Authentication User'),),
+      appBar: AppBar(
+        title: const Text('Xác Thực'),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
@@ -26,33 +28,43 @@ class ReAuthLoginForm extends StatelessWidget {
                 TextFormField(
                   controller: controller.verifyEmail,
                   validator: TValidator.validateEmail,
-                  decoration: const InputDecoration(prefixIcon: Icon(Iconsax.direct_right), labelText: TTexts.email),
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Iconsax.direct_right),
+                    labelText: TTexts.email,
+                  ),
                 ),
-                const SizedBox(height: TSizes.spaceBtwInputFields,),
+                const SizedBox(height: TSizes.spaceBtwInputFields),
 
-                /// Password
+                /// Mật khẩu
                 Obx(
-                        () => TextFormField(
-                          obscureText: controller.hidePassword.value,
-                          controller: controller.verifyPassword,
-                          validator: (value) => TValidator.validateEmptyText('Password', value),
-                          decoration: InputDecoration(
-                            labelText: TTexts.password,
-                            prefixIcon: const Icon(Iconsax.password_check),
-                            suffixIcon: IconButton(
-                              onPressed: () => controller.hidePassword.value =! controller.hidePassword.value,
-                              icon: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),
-                            ),
-                          ),
-                        ),
+                      () => TextFormField(
+                    obscureText: controller.hidePassword.value,
+                    controller: controller.verifyPassword,
+                    validator: (value) =>
+                        TValidator.validateEmptyText('Mật khẩu', value),
+                    decoration: InputDecoration(
+                      labelText: TTexts.password,
+                      prefixIcon: const Icon(Iconsax.password_check),
+                      suffixIcon: IconButton(
+                        onPressed: () => controller.hidePassword.value =
+                        !controller.hidePassword.value,
+                        icon: Icon(controller.hidePassword.value
+                            ? Iconsax.eye_slash
+                            : Iconsax.eye),
+                      ),
+                    ),
+                  ),
                 ),
-                const SizedBox(height: TSizes.spaceBtwSections,),
+                const SizedBox(height: TSizes.spaceBtwSections),
 
-
-                /// Login Btn
+                /// Nút xác minh
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(onPressed: () => controller.reAuthenticateEmailAndPasswordUser(), child: const Text('Verify')),
+                  child: ElevatedButton(
+                    onPressed: () =>
+                        controller.reAuthenticateEmailAndPasswordUser(),
+                    child: const Text('Xác Minh'),
+                  ),
                 )
               ],
             ),

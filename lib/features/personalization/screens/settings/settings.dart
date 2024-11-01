@@ -5,9 +5,9 @@ import 'package:app_t_shop/common/widgets/list_titles/user_profile_title.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
 import 'package:app_t_shop/data/dummy_data.dart';
 import 'package:app_t_shop/data/repositories/authentication/authentication_repository.dart';
-import 'package:app_t_shop/data/services/category_firestore_service.dart';
 import 'package:app_t_shop/features/personalization/screens/address/address.dart';
 import 'package:app_t_shop/features/personalization/screens/profile/profile.dart';
+import 'package:app_t_shop/features/personalization/screens/settings/upload_data.dart';
 import 'package:app_t_shop/features/shop/controllers/category_controller.dart';
 import 'package:app_t_shop/features/shop/screens/cart/cart.dart';
 import 'package:app_t_shop/features/shop/screens/order/order.dart';
@@ -65,7 +65,7 @@ class SettingScreen extends StatelessWidget {
                   SettingsMenuTile(
                     icon: Iconsax.document_upload,
                     title: 'Tải dữ liệu',
-                    onTap: () async {
+                    onTap: () => Get.to(() => UploadDataScreen())/*async {
                       final categoryService = CategoryFirestoreService();
                       final categoryController = Get.find<CategoryController>();
 
@@ -90,7 +90,7 @@ class SettingScreen extends StatelessWidget {
                             const SnackBar(content: Text('Lỗi tải lên.'))
                         );
                       }
-                    },
+                    },*/
                   ),
 
                   SettingsMenuTile(
@@ -117,7 +117,6 @@ class SettingScreen extends StatelessWidget {
                       await AuthenticationRepository.instance.logout();
                     }, child: const Text('Đăng xuất')),
                   ),
-
                 ],
               ),
             )
