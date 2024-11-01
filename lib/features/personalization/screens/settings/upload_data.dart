@@ -1,6 +1,7 @@
 import 'package:app_t_shop/data/dummy_data.dart';
 import 'package:app_t_shop/data/repositories/banners/banner_repository.dart';
 import 'package:app_t_shop/data/repositories/categories/category_repository.dart';
+import 'package:app_t_shop/data/repositories/product/product_repository.dart';
 import 'package:app_t_shop/features/shop/controllers/banner_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/category_controller.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
@@ -23,6 +24,7 @@ class UploadDataScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final categoriesRepo = CategoryRepository();
     final bannerRepo = BannerRepository();
+    final productRepo = ProductRepository();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -60,46 +62,19 @@ class UploadDataScreen extends StatelessWidget {
                     icon: Iconsax.image,
                     title: 'Upload Banners',
                     trailing: const Icon(Iconsax.export, size: 25, color: TColors.primary),
-                    onTap: () => bannerRepo.uploadBanners(),/*async {
-                      final bannerService = BannerFirestoreService(); // Khởi tạo service cho banners
-                      final bannerController = Get.find<BannerController>(); // Tìm controller của banners nếu có
-
-                      try {
-                        TFullScreenLoader.openLoadingDialog('Đang tải lên', TImages.docerAnimation);
-
-                        // Tải lên danh sách Banners
-                        await bannerService.uploadBannersToFirestore(TDummyData.banners);
-                        TFullScreenLoader.stopLoading();
-                        print("Tất cả banners đã được tải lên thành công!");
-
-                        // Hiển thị thông báo thành công cho người dùng
-                        TLoaders.successSnackBar(title: 'Thành công', message: 'Tải dữ liệu banners thành công!');
-
-                        // Reload lại dữ liệu banners nếu cần
-                        await bannerController.fetchBanners();
-
-                      } catch (e) {
-                        print("Lỗi tải lên: $e");
-                        // Hiển thị thông báo lỗi cho người dùng
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Lỗi tải lên banners.'))
-                        );
-                      }
-                    },*/
+                    onTap: () => bannerRepo.uploadBanners(),
                   ),
                   SettingsMenuTile(
                     iconColor: TColors.primary,
                     icon: Iconsax.shopping_cart,
                     title: 'Upload Products',
                     trailing: const Icon(Iconsax.export, size: 25,color: TColors.primary),
-                    onTap: () {
-                      // Functionality for uploading products
-                    },
+                    onTap: () => productRepo.uploadDummyData(TDummyData.products),
                   ),
                   SettingsMenuTile(
                     iconColor: TColors.primary,
                     icon: Iconsax.image,
-                    title: 'Upload Banners',
+                    title: 'Upload Brands',
                     trailing: const Icon(Iconsax.export, size: 25,color: TColors.primary,),
                     onTap: () {
                       // Functionality for uploading banners

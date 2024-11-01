@@ -65,32 +65,7 @@ class SettingScreen extends StatelessWidget {
                   SettingsMenuTile(
                     icon: Iconsax.document_upload,
                     title: 'Tải dữ liệu',
-                    onTap: () => Get.to(() => UploadDataScreen())/*async {
-                      final categoryService = CategoryFirestoreService();
-                      final categoryController = Get.find<CategoryController>();
-
-                      try {
-                        TFullScreenLoader.openLoadingDialog('Đang tải lên', TImages.docerAnimation);
-
-                        // Tải lên danh mục
-                        await categoryService.uploadCategoriesToFirestore(TDummyData.categories);
-                        TFullScreenLoader.stopLoading();
-                        print("Tất cả danh mục đã được tải lên thành công!");
-
-                        // Hiển thị thông báo thành công cho người dùng
-                        TLoaders.successSnackBar(title: 'Thành công', message: 'Tải dữ liệu thành công!');
-
-                        // Gọi phương thức fetchCategories để reload lại dữ liệu
-                        await categoryController.fetchCategories();
-
-                      } catch (e) {
-                        print("Lỗi tải lên: $e");
-                        // Hiển thị thông báo lỗi cho người dùng
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Lỗi tải lên.'))
-                        );
-                      }
-                    },*/
+                    onTap: () => Get.to(() => UploadDataScreen())
                   ),
 
                   SettingsMenuTile(

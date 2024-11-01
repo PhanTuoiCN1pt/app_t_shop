@@ -4,10 +4,12 @@ import 'package:app_t_shop/common/widgets/custom_shapes/containers/search_contai
 import 'package:app_t_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:app_t_shop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
+import 'package:app_t_shop/features/shop/controllers/product_controller.dart';
 import 'package:app_t_shop/features/shop/screens/all_product/view_all_products.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/promo_slider.dart';
+import 'package:app_t_shop/features/shop/screens/home/widgets/vertical_product_shimmer.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 
@@ -19,6 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProductController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -72,7 +75,16 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwItems,),
 
                   /// Popular product
-                  GridLayout(itemCount: 5,itemBuilder: (_, index) => const TProductCardVertical(),),
+                  Obx((){
+                    if(controller.isLoading.value) return TVerticalProductShimmer();
+
+                    if (controller.featuredProducts.isEmpty){
+                      return Center(child: Text('No Data Found', style: Theme.of(context).textTheme.bodyMedium,),);
+                    }
+                    return GridLayout(
+                        itemCount: controller.featuredProducts.length,
+                        itemBuilder: (_, index) => TProductCardVertical(product: controller.featuredProducts[index],));
+                  }),
 
                 ],
               ),
