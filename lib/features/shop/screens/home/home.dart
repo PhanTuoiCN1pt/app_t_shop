@@ -9,9 +9,10 @@ import 'package:app_t_shop/features/shop/screens/all_product/view_all_products.d
 import 'package:app_t_shop/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/promo_slider.dart';
-import 'package:app_t_shop/features/shop/screens/home/widgets/vertical_product_shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/shimmer/vertical_product_shimmer.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -71,7 +72,11 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections1,),
 
                   /// Heading
-                  TSectionHeading(title: 'Sản phẩm phổ biến',onPressed: () => Get.to(()=>const ViewAllProduct()),),
+                  TSectionHeading(title: 'Sản phẩm phổ biến',onPressed: () => Get.to(()=>
+                      ViewAllProduct(
+                        title: 'Sản phẩm phổ biến',
+                        futureMethod: controller.fetchAllFeatureProducts(),
+                      )),),
                   const SizedBox(height: TSizes.spaceBtwItems,),
 
                   /// Popular product
@@ -79,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                     if(controller.isLoading.value) return TVerticalProductShimmer();
 
                     if (controller.featuredProducts.isEmpty){
-                      return Center(child: Text('No Data Found', style: Theme.of(context).textTheme.bodyMedium,),);
+                      return Center(child: Text('Không tìm thấy dữ liệu', style: Theme.of(context).textTheme.bodyMedium,),);
                     }
                     return GridLayout(
                         itemCount: controller.featuredProducts.length,

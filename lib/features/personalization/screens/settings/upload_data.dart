@@ -1,5 +1,6 @@
 import 'package:app_t_shop/data/dummy_data.dart';
 import 'package:app_t_shop/data/repositories/banners/banner_repository.dart';
+import 'package:app_t_shop/data/repositories/brands/brand_repository.dart';
 import 'package:app_t_shop/data/repositories/categories/category_repository.dart';
 import 'package:app_t_shop/data/repositories/product/product_repository.dart';
 import 'package:app_t_shop/features/shop/controllers/banner_controller.dart';
@@ -25,6 +26,7 @@ class UploadDataScreen extends StatelessWidget {
     final categoriesRepo = CategoryRepository();
     final bannerRepo = BannerRepository();
     final productRepo = ProductRepository();
+    final brandRepo = BrandRepository();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -76,9 +78,7 @@ class UploadDataScreen extends StatelessWidget {
                     icon: Iconsax.image,
                     title: 'Tải lên thương hiệu',
                     trailing: const Icon(Iconsax.export, size: 25,color: TColors.primary,),
-                    onTap: () {
-                      // Functionality for uploading banners
-                    },
+                    onTap: () => brandRepo.uploadBrands(TDummyData.brands),
                   ),
 
                   /// Relationships Section

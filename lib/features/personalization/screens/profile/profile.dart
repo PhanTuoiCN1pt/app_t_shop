@@ -4,7 +4,7 @@ import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
 import 'package:app_t_shop/features/personalization/controllers/user_controller.dart';
 import 'package:app_t_shop/features/personalization/screens/profile/update_profile/change_name.dart';
 import 'package:app_t_shop/features/personalization/screens/profile/widgets/profile_menu.dart';
-import 'package:app_t_shop/features/shop/screens/home/widgets/shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/shimmer/shimmer.dart';
 import 'package:app_t_shop/navigation_menu.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';

@@ -1,3 +1,6 @@
+import 'package:app_t_shop/features/shop/models/banner_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BrandModel {
   String id;
   String name;
@@ -22,7 +25,6 @@ class BrandModel {
     };
   }
 
-
   factory BrandModel.fromJson(Map<String, dynamic> document) {
     final data = document;
     if (data.isEmpty) return BrandModel.empty();
@@ -33,6 +35,21 @@ class BrandModel {
       isFeatured: data['IsFeature'] ?? false,
       productsCount: int.parse((data['ProductsCount'] ?? 0).toString()),
     );
+  }
+
+  factory BrandModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
+    if (document.data() != null) {
+      final data = document.data()!;
+      return BrandModel(
+        id: document.id,
+        name: data['Name'] ?? '',
+        image: data['Image'] ?? '',
+        productsCount: data['ProductsCount'] ?? '',
+        isFeatured: data['IsFeature'] ?? false,
+      );
+    } else {
+      return BrandModel.empty();
+    }
   }
 
 

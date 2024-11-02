@@ -31,7 +31,7 @@ class ProductAttributes extends StatelessWidget {
             backgroundColor: dark ? TColors.darkerGrey : TColors.grey,
             child: Column(
               children: [
-                /// Tiêu đề, Giá, Tình trạng hàng
+                /// Tiêu đề, Giá, Tình trạng sản phẩm
                 Row(
                   children: [
                     const TSectionHeading(title: 'Tình trạng:', showActionButton: false,),

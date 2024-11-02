@@ -1,4 +1,4 @@
-import 'package:app_t_shop/features/shop/screens/home/widgets/shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/shimmer/shimmer.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 

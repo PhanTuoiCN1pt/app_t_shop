@@ -5,8 +5,12 @@ import 'package:app_t_shop/common/widgets/custom_shapes/containers/search_contai
 import 'package:app_t_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:app_t_shop/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
+import 'package:app_t_shop/data/repositories/brands/brand_repository.dart';
+import 'package:app_t_shop/features/shop/controllers/brand_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/category_controller.dart';
+import 'package:app_t_shop/features/shop/screens/brand/brand_product.dart';
 import 'package:app_t_shop/features/shop/screens/brand/view_all_brands.dart';
+import 'package:app_t_shop/features/shop/screens/shimmer/brand_shimmer.dart';
 import 'package:app_t_shop/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
@@ -20,7 +24,8 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categories = CategoryController.instance.featuredCategories;
-
+    final brandRepo = Get.put(BrandRepository());
+    final brandController = Get.put(BrandController());
     return DefaultTabController(
       length: categories.length,
       child: Scaffold(
@@ -47,22 +52,35 @@ class StoreScreen extends StatelessWidget {
                     children: [
                       /// Thanh tìm kiếm
                       const SizedBox(height: TSizes.spaceBtwItems,),
-                      const TSearchContainer(
-                        text: 'Tìm kiếm trong cửa hàng', showBorder: true, showBackground: false, padding: EdgeInsets.zero,),
+                      const TSearchContainer(text: 'Tìm kiếm trong cửa hàng', showBorder: true, showBackground: false, padding: EdgeInsets.zero,),
                       const SizedBox(height: TSizes.spaceBtwItems,),
 
                       /// Thương hiệu nổi bật
                       TSectionHeading(title: 'Thương hiệu nổi bật', showActionButton: true, onPressed: () => Get.to(() => const ViewAllBrandScreen()),),
                       const SizedBox(height: TSizes.spaceBtwItems / 1.5,),
 
-                      /// Lưới thương hiệu
-                      GridLayout(
-                          itemCount: 4,
-                          mainAxisExtent: 80,
-                          itemBuilder: (_, index) {
-                            return const TBrandCard(showBorder: false);
-                          }
+                      /// thương hiệu
+                      Obx(
+                          () {
+                            if (brandController.isLoading.value) return BrandsShimmer();
+
+                            // if (brandController.featuredBrands.isEmpty){
+                            //   return Center(
+                            //     child: Text('Không có dữ liệu', style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),),
+                            //   );
+                            // }
+
+                            return GridLayout(
+                                itemCount: brandController.allBrands.length - 6,
+                                mainAxisExtent: 80,
+                                itemBuilder: (_, index) {
+                                  final brand = brandController.allBrands[index];
+                                  return  TBrandCard(showBorder: true, brand: brand,onTap: () => Get.to(() => BrandProduct(brand: brand,)),);
+                                }
+                            );
+                          },
                       ),
+
                     ],
                   ),
                 ),

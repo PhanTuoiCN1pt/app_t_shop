@@ -8,20 +8,22 @@ import 'package:app_t_shop/routers/routers.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 
 class TDummyData {
-  /*static final List<BannerModel> banners = [
 
+
+  static final List<BrandModel> brands = [
+    BrandModel(id: '1', name: 'Nike', image: TImages.nikeLogo, isFeatured: true, productsCount: 265),
+    BrandModel(id: '2', name: 'Adidas', image: TImages.adidasLogo, isFeatured: true, productsCount: 220),
+    BrandModel(id: '3', name: 'Puma', image: TImages.pumaLogo, isFeatured: true, productsCount: 180),
+    BrandModel(id: '4', name: 'Apple', image: TImages.appleLogo, isFeatured: true, productsCount: 200),
+    BrandModel(id: '5', name: 'Acer', image: TImages.acerlogo, isFeatured: true, productsCount: 265),
+    BrandModel(id: '6', name: 'Herman-miller', image: TImages.hermanMillerLogo, isFeatured: true, productsCount: 220),
+    BrandModel(id: '7', name: 'Kenwood', image: TImages.kenwoodLogo, isFeatured: true, productsCount: 180),
+    BrandModel(id: '8', name: 'Zara', image: TImages.zaraLogo, isFeatured: true, productsCount: 200),
+    BrandModel(id: '9', name: 'Jordan', image: TImages.jordanLogo, isFeatured: true, productsCount: 180),
+    BrandModel(id: '10', name: 'Ikea', image: TImages.ikeaLogo, isFeatured: true, productsCount: 200),
   ];
 
-  static final UserModel user = UserModel(
-    id: id,
-    username: username,
-    email: email,
-    firstName: firstName,
-    lastName: lastName,
-    phoneNumber: phoneNumber,
-    profilePicture: profilePicture,
 
-  );*/
 
   static final List<BannerModel> banners = [
     BannerModel(imageUrl: TImages.banner1, targetScreen: TRoutes.order, active: false),
