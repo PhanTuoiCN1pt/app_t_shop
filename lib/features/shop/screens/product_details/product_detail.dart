@@ -7,6 +7,7 @@ import 'package:app_t_shop/features/shop/screens/product_details/widgets/product
 import 'package:app_t_shop/features/shop/screens/product_details/widgets/rating_share_widget.dart';
 import 'package:app_t_shop/features/shop/screens/product_reviews/product_reviews.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
+import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -21,14 +22,13 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       bottomNavigationBar: const BottomAddToCart(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             /// 1 - Bộ trượt hình ảnh sản phẩm
-            const ProductImageSlider(),
+            ProductImageSlider(product: product,),
 
             /// 2 - Chi tiết sản phẩm
             Padding(
@@ -36,24 +36,24 @@ class ProductDetail extends StatelessWidget {
               child: Column(
                 children: [
                   /// - Đánh giá & Chia sẻ
-                  const RatingAndShare(),
+                   RatingAndShare(),
 
                   /// - Giá, Tiêu đề, Tồn kho, Thương hiệu
-                  const ProductMetaData(),
+                   ProductMetaData(product: product,),
 
                   /// - Thuộc tính
-                  const ProductAttributes(),
-                  const SizedBox(height: TSizes.spaceBtwItems,),
+                  if(product.productType == ProductType.variable.toString()) ProductAttributes(product: product,),
+                  if(product.productType == ProductType.variable.toString()) SizedBox(height: TSizes.spaceBtwItems,),
 
                   /// - Nút Thanh toán
-                  SizedBox(width: double.infinity, child: ElevatedButton(onPressed: (){}, child: const Text('Thanh toán')),),
+                  SizedBox(width: double.infinity, child: ElevatedButton(onPressed: (){}, child: const Text('Mua hàng')),),
                   const SizedBox(height: TSizes.spaceBtwItems,),
 
                   /// - Mô tả
                   const TSectionHeading(title: 'Mô tả', showActionButton: false,),
                   const SizedBox(height: TSizes.spaceBtwItems,),
-                  const ReadMoreText(
-                    'Đây là mô tả sản phẩm cho áo ba lỗ Nike màu xanh. Có nhiều thông tin khác có thể được thêm vào, nhưng tôi ',
+                  ReadMoreText(
+                    product.description ?? '',
                     trimLines: 2,
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     trimMode: TrimMode.Line,

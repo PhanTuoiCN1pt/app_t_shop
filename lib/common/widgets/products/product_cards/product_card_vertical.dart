@@ -5,11 +5,11 @@ import 'package:app_t_shop/common/widgets/images/rounded_image.dart';
 import 'package:app_t_shop/common/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:app_t_shop/common/widgets/texts/product_price_text.dart';
 import 'package:app_t_shop/common/widgets/texts/product_title_text.dart';
-import 'package:app_t_shop/data/product_type.dart';
-import 'package:app_t_shop/features/shop/controllers/product_controller.dart';
+import 'package:app_t_shop/features/shop/controllers/product/product_controller.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
 import 'package:app_t_shop/features/shop/screens/product_details/product_detail.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
+import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
@@ -42,6 +42,7 @@ class TProductCardVertical extends StatelessWidget {
           children: [
             TRoundedContainer(
               height: 180,
+              width: double.infinity,
               padding: const EdgeInsets.all(TSizes.sm),
               backgroundColor: dark ? TColors.dark : TColors.light,
               child: Stack(

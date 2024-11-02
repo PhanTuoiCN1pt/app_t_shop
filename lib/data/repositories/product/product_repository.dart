@@ -1,9 +1,8 @@
 import 'dart:io';
-
-import 'package:app_t_shop/data/product_type.dart';
 import 'package:app_t_shop/data/services/firebase_storage_service.dart';
-import 'package:app_t_shop/features/shop/controllers/product_controller.dart';
+import 'package:app_t_shop/features/shop/controllers/product/product_controller.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
+import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:app_t_shop/utils/exceptions/firebase_exceptions.dart';
@@ -70,9 +69,9 @@ Future<List<ProductModel>> getFeatureProducts() async {
         }
         await productController.featuredProducts();
         await _db.collection("Products").doc(product.id).set(product.toJson());
-        TFullScreenLoader.stopLoading();
         print("Tất cả danh mục đã được tải lên thành công!");
         TLoaders.successSnackBar(title: 'Thành công', message: 'Tải dữ liệu thành công!');
+        TFullScreenLoader.stopLoading();
       }
     } on FirebaseException catch (e) {
       throw e.message!;

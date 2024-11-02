@@ -18,7 +18,7 @@ Future<void> main() async {
   /// Giữ màn hình Splash cho đến khi các mục khác được tải
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  // Todo: Khởi tạo Firebase
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
         (FirebaseApp value) => Get.put(AuthenticationRepository()),
   );

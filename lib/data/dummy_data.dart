@@ -1,9 +1,9 @@
 import 'package:app_t_shop/features/shop/models/banner_model.dart';
 import 'package:app_t_shop/features/shop/models/brand_model.dart';
 import 'package:app_t_shop/features/shop/models/category_model.dart';
+import 'package:app_t_shop/features/shop/models/product_attribute_model.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
-import 'package:app_t_shop/features/shop/screens/all_product/product_attribute_model.dart';
-import 'package:app_t_shop/features/shop/screens/all_product/product_variation_model.dart';
+import 'package:app_t_shop/features/shop/models/product_variation_model.dart';
 import 'package:app_t_shop/routers/routers.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 
@@ -74,8 +74,8 @@ class TDummyData {
     sku: 'ABR4568',
     categoryId: '1',
     productAttributes: [
-      ProductAttributeModel(name: 'Color', values: ['Green', 'Black', 'Red']),
-      ProductAttributeModel(name: 'Size', values: ['EU 30', 'EU 32', 'EU 34']),
+      ProductAttributeModel(name: 'Màu', values: ['Green', 'Black', 'Red']),
+      ProductAttributeModel(name: 'Size', values: ['30', '32', '34']),
     ],
     productVariations: [
       ProductVariationModel(
@@ -85,38 +85,38 @@ class TDummyData {
         salePrice: 122.6,
         image: TImages.productImage1,
         description: 'This is a Product description for Green Nike sports shoe.',
-        attributeValues: {'Color': 'Green', 'Size': 'EU 34'},),
+        attributeValues: {'Màu': 'Green', 'Size': '34'},),
       ProductVariationModel(
           id: '2',
           stock: 15,
           price: 132,
           image: TImages.productImage23,
           description: 'This is a Product description for Green Nike sports shoe.',
-          attributeValues: {'Color': 'Black', 'Size': 'EU 32'}),
+          attributeValues: {'Màu': 'Black', 'Size': '32'}),
       ProductVariationModel(
           id: '3',
           stock: 0,
           price: 345,
           image: TImages.productImage23,
-          attributeValues: {'Color': 'Black', 'Size': 'EU 34'}),
+          attributeValues: {'Màu': 'Black', 'Size': '34'}),
       ProductVariationModel(
           id: '4',
           stock: 222,
           price: 132,
           image: TImages.productImage1,
-          attributeValues: {'Color': 'Black', 'Size': 'EU 32'}),
+          attributeValues: {'Màu': 'Black', 'Size': '32'}),
       ProductVariationModel(
           id: '5',
           stock: 0,
           price: 132,
           image: TImages.productImage21,
-          attributeValues: {'Color': 'Black', 'Size': 'EU 32'}),
+          attributeValues: {'Màu': 'Black', 'Size': '32'}),
       ProductVariationModel(
           id: '6',
           stock: 11,
           price: 132,
           image: TImages.productImage21,
-          attributeValues: {'Color': 'Black', 'Size': 'EU 32'}),
+          attributeValues: {'Màu': 'Black', 'Size': '32'}),
 
     ],
     productType: 'ProductType.variable',
@@ -135,8 +135,8 @@ class TDummyData {
       sku: 'ABR4568',
       categoryId: '16',
       productAttributes: [
-        ProductAttributeModel(name: 'Size', values: ['UE34', 'EU32']),
-        ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
+        ProductAttributeModel(name: 'Size', values: ['34', '32']),
+        ProductAttributeModel(name: 'Màu', values: ['Green', 'Red', 'Blue']),
 
       ],
       productType: 'ProductType.single',
@@ -156,8 +156,8 @@ class TDummyData {
       sku: 'ABR4568',
       categoryId: '16',
       productAttributes: [
-        ProductAttributeModel(name: 'Size', values: ['UE34', 'EU32']),
-        ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
+        ProductAttributeModel(name: 'Size', values: ['34', '32']),
+        ProductAttributeModel(name: 'Màu', values: ['Green', 'Red', 'Blue']),
       ],
       productType: 'ProductType.single',
     ),
@@ -176,8 +176,8 @@ class TDummyData {
       sku: 'ABR4568',
       categoryId: '16',
       productAttributes: [
-        ProductAttributeModel(name: 'Size', values: ['UE34', 'EU32']),
-        ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
+        ProductAttributeModel(name: 'Size', values: ['34', '32']),
+        ProductAttributeModel(name: 'Màu', values: ['Green', 'Red', 'Blue']),
       ],
       productVariations: [
         ProductVariationModel(
@@ -186,21 +186,21 @@ class TDummyData {
             price: 134,
             image: TImages.productImage60,
             description: 'This is a Product description for 4 Color collar t-shirt dry fit.',
-            attributeValues: {'Color': 'Red', 'Size': 'EU 32'}),
+            attributeValues: {'Màu': 'Red', 'Size': '32'}),
         ProductVariationModel(
-            id: '2',stock: 15, image: TImages.productImage60, price: 132, attributeValues: {'Color': 'Red', 'Size': 'EU 32'}),
+            id: '2',stock: 15, image: TImages.productImage60, price: 132, attributeValues: {'Màu': 'Red', 'Size': '32'}),
         ProductVariationModel(
-            id: '3',stock: 0, image: TImages.productImage61, price: 234, attributeValues: {'Color': 'Yellow', 'Size': 'EU 30'}),
+            id: '3',stock: 0, image: TImages.productImage61, price: 234, attributeValues: {'Màu': 'Yellow', 'Size': '30'}),
         ProductVariationModel(
-            id: '4',stock: 222, image: TImages.productImage61, price: 345, attributeValues: {'Color': 'BLue', 'Size': 'EU 34'}),
+            id: '4',stock: 222, image: TImages.productImage61, price: 345, attributeValues: {'Màu': 'BLue', 'Size': '34'}),
         ProductVariationModel(
-            id: '5',stock: 0, image: TImages.productImage62, price: 654, attributeValues: {'Color': 'Yellow', 'Size': 'EU 32'}),
+            id: '5',stock: 0, image: TImages.productImage62, price: 654, attributeValues: {'Màu': 'Yellow', 'Size': '32'}),
         ProductVariationModel(
-            id: '6',stock: 45, image: TImages.productImage62, price: 111, attributeValues: {'Color': 'BLue', 'Size': 'EU 34'}),
+            id: '6',stock: 45, image: TImages.productImage62, price: 111, attributeValues: {'Màu': 'BLue', 'Size': '34'}),
         ProductVariationModel(
-            id: '7',stock: 65, image: TImages.productImage63, price: 231, attributeValues: {'Color': 'BLue', 'Size': 'EU 36'}),
+            id: '7',stock: 65, image: TImages.productImage63, price: 231, attributeValues: {'Màu': 'BLue', 'Size': '36'}),
         ProductVariationModel(
-            id: '8',stock: 11, image: TImages.productImage63, price: 342, attributeValues: {'Color': 'Yellow', 'Size': 'EU 31'}),
+            id: '8',stock: 11, image: TImages.productImage63, price: 342, attributeValues: {'Màu': 'Yellow', 'Size': '31'}),
       ],
       productType: 'ProductType.variable',
     ),
@@ -218,8 +218,8 @@ class TDummyData {
       sku: 'ABR4568',
       categoryId: '8',
       productAttributes: [
-        ProductAttributeModel(name: 'Size', values: ['UE34', 'EU32']),
-        ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
+        ProductAttributeModel(name: 'Size', values: ['34', '32']),
+        ProductAttributeModel(name: 'Màu', values: ['Green', 'Red', 'Blue']),
       ],
       productVariations: [
         ProductVariationModel(
@@ -228,17 +228,17 @@ class TDummyData {
             price: 36,
             image: TImages.productImage8,
             description: 'This is a Product description for 4 Color collar t-shirt dry fit.',
-            attributeValues: {'Color': 'Red', 'Size': 'EU 32'}),
+            attributeValues: {'Màu': 'Red', 'Size': 'EU 32'}),
         ProductVariationModel(
-            id: '2',stock: 15, image: TImages.productImage7, price: 132, attributeValues: {'Color': 'Red', 'Size': 'EU 32'}),
+            id: '2',stock: 15, image: TImages.productImage7, price: 132, attributeValues: {'Màu': 'Red', 'Size': '32'}),
         ProductVariationModel(
-            id: '3',stock: 0, image: TImages.productImage9, price: 234, attributeValues: {'Color': 'Yellow', 'Size': 'EU 30'}),
+            id: '3',stock: 0, image: TImages.productImage9, price: 234, attributeValues: {'Màu': 'Yellow', 'Size': '30'}),
         ProductVariationModel(
-            id: '4',stock: 222, image: TImages.productImage7, price: 345, attributeValues: {'Color': 'BLue', 'Size': 'EU 34'}),
+            id: '4',stock: 222, image: TImages.productImage7, price: 345, attributeValues: {'Màu': 'BLue', 'Size': '34'}),
         ProductVariationModel(
-            id: '5',stock: 0, image: TImages.productImage9, price: 654, attributeValues: {'Color': 'Yellow', 'Size': 'EU 32'}),
+            id: '5',stock: 0, image: TImages.productImage9, price: 654, attributeValues: {'Màu': 'Yellow', 'Size': '32'}),
         ProductVariationModel(
-            id: '6',stock: 45, image: TImages.productImage8, price: 111, attributeValues: {'Color': 'BLue', 'Size': 'EU 34'}),
+            id: '6',stock: 45, image: TImages.productImage8, price: 111, attributeValues: {'Màu': 'BLue', 'Size': '34'}),
       ],
       productType: 'ProductType.variable',
     ),
@@ -256,8 +256,8 @@ class TDummyData {
       sku: 'ABR4568',
       categoryId: '2',
       productAttributes: [
-        ProductAttributeModel(name: 'Size', values: ['UE34', 'EU32']),
-        ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
+        ProductAttributeModel(name: 'Size', values: ['34', '32']),
+        ProductAttributeModel(name: 'Màu', values: ['Green', 'Red', 'Blue']),
       ],
       productType: 'ProductType.single',
     ),
@@ -276,8 +276,8 @@ class TDummyData {
       sku: 'ABR4568',
       categoryId: '8',
       productAttributes: [
-        ProductAttributeModel(name: 'Size', values: ['UE34', 'EU32']),
-        ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
+        ProductAttributeModel(name: 'Size', values: ['34', '32']),
+        ProductAttributeModel(name: 'Màu', values: ['Green', 'Red', 'Blue']),
       ],
       productType: 'ProductType.single',
     ),

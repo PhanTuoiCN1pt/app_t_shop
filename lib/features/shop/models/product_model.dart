@@ -1,6 +1,6 @@
 import 'package:app_t_shop/features/shop/models/brand_model.dart';
-import 'package:app_t_shop/features/shop/screens/all_product/product_attribute_model.dart';
-import 'package:app_t_shop/features/shop/screens/all_product/product_variation_model.dart';
+import 'package:app_t_shop/features/shop/models/product_attribute_model.dart';
+import 'package:app_t_shop/features/shop/models/product_variation_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductModel {

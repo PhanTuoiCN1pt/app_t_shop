@@ -4,7 +4,7 @@ import 'package:app_t_shop/common/widgets/custom_shapes/containers/search_contai
 import 'package:app_t_shop/common/widgets/layouts/grid_layout.dart';
 import 'package:app_t_shop/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
-import 'package:app_t_shop/features/shop/controllers/product_controller.dart';
+import 'package:app_t_shop/features/shop/controllers/product/product_controller.dart';
 import 'package:app_t_shop/features/shop/screens/all_product/view_all_products.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/home_categories.dart';

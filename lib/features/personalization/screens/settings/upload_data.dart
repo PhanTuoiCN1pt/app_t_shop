@@ -33,7 +33,7 @@ class UploadDataScreen extends StatelessWidget {
             TAppBar(
               showBackArrow: true,
               title: Text(
-                'Upload Data',
+                'Tải dữ liệu',
                 style: Theme.of(context)
                     .textTheme
                     .headlineMedium!
@@ -48,33 +48,33 @@ class UploadDataScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   /// Main Record Section
-                  const TSectionHeading(title: 'Main Record', showActionButton: false),
+                  const TSectionHeading(title: 'Dữ liệu', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwSections/2),
                   SettingsMenuTile(
                     iconColor: TColors.primary,
                     icon: Iconsax.category,
-                    title: 'Upload Categories',
+                    title: 'Tải lên danh mục',
                     trailing: const Icon(Iconsax.export, size: 25,color: TColors.primary),
                     onTap: () => categoriesRepo.uploadCategories(),
                   ),
                   SettingsMenuTile(
                     iconColor: TColors.primary,
                     icon: Iconsax.image,
-                    title: 'Upload Banners',
+                    title: 'Tải lên banner',
                     trailing: const Icon(Iconsax.export, size: 25, color: TColors.primary),
                     onTap: () => bannerRepo.uploadBanners(),
                   ),
                   SettingsMenuTile(
                     iconColor: TColors.primary,
                     icon: Iconsax.shopping_cart,
-                    title: 'Upload Products',
+                    title: 'Tải sản phẩm lên',
                     trailing: const Icon(Iconsax.export, size: 25,color: TColors.primary),
                     onTap: () => productRepo.uploadDummyData(TDummyData.products),
                   ),
                   SettingsMenuTile(
                     iconColor: TColors.primary,
                     icon: Iconsax.image,
-                    title: 'Upload Brands',
+                    title: 'Tải lên thương hiệu',
                     trailing: const Icon(Iconsax.export, size: 25,color: TColors.primary,),
                     onTap: () {
                       // Functionality for uploading banners
@@ -83,12 +83,12 @@ class UploadDataScreen extends StatelessWidget {
 
                   /// Relationships Section
                   const SizedBox(height: TSizes.spaceBtwSections),
-                  const TSectionHeading(title: 'Relationships', showActionButton: false),
+                  const TSectionHeading(title: 'Liên kết', showActionButton: false),
                   const SizedBox(height: TSizes.spaceBtwItems),
                   SettingsMenuTile(
                     iconColor: TColors.primary,
                     icon: Iconsax.link,
-                    title: 'Upload Brands & Categories Relation Data',
+                    title: 'Tải lên dữ liệu thương hiệu và danh mục',
                     trailing: const Icon(Iconsax.export, size: 25,color: TColors.primary),
                     onTap: () {
                       // Functionality for uploading brands & categories relation data
@@ -97,7 +97,7 @@ class UploadDataScreen extends StatelessWidget {
                   SettingsMenuTile(
                     iconColor: TColors.primary,
                     icon: Iconsax.link,
-                    title: 'Upload Product Categories Relational Data',
+                    title: 'Tải lên danh mục sản phẩm và dữ liệu',
                     trailing: const Icon(Iconsax.export, size: 25,color: TColors.primary),
                     onTap: () {
                       // Functionality for uploading product categories relational data

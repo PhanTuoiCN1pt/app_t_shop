@@ -1,6 +1,6 @@
-import 'package:app_t_shop/data/product_type.dart';
 import 'package:app_t_shop/data/repositories/product/product_repository.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
+import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 
