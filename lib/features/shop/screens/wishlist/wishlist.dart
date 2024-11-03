@@ -26,7 +26,7 @@ class FavouriteScreen extends StatelessWidget {
       appBar: TAppBar(
         title: Text('Danh sách yêu thích', style: Theme.of(context).textTheme.headlineMedium,),
         actions: [
-          TCircularIcon(icon: Iconsax.add, onPressed: () => Get.to(HomeScreen()),),
+          TCircularIcon(icon: Iconsax.add, onPressed: () => Get.offAll(NavigationMenuScreen(selectedIndex: 0,)),),
         ],
       ),
       body: SingleChildScrollView(

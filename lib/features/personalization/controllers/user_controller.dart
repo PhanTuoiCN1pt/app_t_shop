@@ -3,6 +3,7 @@ import 'package:app_t_shop/data/repositories/user/user_repository.dart';
 import 'package:app_t_shop/features/authentication/models/user/user_model.dart';
 import 'package:app_t_shop/features/authentication/screens/login/login.dart';
 import 'package:app_t_shop/features/personalization/screens/profile/widgets/re_authentication_user_login_form.dart';
+import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/network_manager.dart';
@@ -24,6 +25,7 @@ class UserController extends GetxController {
   Rx<UserModel> user = UserModel.empty().obs;
   final userRepository = Get.put(UserRepository());
   GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
+  final userLogout = Get.put(AuthenticationRepository());
 
   @override
   void onInit() {
@@ -98,6 +100,29 @@ class UserController extends GetxController {
           child: const Text('Hủy')),
     );
   }
+
+  void logoutPopup() {
+    Get.defaultDialog(
+      contentPadding: const EdgeInsets.all(TSizes.md),
+      title: 'Đăng xuất',
+      middleText:
+      'Bạn chắc chắn muốn đăng xuất?',
+      confirm: ElevatedButton(
+          onPressed: userLogout.logout,
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              side: const BorderSide(color: Colors.red)),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
+            child: Text('Đăng xuất'),
+          )),
+      cancel: OutlinedButton(
+          onPressed: () => Navigator.of(Get.overlayContext!).pop(),
+          child: const Text('Hủy')),
+    );
+  }
+
+
 
   void deleteUserAccount() async {
     try {

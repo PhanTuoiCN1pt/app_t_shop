@@ -29,7 +29,6 @@ class ProfileScreen extends StatelessWidget {
               navigationController.navigateToSetting(); // Chuyển đến SettingsScreen
               Get.off(() => const NavigationMenuScreen(selectedIndex: 3,)); // Quay lại NavigationMenuScreen
             },
-            tooltip: 'Chuyển đến Cài đặt',
           ),
         ],
       ),

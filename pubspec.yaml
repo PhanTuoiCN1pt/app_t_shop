@@ -40,6 +40,7 @@ dependencies:
   cached_network_image: ^3.4.0
   connectivity_plus: ^6.0.3
   lottie: ^3.1.0 # OR RIVE
+  fluttertoast: ^8.0.9
 
   # Icons
   iconsax: ^0.0.8

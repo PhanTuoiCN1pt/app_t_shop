@@ -12,6 +12,7 @@ import 'package:app_t_shop/features/shop/screens/brand/brand_product.dart';
 import 'package:app_t_shop/features/shop/screens/brand/view_all_brands.dart';
 import 'package:app_t_shop/features/shop/screens/shimmer/brand_shimmer.dart';
 import 'package:app_t_shop/features/shop/screens/store/widgets/category_tab.dart';
+import 'package:app_t_shop/navigation_menu.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
@@ -24,7 +25,6 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categories = CategoryController.instance.featuredCategories;
-    final brandRepo = Get.put(BrandRepository());
     final brandController = Get.put(BrandController());
     return DefaultTabController(
       length: categories.length,
@@ -32,7 +32,7 @@ class StoreScreen extends StatelessWidget {
         appBar: TAppBar(
           title: Text('Cửa hàng', style: Theme.of(context).textTheme.headlineMedium,),
           actions: [
-            TCartCounterIcon(onPressed: () {}),
+            TCartCounterIcon(onPressed: () => Get.offAll(() => NavigationMenuScreen(selectedIndex: 2,))),
           ],
         ),
         body: NestedScrollView(

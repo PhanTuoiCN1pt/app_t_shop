@@ -22,12 +22,11 @@ class FavouritesController extends GetxController {
     if (json != null){
       final storedFavourites = jsonDecode(json) as Map<String, dynamic>;
       favourites.assignAll(storedFavourites.map((key, value) => MapEntry(key, value as bool)));
-
     }
   }
 
   bool isFavourite(String productId){
-    return favourites[productId] ?? false;
+    return favourites[productId] ?? false ;
   }
 
   void toggleFavouriteProduct(String productId){

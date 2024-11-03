@@ -5,6 +5,7 @@ import 'package:app_t_shop/common/widgets/list_titles/user_profile_title.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
 import 'package:app_t_shop/data/dummy_data.dart';
 import 'package:app_t_shop/data/repositories/authentication/authentication_repository.dart';
+import 'package:app_t_shop/features/personalization/controllers/user_controller.dart';
 import 'package:app_t_shop/features/personalization/screens/address/address.dart';
 import 'package:app_t_shop/features/personalization/screens/profile/profile.dart';
 import 'package:app_t_shop/features/personalization/screens/settings/upload_data.dart';
@@ -25,6 +26,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -88,9 +90,9 @@ class SettingScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections,),
                   SizedBox(
                     width: double.infinity,
-                    child: OutlinedButton(onPressed: () async {
-                      await AuthenticationRepository.instance.logout();
-                    }, child: const Text('Đăng xuất')),
+                    child: OutlinedButton(
+                      onPressed: () => controller.logoutPopup(), // Gọi hàm hiển thị popup
+                      child: const Text('Đăng xuất'),),
                   ),
                 ],
               ),

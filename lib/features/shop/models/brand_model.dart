@@ -13,7 +13,7 @@ class BrandModel {
       {required this.id, required this.image, required this.name, this.isFeatured, this.productsCount});
 
 
-  static BrandModel empty() => BrandModel(id: '', image: TImages.nikeLogo, name: '', productsCount: 265);
+  static BrandModel empty() => BrandModel(id: '', image: TImages.nikeLogo, name: 'Nike', productsCount: 265);
 
 
   toJson() {
