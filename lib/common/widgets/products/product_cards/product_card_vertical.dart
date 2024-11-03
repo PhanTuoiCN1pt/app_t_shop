@@ -2,6 +2,7 @@ import 'package:app_t_shop/common/stype/shadow.dart';
 import 'package:app_t_shop/common/widgets/icons/cicular_icon.dart';
 import 'package:app_t_shop/common/widgets/images/rounded_container.dart';
 import 'package:app_t_shop/common/widgets/images/rounded_image.dart';
+import 'package:app_t_shop/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:app_t_shop/common/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:app_t_shop/common/widgets/texts/product_price_text.dart';
 import 'package:app_t_shop/common/widgets/texts/product_title_text.dart';
@@ -62,10 +63,11 @@ class TProductCardVertical extends StatelessWidget {
                   ),
 
                   /// Nút yêu thích
-                  const Positioned(
+                  Positioned(
                       top: 0,
                       right: 0,
-                      child: TCircularIcon(icon: Iconsax.heart5, color: Colors.red,))
+                      child: FavouriteIcon(productId: product.id,),
+                  ),
                 ],
               ),
             ),

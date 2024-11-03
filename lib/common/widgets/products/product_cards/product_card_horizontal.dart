@@ -1,9 +1,11 @@
 import 'package:app_t_shop/common/widgets/icons/cicular_icon.dart';
 import 'package:app_t_shop/common/widgets/images/rounded_container.dart';
 import 'package:app_t_shop/common/widgets/images/rounded_image.dart';
+import 'package:app_t_shop/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:app_t_shop/common/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:app_t_shop/common/widgets/texts/product_price_text.dart';
 import 'package:app_t_shop/common/widgets/texts/product_title_text.dart';
+import 'package:app_t_shop/features/shop/models/product_model.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
@@ -12,7 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ProductCartHorizontal extends StatelessWidget {
-  const ProductCartHorizontal({super.key});
+  const ProductCartHorizontal({super.key, });
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +51,12 @@ class ProductCartHorizontal extends StatelessWidget {
                   ),
                 ),
 
-                const Positioned(
+                Positioned(
                   top: 0,
                   right: 0,
                   width: 35,
                   height: 35,
-                  child: TCircularIcon(icon: Iconsax.heart5, color: Colors.red, size: 20,),
+                  child: FavouriteIcon(productId: '',),
                 ),
               ],
             ),

@@ -64,11 +64,11 @@ class StoreScreen extends StatelessWidget {
                           () {
                             if (brandController.isLoading.value) return BrandsShimmer();
 
-                            // if (brandController.featuredBrands.isEmpty){
-                            //   return Center(
-                            //     child: Text('Không có dữ liệu', style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),),
-                            //   );
-                            // }
+                            if (brandController.allBrands.isEmpty){
+                              return Center(
+                                child: Text('Không có dữ liệu', style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),),
+                              );
+                            }
 
                             return GridLayout(
                                 itemCount: brandController.allBrands.length - 6,
@@ -85,13 +85,14 @@ class StoreScreen extends StatelessWidget {
                   ),
                 ),
 
-                /// Tabs ~~~ Hướng dẫn
+
                 bottom: TTabBar(tabs: categories.map((category) => Tab(child: Text(category.name))).toList()),
               ),
             ];
           },
-          /// Nội dung ~~~ Hướng dẫn
+
           body: TabBarView(
+
               children: categories.map((category) => TCategoryTab(category: category)).toList()
           ),
         ),

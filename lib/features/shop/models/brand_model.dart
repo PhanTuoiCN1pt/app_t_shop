@@ -1,4 +1,5 @@
 import 'package:app_t_shop/features/shop/models/banner_model.dart';
+import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BrandModel {
@@ -12,7 +13,7 @@ class BrandModel {
       {required this.id, required this.image, required this.name, this.isFeatured, this.productsCount});
 
 
-  static BrandModel empty() => BrandModel(id: '', image: '', name: '');
+  static BrandModel empty() => BrandModel(id: '', image: TImages.nikeLogo, name: '', productsCount: 265);
 
 
   toJson() {
