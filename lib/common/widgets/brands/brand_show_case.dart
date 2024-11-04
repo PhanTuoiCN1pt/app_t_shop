@@ -2,9 +2,11 @@ import 'package:app_t_shop/common/widgets/brands/brand_card.dart';
 import 'package:app_t_shop/common/widgets/images/rounded_container.dart';
 import 'package:app_t_shop/features/shop/models/brand_model.dart';
 import 'package:app_t_shop/features/shop/screens/brand/brand_product.dart';
+import 'package:app_t_shop/features/shop/screens/shimmer/shimmer.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,7 +47,12 @@ class TBrandShowcase extends StatelessWidget {
         padding: const EdgeInsets.all(TSizes.md),
         margin: const EdgeInsets.only(right: TSizes.sm),
         backgroundColor: THelperFunctions.isDarkMode(context) ? TColors.darkerGrey : TColors.light,
-        child: Image(fit: BoxFit.contain, image: AssetImage(image)),
+        child: CachedNetworkImage(
+          fit: BoxFit.contain,
+          imageUrl: image,
+          progressIndicatorBuilder: (context, url, downloadProgress) => TShimmerEffect(width: 100, height: 100),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        )
       ),
     );
   }

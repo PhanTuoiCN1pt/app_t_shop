@@ -5,8 +5,10 @@ import 'package:app_t_shop/common/widgets/products/favourite_icon/favourite_icon
 import 'package:app_t_shop/common/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:app_t_shop/common/widgets/texts/product_price_text.dart';
 import 'package:app_t_shop/common/widgets/texts/product_title_text.dart';
+import 'package:app_t_shop/features/shop/controllers/product/product_controller.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
+import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
@@ -14,11 +16,14 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ProductCartHorizontal extends StatelessWidget {
-  const ProductCartHorizontal({super.key, });
+  const ProductCartHorizontal({super.key, required this.product, });
 
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     final dark = THelperFunctions.isDarkMode(context);
     return Container(
       width: 310,
@@ -36,27 +41,28 @@ class ProductCartHorizontal extends StatelessWidget {
             backgroundColor: dark ? TColors.dark : TColors.light,
             child: Stack(
               children: [
-                const SizedBox(
+                 SizedBox(
                   height: 120,
                   width: 120,
-                  child: TRoundedImage(imageUrl: TImages.productImage1, applyImageRadius: true,),
+                  child: TRoundedImage(imageUrl: product.thumbnail, applyImageRadius: true, isNetworkImage: true,),
                 ),
-                Positioned(
-                  top: 5,
-                  child: TRoundedContainer(
-                    radius: TSizes.sm,
-                    backgroundColor: TColors.secondary.withOpacity(0.8),
-                    padding: const EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
-                    child: Text('25%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),),
+                if(salePercentage != null)
+                  Positioned(
+                    top: 5,
+                    child: TRoundedContainer(
+                      radius: TSizes.sm,
+                      backgroundColor: TColors.secondary.withOpacity(0.8),
+                      padding: const EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
+                      child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),),
+                    ),
                   ),
-                ),
 
                 Positioned(
                   top: 0,
                   right: 0,
-                  width: 35,
-                  height: 35,
-                  child: FavouriteIcon(productId: '',),
+                  width: 39,
+                  height: 39,
+                  child: FavouriteIcon(productId: product.id,),
                 ),
               ],
             ),
@@ -68,13 +74,14 @@ class ProductCartHorizontal extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: TSizes.sm, left: TSizes.sm),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                   Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TProductTitleText(title: 'Giày Nike xanh lá cây hajkdh adhsad aksdh askdh adsadhs ', smallSize: true,),
+                      TProductTitleText(title: product.title, smallSize: true,),
                       SizedBox(height: TSizes.spaceBtwItems / 2,),
-                      TBrandTitleWithVerifiedIcon(title: 'Nike'),
+                      TBrandTitleWithVerifiedIcon(title: product.brand!.name),
                     ],
                   ),
 
@@ -83,10 +90,26 @@ class ProductCartHorizontal extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      /// Giá cả
-                      const Flexible(child: ProductPriceText(price: '256')),
-
-                      /// Thêm vào giỏ
+                      /// Giá
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if(product.productType == ProductType.single.toString() && product.salePrice > 0)
+                              Padding(
+                                padding: EdgeInsets.only(left: TSizes.sm),
+                                child: Text(
+                                  product.price.toString(),
+                                  style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
+                                ),
+                              ),
+                            Padding(
+                              padding: EdgeInsets.only(left: TSizes.sm),
+                              child: ProductPriceText(price: controller.getProductPrice(product),),
+                            ),
+                          ],
+                        ),
+                      ),
                       Container(
                         decoration: const BoxDecoration(
                             color: TColors.dark,
@@ -100,7 +123,7 @@ class ProductCartHorizontal extends StatelessWidget {
                             height: TSizes.iconLg * 1.2,
                             child: Center(child: Icon(Iconsax.add, color: TColors.white,))
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ],

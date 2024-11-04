@@ -13,7 +13,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart'; // Import để sử dụng basename
 
 class BannerRepository extends GetxController {
   static BannerRepository get instance => Get.find();

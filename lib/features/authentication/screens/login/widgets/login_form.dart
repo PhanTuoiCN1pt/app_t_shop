@@ -20,7 +20,7 @@ class TLoginForm extends StatelessWidget {
     return Form(
       key: controller.loginFormKey,
       child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(
         children: [
           /// Email

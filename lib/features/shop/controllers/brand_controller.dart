@@ -42,7 +42,6 @@ class BrandController extends GetxController {
       final brands = await brandRepository.getBrandsForCategory(categoryId);
       return brands;
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Lỗi',message: e.toString());
       return [];
     }
   }
@@ -52,7 +51,7 @@ class BrandController extends GetxController {
       final products = await ProductRepository.instance.getProductsForBrand(brandId: brandId, limit: limit);
       return products;
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Lỗi',message: e.toString());
+
       return [];
     }
   }

@@ -1,3 +1,4 @@
+import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
@@ -19,9 +20,16 @@ class TLoginHeader extends StatelessWidget {
 
         ),
         const SizedBox(height: TSizes.spaceLogo1,),
-        Text(TTexts.loginTitle, style: Theme.of(context).textTheme.headlineMedium,),
-        const SizedBox(height: TSizes.sm,),
-        Text(TTexts.loginSubTitle, style: Theme.of(context).textTheme.bodyMedium,),
+        Row(
+          children: [
+            Text(TTexts.loginTitle, style: Theme.of(context).textTheme.headlineMedium,),
+            const SizedBox(width: TSizes.sm,),
+            Text('- Mua sắm theo cách của bạn!', style: TextStyle(fontSize: 16,color: TColors.colorApp),),
+          ]
+        ),
+
+        const SizedBox(height: 30,),
+        Text(TTexts.loginSubTitle, style: TextStyle(fontSize: 13,color: Colors.black.withOpacity(0.6))),
 
       ],
     );

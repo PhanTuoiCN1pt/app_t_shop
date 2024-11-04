@@ -32,9 +32,9 @@ class BrandRepository extends GetxController {
 
   Future<List<BrandModel>> getBrandsForCategory(String categoryId) async {
     try {
-      QuerySnapshot brandCategoryQuery = await _db.collection('BrandCategory').where('categoryId', isEqualTo: categoryId).get();
+      QuerySnapshot brandCategoryQuery = await _db.collection('BrandCategory').where('CategoryId', isEqualTo: categoryId).get();
 
-      List<String> brandIds = brandCategoryQuery.docs.map((doc) => doc['brandId'] as String).toList();
+      List<String> brandIds = brandCategoryQuery.docs.map((doc) => doc['BrandId'] as String).toList();
 
       final brandsQuery = await _db.collection('Brands').where(FieldPath.documentId, whereIn: brandIds).limit(2).get();
 

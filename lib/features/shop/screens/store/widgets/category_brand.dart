@@ -42,7 +42,14 @@ class CategoryBrand extends StatelessWidget {
             return FutureBuilder(
               future: controller.getBrandProducts(brandId: brand.id, limit: 3),
                 builder: (context, snapshot) {
-                return TBrandShowcase(images: [],brand: brand,);
+
+                final widget = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: loader);
+                if(widget != null) return widget;
+
+                final products = snapshot.data!;
+
+
+                return TBrandShowcase(brand: brand, images: products.map((e) => e.thumbnail).toList(),);
                 }
 
             );
