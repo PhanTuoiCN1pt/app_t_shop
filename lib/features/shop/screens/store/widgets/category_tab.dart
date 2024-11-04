@@ -8,6 +8,7 @@ import 'package:app_t_shop/features/shop/controllers/product/product_controller.
 import 'package:app_t_shop/features/shop/models/brand_model.dart';
 import 'package:app_t_shop/features/shop/models/category_model.dart';
 import 'package:app_t_shop/features/shop/screens/all_product/view_all_products.dart';
+import 'package:app_t_shop/features/shop/screens/store/widgets/category_brand.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class TCategoryTab extends StatelessWidget {
           child: Column(
             children: [
               /// Thương hiệu
-              TBrandShowcase(images: [TImages.productImage3, TImages.productImage1, TImages.productImage7]),
+              CategoryBrand(category: category),
               const SizedBox(height: TSizes.spaceBtwItems,),
 
               /// Sản phẩm

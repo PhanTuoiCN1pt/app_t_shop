@@ -1,34 +1,40 @@
 import 'package:app_t_shop/common/widgets/brands/brand_card.dart';
 import 'package:app_t_shop/common/widgets/images/rounded_container.dart';
 import 'package:app_t_shop/features/shop/models/brand_model.dart';
+import 'package:app_t_shop/features/shop/screens/brand/brand_product.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TBrandShowcase extends StatelessWidget {
   const TBrandShowcase({
-    super.key, required this.images,
+    super.key, required this.images, required this.brand,
   });
+  final BrandModel brand;
   final List<String> images;
 
   @override
   Widget build(BuildContext context) {
-    return TRoundedContainer(
-      showBorder: true,
-      borderColor: TColors.darkerGrey,
-      padding: const EdgeInsets.all(TSizes.md),
-      backgroundColor: Colors.transparent,
-      margin:const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
-      child: Column(
-        children: [
-          TBrandCard(showBorder: false,brand: BrandModel.empty(),),
-          const SizedBox(height: TSizes.spaceBtwItems,),
+    return InkWell(
+      onTap: () => Get.to(() =>  BrandProduct(brand: brand)),
+      child: TRoundedContainer(
+        showBorder: true,
+        borderColor: TColors.darkerGrey,
+        padding: const EdgeInsets.all(TSizes.md),
+        backgroundColor: Colors.transparent,
+        margin:const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
+        child: Column(
+          children: [
+            TBrandCard(showBorder: false,brand: brand,),
+            const SizedBox(height: TSizes.spaceBtwItems,),
 
-          Row(
-              children: images.map((image) => brandTopProductImageWidget(image, context)).toList()
-          )
-        ],
+            Row(
+                children: images.map((image) => brandTopProductImageWidget(image, context)).toList()
+            )
+          ],
+        ),
       ),
     );
   }

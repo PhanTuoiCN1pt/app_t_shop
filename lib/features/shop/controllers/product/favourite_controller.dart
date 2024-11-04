@@ -33,14 +33,14 @@ class FavouritesController extends GetxController {
     if(!favourites.containsKey(productId)){
       favourites[productId] = true;
       saveFavouritesToStorage();
-      TLoaders.customToast(message: 'Đã thêm sản phẩm vào giỏ hàng');
+      TLoaders.customToast(message: 'Đã thêm sản phẩm vào list yêu thích');
 
     }else {
       TLocalStorage.instance().removeData(productId);
       favourites.remove(productId);
       saveFavouritesToStorage();
       favourites.refresh();
-      TLoaders.customToast(message: 'Gỡ sản phẩm khỏi giỏ hàng');
+      TLoaders.customToast(message: 'Gỡ sản phẩm khỏi list yêu thích');
     }
   }
 
