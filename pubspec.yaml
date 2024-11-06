@@ -1,20 +1,6 @@
 name: app_t_shop
 description: 'A new Flutter project.'
 
-flutter_native_splash:
-  color: "#FFFFFF"
-  color_dark: "#000000"
-  image: assets/logos/logo.jpg
-  image_dark: assets/logo.jpg
-
-  android_12:
-    color: "#FFFFFF"
-    color_dark: "#000000"
-    image: assets/logos/logo.jpg
-    image_dark: assets/logo.jpg
-
-
-  web: false
 publish_to: 'none'
 version: 1.0.0+1
 

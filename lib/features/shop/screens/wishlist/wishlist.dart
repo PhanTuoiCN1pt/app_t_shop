@@ -32,17 +32,17 @@ class FavouriteScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
-            child: 
+          child:
               Obx(
                   () => FutureBuilder(
                   future: controller.favouriteProduct(),
                   builder: (context, snapshot) {
 
                     final emptyWidget = TAnimationLoaderWidget(
-                      text: 'Bạn chưa thêm sản phẩm nào vào giỏ hàng...',
+                      text: 'Bạn chưa có list yêu thích...',
                       animation: TImages.emptyAnimation,
                       showAction: true,
-                      actionText: 'Thêm vào giỏ hàng ngay',
+                      actionText: 'Thêm ngay',
                       onActionPressed: () => Get.offAll(() => NavigationMenuScreen(selectedIndex: 0,)) ,
                     );
 

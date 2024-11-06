@@ -53,7 +53,7 @@ class SingleAddress extends StatelessWidget {
               const SizedBox(height: TSizes.sm/10,),
               Text('(+84) 0394475952', maxLines: 1,overflow: TextOverflow.ellipsis,style: Theme.of(context).textTheme.bodyMedium,),
               const SizedBox(height: TSizes.sm/10,),
-              Text('87/46/12 Yên Xá, Thanh Xuân, Hà Nội, ajksd, da, KJSADSAD, SDSD ,SD SDD SD.',softWrap: true,style: Theme.of(context).textTheme.bodyMedium,),
+              Text('87/46/12 Yên Xá, Thanh Xuân, Hà Nội.',softWrap: true,style: Theme.of(context).textTheme.bodyMedium,),
             ],
           ),
         ],

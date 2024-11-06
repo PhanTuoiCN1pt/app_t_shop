@@ -9,6 +9,7 @@ class TLocalStorage {
 
    TLocalStorage._internal();
 
+
   factory TLocalStorage.instance() {
     _instance ??= TLocalStorage._internal();
     return _instance!;

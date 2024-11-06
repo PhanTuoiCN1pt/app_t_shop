@@ -46,7 +46,14 @@ class ProductDetail extends StatelessWidget {
                   if(product.productType == ProductType.variable.toString()) SizedBox(height: TSizes.spaceBtwItems,),
 
                   /// - Nút Thanh toán
-                  SizedBox(width: double.infinity, child: ElevatedButton(onPressed: (){}, child: const Text('Mua hàng')),),
+                  SizedBox(width: double.infinity, child: ElevatedButton(
+                    onPressed: (){},
+                    child: const Text('Mua hàng'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: TColors.colorApp,
+                      side: BorderSide(color: TColors.colorApp),
+                    ),
+                  ),),
                   const SizedBox(height: TSizes.spaceBtwItems,),
 
                   /// - Mô tả

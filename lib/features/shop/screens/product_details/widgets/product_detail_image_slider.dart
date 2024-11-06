@@ -73,7 +73,7 @@ class ProductImageSlider extends StatelessWidget {
                         isNetworkImage: true,
                         width: 80,
                         backgroundColor: dark ? TColors.dark : TColors.white,
-                        border: Border.all(color: imageSelected ? TColors.primary : Colors.transparent),
+                        border: Border.all(color: imageSelected ? TColors.colorApp : Colors.transparent),
                         padding: const EdgeInsets.all(TSizes.sm),
                         onPressed: () => controller.selectedProductImage.value = images[index],
                       );

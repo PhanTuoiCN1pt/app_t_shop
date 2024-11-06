@@ -35,7 +35,7 @@ class ProductController extends GetxController {
   Future<List<ProductModel>> fetchAllFeatureProducts() async {
     try{
 
-      final products = await productRepository.getFeatureProducts();
+      final products = await productRepository.getAllFeatureProducts();
       return products;
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Lỗi',message: e.toString());
@@ -76,7 +76,7 @@ class ProductController extends GetxController {
   }
 
   String getProductStockStatus(int stock) {
-    return stock > 0 ? 'In Stock' : 'Out of Stock';
+    return stock > 0 ? 'Còn hàng' : 'Hết hàng';
   }
 
 }

@@ -6,10 +6,12 @@ import 'package:get/get.dart';
 class VariationController extends GetxController {
   static VariationController get instance => Get.find();
 
+  /// Variation
   RxMap selectedAttributes = {}.obs;
   RxString variationStockStatus = ''.obs;
   Rx<ProductVariationModel> selectedVariation = ProductVariationModel.empty().obs;
 
+  /// Selected Attribute and Variation
   void onAttributeSelected(ProductModel product, attributeName, attributeValue) {
     final selectedAttributes = Map<String, dynamic>.from(this.selectedAttributes);
     selectedAttributes[attributeName] = attributeValue;
@@ -50,7 +52,7 @@ class VariationController extends GetxController {
   }
 
   void getProductVariationStockStatus() {
-    variationStockStatus.value = selectedVariation.value.stock > 0 ? 'InStock' : 'Out ';
+    variationStockStatus.value = selectedVariation.value.stock > 0 ? 'Còn hàng' : 'Hết hàng';
   }
 
   void resetSelectedAttributes() {

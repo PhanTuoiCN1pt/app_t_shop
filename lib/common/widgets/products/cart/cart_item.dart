@@ -32,16 +32,16 @@ class CartItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const TBrandTitleWithVerifiedIcon(title: 'Nike'),
-              const Flexible(child: TProductTitleText(title: 'Black Sports shoes ',maxLines: 1,)),
+              const Flexible(child: TProductTitleText(title: 'Green Sports shoes ',maxLines: 1,)),
 
               /// Attribute
               Text.rich(
                 TextSpan(
                     children:  [
-                      TextSpan(text: 'Màu',style: Theme.of(context).textTheme.bodySmall),
-                      TextSpan(text: 'Xanh',style: Theme.of(context).textTheme.bodyLarge),
-                      TextSpan(text: 'Size',style: Theme.of(context).textTheme.bodySmall),
-                      TextSpan(text: 'UK 08',style: Theme.of(context).textTheme.bodyLarge),
+                      TextSpan(text: 'Màu ',style: Theme.of(context).textTheme.bodySmall),
+                      TextSpan(text: 'Xanh ',style: Theme.of(context).textTheme.bodyLarge),
+                      TextSpan(text: 'Size ',style: Theme.of(context).textTheme.bodySmall),
+                      TextSpan(text: '38',style: Theme.of(context).textTheme.bodyLarge),
                     ]
                 ),
               ),

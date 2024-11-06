@@ -3,9 +3,9 @@
     >
 
     <application
-        android:label="app_t_shop"
+        android:label="TrueClick"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/img">
         <activity
             android:name=".MainActivity"
             android:exported="true"

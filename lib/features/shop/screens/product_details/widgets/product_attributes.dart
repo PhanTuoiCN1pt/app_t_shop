@@ -83,7 +83,7 @@ class ProductAttributes extends StatelessWidget {
                 .map((attribute) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 TSectionHeading(title: attribute.name ?? '', showActionButton: false,),
+                TSectionHeading(title: attribute.name ?? '', showActionButton: false,),
                 const SizedBox(height: TSizes.spaceBtwItems/2,),
                 Obx(
                   () => Wrap(

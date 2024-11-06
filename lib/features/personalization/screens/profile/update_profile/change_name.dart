@@ -1,5 +1,7 @@
 import 'package:app_t_shop/common/widgets/appbar/appbar.dart';
 import 'package:app_t_shop/features/personalization/screens/profile/update_profile/update_name_controller.dart';
+import 'package:app_t_shop/utils/constants/colors.dart';
+import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/constants/text_strings.dart';
 import 'package:app_t_shop/utils/validators/validation.dart';
@@ -54,7 +56,14 @@ class ChangeName extends StatelessWidget {
             
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(onPressed: () =>  controller.updateUserName(), child: const Text('Cập nhật')),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: TColors.colorApp,
+                    side: BorderSide(color: TColors.colorApp),
+                  ),
+                  onPressed: () =>  controller.updateUserName(),
+                  child: const Text('Cập nhật')
+              ),
             )
           ],
         ),
