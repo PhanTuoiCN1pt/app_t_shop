@@ -35,8 +35,7 @@ class TCategoryTab extends StatelessWidget {
           child: Column(
             children: [
               /// Thương hiệu
-              CategoryBrand(category: category),
-              const SizedBox(height: TSizes.spaceBtwItems,),
+              //CategoryBrand(category: category),
 
               /// Sản phẩm
               FutureBuilder(

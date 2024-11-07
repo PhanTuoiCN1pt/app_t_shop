@@ -33,34 +33,23 @@ class ProductMetaData extends StatelessWidget {
               radius: TSizes.sm,
               backgroundColor: TColors.secondary.withOpacity(0.8),
               padding: const EdgeInsets.symmetric(horizontal: TSizes.sm,vertical: TSizes.xs),
-              child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),), // Giảm giá 25%
+              child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),),
             ),
             const SizedBox(width: TSizes.spaceBtwItems,),
 
             /// Giá
             if(product.productType == ProductType.single.toString() && product.salePrice > 0)
-              Text('\$${product.price}',style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),), // Giá cũ: $250
+              Text('\₫${product.price}',style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
             if(product.productType == ProductType.single.toString() && product.salePrice > 0)
               const SizedBox(width: TSizes.spaceBtwItems,),
-            ProductPriceText(price: controller.getProductPrice(product),isLarge: true,), // Giá: $175
+            ProductPriceText(price: controller.getProductPrice(product),isLarge: true,),
 
           ],
         ),
         const SizedBox(height: TSizes.spaceBtwItems/1.5,),
 
         /// Tiêu đề
-        TProductTitleText(title: product.title), // Áo thể thao Nike xanh lá
-        const SizedBox(height: TSizes.spaceBtwItems/1.5,),
-
-        /// Tình trạng hàng tồn kho
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const TProductTitleText(title: 'Tồn kho:',smallSize: true,), // Tồn kho:
-            const SizedBox(width: TSizes.spaceBtwItems/3,),
-            Text(controller.getProductStockStatus(product.stock),style: Theme.of(context).textTheme.titleMedium,), // Còn hàng
-          ],
-        ),
+        TProductTitleText(title: product.title),
         const SizedBox(height: TSizes.spaceBtwItems/1.5,),
 
         /// Thương hiệu

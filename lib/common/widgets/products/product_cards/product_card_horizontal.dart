@@ -53,7 +53,7 @@ class ProductCartHorizontal extends StatelessWidget {
                   ),
                   if(salePercentage != null)
                     Positioned(
-                      top: 5,
+                      top: 0,
                       child: TRoundedContainer(
                         radius: TSizes.sm,
                         backgroundColor: TColors.secondary.withOpacity(0.8),
@@ -63,8 +63,8 @@ class ProductCartHorizontal extends StatelessWidget {
                     ),
 
                   Positioned(
-                    top: 0,
-                    right: 0,
+                    top: -10,
+                    right: -6,
                     width: 39,
                     height: 39,
                     child: FavouriteIcon(productId: product.id,),

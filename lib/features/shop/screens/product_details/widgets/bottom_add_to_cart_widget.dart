@@ -12,47 +12,57 @@ class BottomAddToCart extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace,vertical: TSizes.defaultSpace/2),
-      decoration: BoxDecoration(
-        color: dark ? TColors.darkerGrey : TColors.light,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(TSizes.cardRadiusLg),
-          topRight: Radius.circular(TSizes.cardRadiusLg),
-        ),
-      ),
+      height: 60,
+      padding: EdgeInsets.only(bottom: 5),
+
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              const TCircularIcon(
-                icon: Iconsax.minus,
-                backgroundColor: TColors.darkerGrey,
-                width: 40,
-                height: 40,
-                color: TColors.white,
+          Expanded(
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.only(top: 10),
+                backgroundColor: Colors.teal.withOpacity(0.75),
+                side: const BorderSide(color: TColors.colorApp),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero), // Square corners
               ),
-              const SizedBox(width: TSizes.spaceBtwItems,),
-              Text('2',style: Theme.of(context).textTheme.titleSmall,),
-              const SizedBox(width: TSizes.spaceBtwItems,),
-              const TCircularIcon(
-                icon: Iconsax.add,
-                backgroundColor: TColors.black,
-                width: 40,
-                height: 40,
-                color: TColors.white,
+              child: Column(
+                children: [
+                  Icon(Iconsax.messages),
+                  Text('Chat ngay',style: TextStyle(fontSize: 11),),
+                ],
               ),
-            ],
-          ),
-          ElevatedButton(
-            onPressed: (){},
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(TSizes.md),
-              backgroundColor: TColors.black,
-              side: const BorderSide(color: TColors.black),
             ),
-            child: const Text('Thêm giỏ hàng'),
-          )
+          ),
+          Expanded(
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.only(top: 10),
+                backgroundColor: Colors.teal.withOpacity(0.75),
+                side: BorderSide(color: Colors.teal.withOpacity(0.75)),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+              ),
+              child: Column(
+                children: [
+                  Icon(Iconsax.shopping_cart),
+                  Text('Thêm vào Giỏ hàng',style: TextStyle(fontSize: 11),),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 17.0),
+                backgroundColor: TColors.error,
+                side: const BorderSide(color: TColors.error),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+              ),
+              child: const Text('Mua ngay'),
+            ),
+          ),
         ],
       ),
     );

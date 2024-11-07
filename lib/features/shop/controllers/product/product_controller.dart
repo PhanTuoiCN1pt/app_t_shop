@@ -62,7 +62,7 @@ class ProductController extends GetxController {
       if (smallestPrice.isEqual(largestPrice)){
         return largestPrice.toString();
       } else {
-        return '$smallestPrice - \$$largestPrice';
+        return '$smallestPrice - \₫$largestPrice';
       }
     }
   }

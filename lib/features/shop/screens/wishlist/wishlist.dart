@@ -39,7 +39,7 @@ class FavouriteScreen extends StatelessWidget {
                   builder: (context, snapshot) {
 
                     final emptyWidget = TAnimationLoaderWidget(
-                      text: 'Bạn chưa có list yêu thích...',
+                      text: 'Bạn chưa có sản phẩm nào trong list...',
                       animation: TImages.emptyAnimation,
                       showAction: true,
                       actionText: 'Thêm ngay',

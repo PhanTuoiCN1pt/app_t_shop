@@ -5,6 +5,7 @@ import 'package:app_t_shop/features/shop/screens/product_details/widgets/product
 import 'package:app_t_shop/features/shop/screens/product_details/widgets/product_detail_image_slider.dart';
 import 'package:app_t_shop/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:app_t_shop/features/shop/screens/product_details/widgets/rating_share_widget.dart';
+import 'package:app_t_shop/features/shop/screens/product_details/widgets/shop_infor.dart';
 import 'package:app_t_shop/features/shop/screens/product_reviews/product_reviews.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/enums.dart';
@@ -45,15 +46,15 @@ class ProductDetail extends StatelessWidget {
                   if(product.productType == ProductType.variable.toString()) ProductAttributes(product: product,),
                   if(product.productType == ProductType.variable.toString()) SizedBox(height: TSizes.spaceBtwItems,),
 
-                  /// - Nút Thanh toán
-                  SizedBox(width: double.infinity, child: ElevatedButton(
-                    onPressed: (){},
-                    child: const Text('Mua hàng'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: TColors.colorApp,
-                      side: BorderSide(color: TColors.colorApp),
-                    ),
-                  ),),
+                  /// - Thông tin người bán
+                  ShopInfoWidget(
+                    shopName: "TrueClick 247",
+                    location: "Hà Nội",
+                    onlineStatus: "Online 1 phút trước",
+                    productCount: 267,
+                    rating: 4.6,
+                    responseRate: 75,
+                  ),
                   const SizedBox(height: TSizes.spaceBtwItems,),
 
                   /// - Mô tả

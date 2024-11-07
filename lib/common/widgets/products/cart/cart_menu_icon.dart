@@ -22,18 +22,18 @@ class TCartCounterIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        IconButton(onPressed: onPressed, icon: Icon(Iconsax.shopping_bag, color: THelperFunctions.isDarkMode(context) ? TColors.white : TColors.black)),
+        IconButton(onPressed: onPressed, icon: Icon(Iconsax.shopping_cart, color: TColors.error.withOpacity(0.8) )),
         Positioned(
           right: 0,
           child: Container(
             width: 18,
             height: 18,
             decoration: BoxDecoration(
-              color: THelperFunctions.isDarkMode(context) ? TColors.white : TColors.black ,
+              color: TColors.error.withOpacity(0.8) ,
               borderRadius: BorderRadius.circular(180),
             ),
             child: Center(
-              child: Text('2', style: Theme.of(context).textTheme.labelLarge!.apply(color: THelperFunctions.isDarkMode(context) ? TColors.black : TColors.white, fontSizeFactor: 0.8),),
+              child: Text('2', style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.white, fontSizeFactor: 0.8),),
             ),
           ),),
       ],

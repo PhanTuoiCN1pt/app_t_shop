@@ -32,7 +32,6 @@ class TProductCardVertical extends StatelessWidget {
       onTap: () => Get.to(() => ProductDetail(product: product,)),
       child: Container(
         width: 180,
-        padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
           boxShadow: [TShadowStyle.verticalProductShadow],
           borderRadius: BorderRadius.circular(TSizes.productImageRadius),
@@ -44,7 +43,6 @@ class TProductCardVertical extends StatelessWidget {
             TRoundedContainer(
               height: 180,
               width: double.infinity,
-              padding: const EdgeInsets.all(TSizes.sm),
               backgroundColor: dark ? TColors.dark : TColors.light,
               child: Stack(
                 children: [
@@ -54,12 +52,12 @@ class TProductCardVertical extends StatelessWidget {
                   /// Nhãn giảm giá
                   if(salePercentage != null)
                     Positioned(
-                      top: 12,
+                      top: 0,
                       child: TRoundedContainer(
                         radius: TSizes.sm,
-                        backgroundColor: TColors.secondary.withOpacity(0.8),
+                        backgroundColor: Colors.red.withOpacity(0.1),
                         padding: const EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
-                        child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),),
+                        child: Text('\-$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.error),),
                       ),
                     ),
 
@@ -107,31 +105,29 @@ class TProductCardVertical extends StatelessWidget {
                     children: [
                       if(product.productType == ProductType.single.toString() && product.salePrice > 0)
                         Padding(
-                          padding: EdgeInsets.only(left: TSizes.sm),
-                          child: Text(
-                            product.price.toString(),
-                            style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
-                          ),
+                          padding: EdgeInsets.only(left: TSizes.sm, bottom: TSizes.sm),
+                          // child: Text(
+                          //   product.price.toString(),
+                          //   style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
+                          // ),
                         ),
                       Padding(
-                        padding: EdgeInsets.only(left: TSizes.sm),
-                        child: ProductPriceText(price: controller.getProductPrice(product),),
+                        padding: EdgeInsets.only(left: TSizes.sm,  bottom: 26),
+                        child: ProductPriceText(
+                          price: controller.getProductPrice(product),
+                        ),
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  decoration: const BoxDecoration(
-                      color: TColors.dark,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(TSizes.cardRadiusMd),
-                          bottomRight: Radius.circular(TSizes.productImageRadius)
-                      )
-                  ),
-                  child: const SizedBox(
-                      width: TSizes.iconLg * 1.2,
-                      height: TSizes.iconLg * 1.2,
-                      child: Center(child: Icon(Iconsax.add, color: TColors.white,))
+                Padding(
+                  padding: EdgeInsets.only(right: 9),
+                  child: Row(
+                    children: [
+                      Icon(Iconsax.location,  size: 15,),
+                      SizedBox(width: 3,),
+                      Text('Hà Nội', style: TextStyle(fontSize: 10),)
+                    ],
                   ),
                 )
               ],
