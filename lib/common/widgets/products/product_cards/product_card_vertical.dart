@@ -41,7 +41,7 @@ class TProductCardVertical extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TRoundedContainer(
-              height: 180,
+              height: 165,
               width: double.infinity,
               backgroundColor: dark ? TColors.dark : TColors.light,
               child: Stack(

@@ -24,13 +24,13 @@ class ProductReviewsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Đánh giá và resdf sjsdff fjklasdj awjsks fsjdfs we adhai nadaq afhwansawdwh hqwhdqw adhhq'),
+              const Text('Đánh giá và nhận xét của người mua hàng.'),
               const SizedBox(height: TSizes.spaceBtwItems,),
 
               /// Đánh giá tổng thể sản phẩm
               const TOverallProductRating(),
               const TRatingBarIndicator(rating: 4.5,),
-              Text("12,611", style: Theme.of(context).textTheme.bodySmall,),
+              Text("3,503", style: Theme.of(context).textTheme.bodySmall,),
               const SizedBox(height: TSizes.spaceBtwItems,),
 
               /// Danh sách đánh giá của người dùng

@@ -76,10 +76,10 @@ class CheckoutScreen extends StatelessWidget {
               image: TImages.successfulPaymentIcon,
               title: 'Thanh toán thành công!',
               subTitle: 'Đơn hàng của bạn sẽ được gửi đến sớm!',
-              onPressed: () => Get.offAll(() => const NavigationMenuScreen()) ,
+              onPressed: () => Get.to(() => const NavigationMenuScreen(selectedIndex: 1,)) ,
           )
           ),
-          child: const Text('Giá \$256'),
+          child: const Text('Giá \₫256'),
         ),
       ),
     );

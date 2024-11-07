@@ -20,9 +20,9 @@ class UserReviewCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const CircleAvatar(backgroundImage: AssetImage(TImages.userProfileImage1),),
+                const CircleAvatar(backgroundImage: AssetImage(TImages.logoApp),),
                 const SizedBox(width: TSizes.spaceBtwItems,),
-                Text('Tươi', style: Theme.of(context).textTheme.titleLarge,),
+                Text('Phan Tươi', style: Theme.of(context).textTheme.titleLarge,),
               ],
             ),
             IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert)),

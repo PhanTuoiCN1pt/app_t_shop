@@ -13,7 +13,7 @@ class BillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Tổng phụ', style: Theme.of(context).textTheme.bodyMedium,),
-            Text('\$256', style: Theme.of(context).textTheme.bodyMedium,),
+            Text('\₫353', style: Theme.of(context).textTheme.bodyMedium,),
           ],
         ),
 
@@ -23,7 +23,7 @@ class BillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Phí vận chuyển', style: Theme.of(context).textTheme.bodyMedium,),
-            Text('\$6', style: Theme.of(context).textTheme.labelLarge,),
+            Text('\₫6', style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
 
@@ -33,7 +33,7 @@ class BillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Thuế', style: Theme.of(context).textTheme.bodyMedium,),
-            Text('\$6', style: Theme.of(context).textTheme.labelLarge,),
+            Text('\₫6', style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
 
@@ -43,7 +43,7 @@ class BillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Tổng đơn hàng', style: Theme.of(context).textTheme.bodyMedium,),
-            Text('\$6', style: Theme.of(context).textTheme.labelLarge,),
+            Text('\₫6', style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
       ],

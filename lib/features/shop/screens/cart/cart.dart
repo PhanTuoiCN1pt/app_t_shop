@@ -30,8 +30,8 @@ class CartScreen extends StatelessWidget {
             backgroundColor: TColors.colorApp,
             side: const BorderSide(color: TColors.colorApp),
           ),
-          onPressed: ()=>Get.to(()=>const CheckoutScreen()),
-          child: const Text('Giá \$256'),
+          onPressed: (){},
+          child: const Text('Giá \₫305'),
         ),
       ),
     );
