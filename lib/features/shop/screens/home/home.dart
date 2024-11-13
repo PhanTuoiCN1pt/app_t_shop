@@ -9,7 +9,7 @@ import 'package:app_t_shop/features/shop/screens/all_product/view_all_products.d
 import 'package:app_t_shop/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:app_t_shop/features/shop/screens/home/widgets/promo_slider.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/vertical_product_shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/vertical_product_shimmer.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

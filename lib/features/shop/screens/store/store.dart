@@ -10,7 +10,7 @@ import 'package:app_t_shop/features/shop/controllers/brand_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/category_controller.dart';
 import 'package:app_t_shop/features/shop/screens/brand/brand_product.dart';
 import 'package:app_t_shop/features/shop/screens/brand/view_all_brands.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/brand_shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/brand_shimmer.dart';
 import 'package:app_t_shop/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:app_t_shop/navigation_menu.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';

@@ -14,12 +14,17 @@ class TSearchContainer extends StatelessWidget {
     this.showBorder = true,
     this.onTap,
     this.padding = const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
+    this.controller,
+    this.textFieldBorderRadius = 16.0, // New border radius for TextField
   });
+
   final String text;
   final IconData? icon;
   final bool showBackground, showBorder;
   final VoidCallback? onTap;
   final EdgeInsetsGeometry padding;
+  final TextEditingController? controller;
+  final double textFieldBorderRadius; // New field for TextField border radius
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +35,39 @@ class TSearchContainer extends StatelessWidget {
         padding: padding,
         child: Container(
           width: TDeviceUtils.getScreenWidth(context),
-          padding: const EdgeInsets.all(TSizes.md),
           decoration: BoxDecoration(
-            color:showBackground
+            color: showBackground
                 ? dark
-                  ? TColors.dark
-                  : TColors.light
+                ? TColors.dark
+                : TColors.light
                 : Colors.transparent,
-            borderRadius: BorderRadius.circular(TSizes.cardRadiusLg),
+            borderRadius: BorderRadius.circular(textFieldBorderRadius),
             border: showBorder ? Border.all(color: TColors.grey) : null,
           ),
-          child: Row(
-            children: [
-              Icon(icon, color: dark ? TColors.white : TColors.black,),
-              const SizedBox(width: TSizes.spaceBtwItems,),
-              Text(text, style: Theme.of(context).textTheme.bodySmall,),
-            ],
+          child: TextField(
+            controller: controller,
+            style: Theme.of(context).textTheme.bodySmall,
+            decoration: InputDecoration(
+              isDense: true,
+              contentPadding: const EdgeInsets.all(TSizes.sm),
+              prefixIcon: Icon(icon, color: dark ? TColors.white : TColors.black),
+              hintText: text,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(textFieldBorderRadius),
+                borderSide: BorderSide.none, // Remove default border
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(textFieldBorderRadius),
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(textFieldBorderRadius),
+                borderSide: BorderSide(color: TColors.grey, width: 1.0),
+              ),
+              hintStyle: TextStyle(
+                color: dark ? TColors.white.withOpacity(0.7) : TColors.black.withOpacity(0.5),
+              ),
+            ),
           ),
         ),
       ),

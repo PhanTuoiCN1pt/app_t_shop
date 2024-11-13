@@ -2,7 +2,7 @@ import 'package:app_t_shop/common/widgets/appbar/appbar.dart';
 import 'package:app_t_shop/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:app_t_shop/features/personalization/controllers/user_controller.dart';
 import 'package:app_t_shop/features/shop/screens/cart/cart.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/shimmer.dart';
 import 'package:app_t_shop/features/shop/screens/wishlist/wishlist.dart';
 import 'package:app_t_shop/navigation_menu.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';

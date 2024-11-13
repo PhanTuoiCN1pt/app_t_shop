@@ -74,8 +74,6 @@ class CategoryRepository extends GetxController {
   }
 
 
-
-
   Future<void> uploadCategoriesToFirestore(List<CategoryModel> categories) async {
     for (var category in categories) {
       try {

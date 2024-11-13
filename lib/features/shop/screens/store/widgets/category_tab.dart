@@ -10,7 +10,7 @@ import 'package:app_t_shop/features/shop/models/brand_model.dart';
 import 'package:app_t_shop/features/shop/models/category_model.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
 import 'package:app_t_shop/features/shop/screens/all_product/view_all_products.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/vertical_product_shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/vertical_product_shimmer.dart';
 import 'package:app_t_shop/features/shop/screens/store/widgets/category_brand.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';

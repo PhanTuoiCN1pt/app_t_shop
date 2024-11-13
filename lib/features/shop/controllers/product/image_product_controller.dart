@@ -12,7 +12,7 @@ class ImageController extends GetxController {
   List<String> getAllProductImages(ProductModel product) {
     Set<String> images = {};
 
-    //images.add(product.thumbnail);
+    images.add(product.thumbnail);
 
     selectedProductImage.value = product.thumbnail;
 

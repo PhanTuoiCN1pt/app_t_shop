@@ -6,7 +6,7 @@ import 'package:app_t_shop/features/shop/controllers/product/favourite_controlle
 import 'package:app_t_shop/features/shop/controllers/product/product_controller.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
 import 'package:app_t_shop/features/shop/screens/home/home.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/vertical_product_shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/vertical_product_shimmer.dart';
 import 'package:app_t_shop/navigation_menu.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';

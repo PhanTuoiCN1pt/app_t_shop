@@ -1,4 +1,4 @@
-import 'package:app_t_shop/features/shop/screens/shimmer/shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/shimmer.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';

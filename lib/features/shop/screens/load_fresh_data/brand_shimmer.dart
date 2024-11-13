@@ -1,5 +1,5 @@
 import 'package:app_t_shop/common/widgets/layouts/grid_layout.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/shimmer.dart';
 import 'package:flutter/material.dart';
 
 class BrandsShimmer extends StatelessWidget {

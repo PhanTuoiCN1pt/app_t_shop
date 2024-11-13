@@ -5,7 +5,7 @@ import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
 import 'package:app_t_shop/features/shop/controllers/brand_controller.dart';
 import 'package:app_t_shop/features/shop/models/brand_model.dart';
 import 'package:app_t_shop/features/shop/screens/brand/brand_product.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/brand_shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/brand_shimmer.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

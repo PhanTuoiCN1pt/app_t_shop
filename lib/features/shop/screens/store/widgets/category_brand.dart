@@ -1,8 +1,8 @@
 import 'package:app_t_shop/common/widgets/brands/brand_show_case.dart';
 import 'package:app_t_shop/features/shop/controllers/brand_controller.dart';
 import 'package:app_t_shop/features/shop/models/category_model.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/boxes_shimmer.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/tile_shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/boxes_shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/tile_shimmer.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/cloud_helper_functions.dart';

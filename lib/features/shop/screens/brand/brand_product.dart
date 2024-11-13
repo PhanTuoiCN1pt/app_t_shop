@@ -3,7 +3,7 @@ import 'package:app_t_shop/common/widgets/brands/brand_card.dart';
 import 'package:app_t_shop/common/widgets/products/sortable/sortable_products.dart';
 import 'package:app_t_shop/features/shop/controllers/brand_controller.dart';
 import 'package:app_t_shop/features/shop/models/brand_model.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/vertical_product_shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/vertical_product_shimmer.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/cloud_helper_functions.dart';
 import 'package:flutter/material.dart';

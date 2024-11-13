@@ -40,7 +40,7 @@ class UserReviewCard extends StatelessWidget {
         ),
         const SizedBox(height: TSizes.spaceBtwItems,),
         const ReadMoreText(
-          'Đánh giá của người dùng: nsdad adsd adkj skd ff sfw wqeh  kadj kajsdh asd kdjd akddj ad a adakda a adads adawk akdaskd aksdhh asdh adhhih  udhid  daidad ad lkajsdsa k s',
+          'Đánh giá của người dùng: Tôi rất hài lòng với sản phẩm này! Chất lượng giày tốt, đi rất êm và thoải mái. Màu sắc và kiểu dáng đúng như hình ảnh trên app, không có gì để chê. Đã mang giày đi chơi và tập thể dục vài lần, thấy rất bền và không có dấu hiệu bị hỏng. Giao hàng nhanh và đóng gói kỹ lưỡng. Sẽ tiếp tục mua sắm ở đây và giới thiệu cho bạn bè',
           trimLines: 2,
           trimMode: TrimMode.Line,
           trimExpandedText: ' bớt',

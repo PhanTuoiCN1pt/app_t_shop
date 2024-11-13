@@ -1,6 +1,6 @@
 import 'package:app_t_shop/common/widgets/images/circular_image.dart';
 import 'package:app_t_shop/features/personalization/controllers/user_controller.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/shimmer.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

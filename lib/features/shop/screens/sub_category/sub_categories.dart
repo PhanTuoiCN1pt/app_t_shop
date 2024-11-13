@@ -6,7 +6,7 @@ import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
 import 'package:app_t_shop/features/shop/controllers/category_controller.dart';
 import 'package:app_t_shop/features/shop/models/category_model.dart';
 import 'package:app_t_shop/features/shop/screens/all_product/view_all_products.dart';
-import 'package:app_t_shop/features/shop/screens/shimmer/horizontal_product_shimmer.dart';
+import 'package:app_t_shop/features/shop/screens/load_fresh_data/horizontal_product_shimmer.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/cloud_helper_functions.dart';
