@@ -28,13 +28,17 @@ class CategoryModel {
   }
 
   factory CategoryModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
-    final data = document.data() as Map<String, dynamic>;
-    return CategoryModel(
-      id: document.id,
-      name: data['Name'] ?? '',
-      image: data['Image'] ?? '',
-      isFeatured: data['IsFeatured'] ?? false,
-      parentId: data['ParentId'] ?? '',
-    );
+    if(document.data() != null){
+      final data = document.data()!;
+      return CategoryModel(
+        id: document.id,
+        name: data['Name'] ?? '',
+        image: data['Image'] ?? '',
+        parentId: data['ParentId'] ?? '',
+        isFeatured: data['IsFeatured'] ?? false,
+      );
+    } else {
+      return CategoryModel.empty();
+    }
   }
 }

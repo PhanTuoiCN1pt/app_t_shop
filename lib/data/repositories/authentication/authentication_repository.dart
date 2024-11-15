@@ -15,7 +15,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
@@ -170,6 +169,32 @@ class AuthenticationRepository extends GetxController {
   }
 
   /// Facebook - Đăng nhập
+  // Future<UserCredential?> signInWithFacebook() async {
+  //   try {
+  //     final LoginResult loginResult = await FacebookAuth.instance.login();
+  //
+  //
+  //     // Create a credential from the access token
+  //     final OAuthCredential facebookAuthCredential =
+  //     FacebookAuthProvider.credential(loginResult.accessToken!.token);
+  //
+  //     // Once signed in, return the UserCredential
+  //     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  //
+  //   } on FirebaseAuthException catch (e) {
+  //     throw TFirebaseAuthException(e.code).message;
+  //   } on FirebaseException catch (e) {
+  //     throw TFirebaseException(e.code).message;
+  //   } on FormatException catch (_) {
+  //     throw const TFormatException();
+  //   } on PlatformException catch (e) {
+  //     throw TPlatformException(e.code).message;
+  //   } catch (e) {
+  //     if (kDebugMode) print('Có gì đó không đúng: $e');
+  //     return null;
+  //   }
+  // }
+
 
   /*----------------------------------------- ./kết thúc Xác thực liên bang & Đăng nhập xã hội --------------------------------------- */
 

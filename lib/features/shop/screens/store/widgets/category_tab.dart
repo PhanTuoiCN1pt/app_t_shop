@@ -35,11 +35,11 @@ class TCategoryTab extends StatelessWidget {
           child: Column(
             children: [
               /// Thương hiệu
-              //CategoryBrand(category: category),
+              CategoryBrand(category: category),
 
               /// Sản phẩm
               FutureBuilder(
-                future: controller.getCategoryProducts(categoryId: category.id),
+                future: controller.getCategoryProductsStore(categoryId: category.id),
                 builder: (context, snapshot) {
 
                   final response = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: TVerticalProductShimmer());
@@ -50,7 +50,7 @@ class TCategoryTab extends StatelessWidget {
                     children: [
                       TSectionHeading(title: 'Có thể bạn sẽ thích', onPressed: () => Get.to(ViewAllProduct(
                         title: category.name,
-                        futureMethod: controller.getCategoryProducts(categoryId: category.id, limit: -1),
+                        futureMethod: controller.getCategoryProductsStore(categoryId: category.id),
                       ),
                       )),
                       const SizedBox(height: TSizes.spaceBtwItems,),

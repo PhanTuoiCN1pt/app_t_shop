@@ -71,7 +71,7 @@ class StoreScreen extends StatelessWidget {
                             }
 
                             return GridLayout(
-                                itemCount: brandController.allBrands.length - 6,
+                                itemCount: brandController.allBrands.length-6,
                                 mainAxisExtent: 80,
                                 itemBuilder: (_, index) {
                                   final brand = brandController.allBrands[index];

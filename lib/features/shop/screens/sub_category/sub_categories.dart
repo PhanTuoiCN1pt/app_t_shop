@@ -50,7 +50,7 @@ class SubCategoryScreen extends StatelessWidget {
                     itemBuilder: (_, index) {
                       final subCategory = subCategories[index];
                       return FutureBuilder(
-                        future: controller.getCategoryProducts(categoryId: subCategory.id),
+                        future: controller.getCategoryProductsHome(categoryId: subCategory.id),
                         builder: (context, snapshot) {
 
                           final widget = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: loader);
@@ -66,7 +66,7 @@ class SubCategoryScreen extends StatelessWidget {
                                   onPressed: () => Get.to(
                                     () => ViewAllProduct(
                                       title: subCategory.name,
-                                      futureMethod: controller.getCategoryProducts(categoryId: subCategory.id),
+                                      futureMethod: controller.getCategoryProductsHome(categoryId: subCategory.id),
                                     )
                                 ),),
                                 const SizedBox(height: TSizes.spaceBtwItems / 2,),

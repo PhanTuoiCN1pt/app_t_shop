@@ -61,8 +61,12 @@ class CategoryRepository extends GetxController {
 
   Future<List<CategoryModel>> getSubCategories(String categoryId) async {
     try {
-      final snapshot = await _db.collection("Categories").where('ParentId', isEqualTo: categoryId).get();
+      print('Truy vấn danh mục con với ParentId: $categoryId');
+      final snapshot = await _db.collection('Categories').where('ParentId', isEqualTo: categoryId).get();
+
       final result = snapshot.docs.map((e) => CategoryModel.fromSnapshot(e)).toList();
+      print('Danh mục con tìm thấy: ${result.map((e) => e.name).toList()}');
+
       return result;
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;

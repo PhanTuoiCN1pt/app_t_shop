@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
 
             /// Body
             Padding(
-              padding: const EdgeInsets.all(TSizes.defaultSpace),
+              padding:  EdgeInsets.only(left: TSizes.defaultSpace, right: TSizes.defaultSpace),
               child: Column(
                 children: [
                   /// Promo Slider

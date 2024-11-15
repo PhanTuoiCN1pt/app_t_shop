@@ -51,11 +51,21 @@ class CategoryController extends GetxController {
     }
   }
 
-  Future<List<ProductModel>> getCategoryProducts({required String categoryId, int limit = 10}) async {
+  Future<List<ProductModel>> getCategoryProductsHome({required String categoryId, int limit = 10}) async {
     try {
 
       final snapshot = await _db.collection('Products').where('CategoryId', isEqualTo: categoryId).limit(limit).get();
       final products = snapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+      return products;
+    } catch (e) {
+      print('Lỗi khi lấy sản phẩm: $e');
+      return []; // Trả về danh sách trống nếu có lỗi
+    }
+  }
+  Future<List<ProductModel>> getCategoryProductsStore({required String categoryId, int limit = 10}) async {
+    try {
+
+      final products = await ProductRepository.instance.getProductsForCategory(categoryId: categoryId, limit: limit);
       return products;
     } catch (e) {
       print('Lỗi khi lấy sản phẩm: $e');
