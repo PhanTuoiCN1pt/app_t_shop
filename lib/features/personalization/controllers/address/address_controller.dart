@@ -10,7 +10,7 @@ class AddressController extends GetxController{
   final addressRepository = Get.put(AddressRepository());
 
 
-  Future<List<AddressModel>> allUserAddress() async {
+  Future<List<AddressModel>> getAllUserAddress() async {
     try {
       final address = await addressRepository.fetchUserAddress();
       selectedAddress.value = address.firstWhere((element) => element.selectedAddress, orElse: () => AddressModel.empty());
@@ -18,6 +18,14 @@ class AddressController extends GetxController{
     }catch (e) {
       TLoaders.errorSnackBar(title: 'Không tìm thấy địa chỉ!');
       return [];
+    }
+  }
+
+  Future selectAddress(AddressModel newSelectedAddress) async {
+    try{
+
+    }catch (e) {
+
     }
   }
 }
