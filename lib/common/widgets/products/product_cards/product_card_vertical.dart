@@ -8,6 +8,7 @@ import 'package:app_t_shop/common/widgets/texts/product_price_text.dart';
 import 'package:app_t_shop/common/widgets/texts/product_title_text.dart';
 import 'package:app_t_shop/features/shop/controllers/product/product_controller.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
+import 'package:app_t_shop/features/shop/screens/home/widgets/add_to_cart_button.dart';
 import 'package:app_t_shop/features/shop/screens/product_details/product_detail.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/enums.dart';
@@ -106,10 +107,10 @@ class TProductCardVertical extends StatelessWidget {
                       if(product.productType == ProductType.single.toString() && product.salePrice > 0)
                         Padding(
                           padding: EdgeInsets.only(left: TSizes.sm, bottom: TSizes.sm),
-                          // child: Text(
-                          //   product.price.toString(),
-                          //   style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
-                          // ),
+                          child: Text(
+                            product.price.toString(),
+                            style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
+                          ),
                         ),
                       Padding(
                         padding: EdgeInsets.only(left: TSizes.sm,  bottom: 26),
@@ -120,16 +121,17 @@ class TProductCardVertical extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: 9),
-                  child: Row(
-                    children: [
-                      Icon(Iconsax.location,  size: 15,),
-                      SizedBox(width: 3,),
-                      Text('Hà Nội', style: TextStyle(fontSize: 10),)
-                    ],
-                  ),
-                )
+                // Padding(
+                //   padding: EdgeInsets.only(right: 9),
+                //   child: Row(
+                //     children: [
+                //       Icon(Iconsax.location,  size: 15,),
+                //       SizedBox(width: 3,),
+                //       Text('Hà Nội', style: TextStyle(fontSize: 10),)
+                //     ],
+                //   ),
+                // )
+                ProductCardAddToCartButton(product: product),
               ],
             ),
           ],

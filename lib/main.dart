@@ -6,6 +6,7 @@ import 'package:app_t_shop/features/shop/controllers/brand_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/category_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/product/favourite_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/product/product_controller.dart';
+import 'package:app_t_shop/features/shop/controllers/product/variation_controller.dart';
 import 'package:app_t_shop/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
@@ -34,6 +35,7 @@ Future<void> main() async {
   Get.put(CategoryController());
   Get.put(BrandController());
   Get.put(BannerController());
+  Get.put(VariationController());
 
   runApp(const App());
 }

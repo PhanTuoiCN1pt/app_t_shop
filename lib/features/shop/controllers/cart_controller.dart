@@ -2,6 +2,7 @@ import 'package:app_t_shop/features/shop/controllers/product/variation_controlle
 import 'package:app_t_shop/features/shop/models/cart_item_model.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
 import 'package:app_t_shop/utils/constants/enums.dart';
+import 'package:app_t_shop/utils/local_storage/storage_utility.dart';
 import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,10 @@ class CartController extends GetxController {
   RxInt productQuantityInCart = 0.obs;
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   final variationController = VariationController.instance;
+
+  CartController(){
+    loadCartItems();
+  }
 
 
   // Add items in the Cart
@@ -40,9 +45,49 @@ class CartController extends GetxController {
           message: 'Đã hết hàng!', title: 'Opp!');
       return;
     }
+
+    final selectedCartItem = convertToCartItem(product, productQuantityInCart.value) ;
+
+    int index = cartItems.indexWhere((cartItems) => cartItems.productId == selectedCartItem.productId && cartItems.variationId == selectedCartItem.variationId);
+
+    if(index >= 0 ){
+      cartItems[index].quantity = selectedCartItem.quantity;
+    }else{
+      cartItems.add(selectedCartItem);
+    }
+
+    updateCart();
+    TLoaders.customToast(message: 'Sản phẩm của bạn đã được thêm vào giỏ hàng.');
+
+  }
+
+  void addOneToCart(CartItemModel item){
+    int index = cartItems.indexWhere((cartItems) => cartItems.productId == item.productId && cartItems.variationId == item.variationId);
+
+    if(index >= 0){
+      cartItems[index].quantity += 1;
+    }else{
+      cartItems.add(item);
+    }
+    updateCart();
+  }
+
+  void removeOneFromCart(CartItemModel item){
+    int index = cartItems.indexWhere((cartItems) => cartItems.productId == item.productId && cartItems.variationId == item.variationId);
+
+    if(index >= 0){
+      if(cartItems[index].quantity > 1){
+        cartItems[index].quantity -= 1;
+      }else{
+        cartItems[index].quantity == 1 ? removeFromCartDialog(index) : cartItems.removeAt(index);
+      }
+      updateCart();
+    }
   }
 
   // Convert the ProductModel to a CartItemModel with the given quantity
+
+
 
   // Thís function convert a ProductModel to a CartItemModel
   CartItemModel convertToCartItem(ProductModel product, int quantity) {
@@ -73,4 +118,57 @@ class CartController extends GetxController {
     );
   }
 
+  void updateCart(){
+    updateCartTotals();
+    saveCartItems();
+    cartItems.refresh();
+  }
+
+  void updateCartTotals() {
+    double calculatedTotalPrice = 0.0;
+    int calculatedNoOfItems = 0;
+    
+    for(var item in cartItems){
+      calculatedTotalPrice += (item.price) * item.quantity.toDouble();
+      calculatedNoOfItems += item.quantity;
+    }
+    
+    totalCartPrice.value = calculatedTotalPrice;
+    noOfCartItems.value = calculatedNoOfItems;
+    
+  }
+
+  void saveCartItems() {
+    final cartItemStrings = cartItems.map((item) => item.toJson()).toList();
+    TLocalStorage.instance().writeData('cartItems', cartItemStrings);
+  }
+
+  void loadCartItems(){
+    final cartItemStrings = TLocalStorage.instance().readData<List<dynamic>>('cartItems');
+    if(cartItemStrings != null){
+      cartItems.assignAll(cartItemStrings.map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
+      updateCartTotals();
+    }
+  }
+
+  int getProductQuantityInCart(String productId){
+    final foundItem = cartItems.where((item) => item.productId == productId).fold(0, (previousValue, element) => previousValue + element.quantity);
+    return foundItem;
+  }
+
+  int getVariationQuantityInCart(String productId, String variationId){
+    final foundItem = cartItems.firstWhere((item) => item.productId == productId && item.variationId == variationId, orElse: () => CartItemModel.empty(),);
+    return foundItem.quantity;
+  }
+  void clearCart(){
+    productQuantityInCart.value = 0;
+    cartItems.clear();
+    updateCart();
+  }
+
+  removeFromCartDialog(int index) {
+    Get.defaultDialog(
+      title: 'Xóa khỏi giỏ hàng'
+    );
+  }
 }
