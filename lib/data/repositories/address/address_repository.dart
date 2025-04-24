@@ -19,6 +19,24 @@ class AddressRepository extends GetxController {
     }catch (e) {
       throw 'Đôi khi sẽ có lỗi. Vui lòng kiểm tra lại.';
     }
+  }
 
+  Future<void> updateSelectedField(String addressId, bool selected) async{
+    try{
+      final userId = AuthenticationRepository.instance.authUser!.uid;
+      await _db.collection('Users').doc(userId).collection('Addresses').doc(addressId).update({'SelectedAddress': selected});
+    }catch(e){
+      throw 'Không thể đổi địa chỉ mà bạn đã chọn. Hãy thử lại';
+    }
+  }
+
+  Future<String> addAddress(AddressModel address) async{
+    try{
+      final userId = AuthenticationRepository.instance.authUser!.uid;
+      final currentAddress = await _db.collection('Users').doc(userId).collection('Addresses').add(address.toJson());
+      return currentAddress.id;
+    }catch(e){
+      throw 'Vui lòng thử lại';
+    }
   }
 }

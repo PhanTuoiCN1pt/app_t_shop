@@ -66,8 +66,12 @@ class AddressModel {
     );
   }
 
-  factory AddressModel.fromDocumentSnapshot(DocumentSnapshot snapshot){
-    final data = snapshot.data() as Map<String, dynamic>;
+  factory AddressModel.fromDocumentSnapshot(DocumentSnapshot snapshot) {
+    final rawData = snapshot.data();
+    if (rawData is! Map<String, dynamic>) {
+      throw Exception('Lỗi dữ liệu: không phải Map<String, dynamic>');
+    }
+    final data = rawData;
 
     return AddressModel(
       id: snapshot.id,
@@ -78,10 +82,13 @@ class AddressModel {
       state: data['State'] ?? '',
       postalCode: data['PostalCode'] ?? '',
       country: data['Country'] ?? '',
-      selectedAddress: data['SelectedAddress'] as bool,
-      dateTime: (data['DateTime'] as Timestamp).toDate(),
+      selectedAddress: data['SelectedAddress'] is bool ? data['SelectedAddress'] : false,
+      dateTime: data['DateTime'] is Timestamp
+          ? (data['DateTime'] as Timestamp).toDate()
+          : null,
     );
   }
+
 
   @override
   String toString() {

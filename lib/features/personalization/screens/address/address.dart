@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class UserAddressScreen extends StatelessWidget {
-  const UserAddressScreen({super.key});
+  const UserAddressScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +20,26 @@ class UserAddressScreen extends StatelessWidget {
       body:  SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(TSizes.defaultSpace),
-          child: FutureBuilder(
-              future: controller.getAllUserAddress(),
-              builder: (context, snapshot){
-                final response = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
-                if (response != null) return response;
-
-                final addresses = snapshot.data!;
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: addresses.length,
-                  itemBuilder: (_, index) => SingleAddress(
-                    address: addresses[index],
-                    onTap: () => controller.selectAddress(addresses[index]),
-                  ),
-                );
-              }
+          child: Obx(
+              () => FutureBuilder(
+              //Sử dụng key để làm mới
+              key: Key(controller.refreshData.value.toString()),
+                future: controller.getAllUserAddresses(),
+                builder: (context, snapshot){
+                  final response = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
+                  if (response != null) return response;
+            
+                  final addresses = snapshot.data!;
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: addresses.length,
+                    itemBuilder: (_, index) => SingleAddress(
+                      address: addresses[index],
+                      onTap: () => controller.selectAddress(addresses[index]),
+                    ),
+                  );
+                }
+            ),
           )
         ),
       ),

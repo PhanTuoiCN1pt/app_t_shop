@@ -21,8 +21,7 @@ class SingleAddress extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     final controller = AddressController.instance;
-    return Obx(
-        () {
+    return Obx(() {
           final selectedAddressId = controller.selectedAddress.value.id;
           final selectedAddress = selectedAddressId == address.id;
           return InkWell(
@@ -56,15 +55,15 @@ class SingleAddress extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Phan Van Tuoi',
-                      maxLines: 3,
+                      address.name,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     const SizedBox(height: TSizes.sm/10,),
-                    Text('(+84) 0394475952', maxLines: 1,overflow: TextOverflow.ellipsis,style: Theme.of(context).textTheme.bodyMedium,),
+                    Text(address.formatterPhoneNo, maxLines: 1,overflow: TextOverflow.ellipsis,style: Theme.of(context).textTheme.bodyMedium,),
                     const SizedBox(height: TSizes.sm/10,),
-                    Text('87/46/12 Yên Xá, Thanh Xuân, Hà Nội.',softWrap: true,style: Theme.of(context).textTheme.bodyMedium,),
+                    Text(address.toString(),softWrap: true,style: Theme.of(context).textTheme.bodyMedium,),
                 ],
               ),
             ],
