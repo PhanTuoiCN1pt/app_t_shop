@@ -65,7 +65,7 @@ class LoginController extends GetxController {
       AuthenticationRepository.instance.screenRedirect();
     }catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackBar(title: 'Lỗi',message: e.toString());
+      TLoaders.errorSnackBar(title: 'Lỗi',message: 'Vui lòng kiểm tra lại mật khẩu hoặc email đăng nhập');
     }
   }
 
@@ -73,7 +73,7 @@ class LoginController extends GetxController {
   Future<void> googleSignIn() async {
     try {
       // Bắt đầu hiển thị màn hình tải
-      TFullScreenLoader.openLoadingDialog('Đang đăng nhập...', TImages.docerAnimation);
+      TFullScreenLoader.openLoadingDialog('Đăng nhập thành công...', TImages.docerAnimation);
 
       // Kiểm tra kết nối internet
       final isConnected = await NetworkManager.instance.isConnected();
@@ -102,7 +102,7 @@ class LoginController extends GetxController {
 
     } catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackBar(title: 'Lỗi', message: e.toString());
+      TLoaders.errorSnackBar(title: 'Lỗi', message: 'Vui lòng kiểm tra lại mật khẩu hoặc email đăng nhập');
     }
   }
 

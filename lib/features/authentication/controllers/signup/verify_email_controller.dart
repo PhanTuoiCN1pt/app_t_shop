@@ -39,7 +39,7 @@ class VerifyEmailController extends GetxController {
           timer.cancel();
           Get.off(
                 () => SuccessScreen(
-              image: TImages.docerAnimation,
+              image: TImages.thankRegister,
               title: TTexts.yourAccountCreatedTitle,
               subTitle: TTexts.yourAccountCreatedSubTitle,
               onPressed: () => AuthenticationRepository.instance.screenRedirect(),

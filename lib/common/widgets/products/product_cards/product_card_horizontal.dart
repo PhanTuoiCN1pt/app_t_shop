@@ -18,6 +18,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../features/shop/screens/home/widgets/add_to_cart_button.dart';
+
 class ProductCartHorizontal extends StatelessWidget {
   const ProductCartHorizontal({super.key, required this.product, });
 
@@ -115,20 +117,7 @@ class ProductCartHorizontal extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Container(
-                          decoration: const BoxDecoration(
-                              color: TColors.dark,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(TSizes.cardRadiusMd),
-                                  bottomRight: Radius.circular(TSizes.productImageRadius)
-                              )
-                          ),
-                          child: const SizedBox(
-                              width: TSizes.iconLg * 1.2,
-                              height: TSizes.iconLg * 1.2,
-                              child: Center(child: Icon(Iconsax.add, color: TColors.white,))
-                          ),
-                        )
+                        ProductCardAddToCartButton(product: product),
                       ],
                     ),
                   ],

@@ -23,7 +23,7 @@ class TPromoSlider extends StatelessWidget {
         if(controller.isLoading.value) return TShimmerEffect(width: double.infinity, height: 190);
 
         if(controller.banners.isEmpty){
-          return Center(child: Text('Không có dữ liêu!'),);
+          return Center(child: Text('Không có dữ liệu!'),);
         }else {
           return Column(
             children: [

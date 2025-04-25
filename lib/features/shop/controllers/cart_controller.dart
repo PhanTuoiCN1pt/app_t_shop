@@ -70,6 +70,7 @@ class CartController extends GetxController {
       cartItems.add(item);
     }
     updateCart();
+    TLoaders.customToast(message: 'Đã thêm vào giỏ hàng.');
   }
 
   void removeOneFromCart(CartItemModel item){
@@ -166,9 +167,53 @@ class CartController extends GetxController {
     updateCart();
   }
 
-  removeFromCartDialog(int index) {
+  void removeFromCartDialog(int index) {
     Get.defaultDialog(
-      title: 'Xóa khỏi giỏ hàng'
+      title: 'Xóa khỏi giỏ hàng',
+      middleText: 'Bạn có chắc muốn xóa sp khỏi giỏ hàng',
+      onConfirm: () {
+        cartItems.removeAt(index);
+        updateCart();
+        TLoaders.customToast(message: 'Sản phẩm đã được xóa khỏi giỏ hàng');
+        Get.back();
+      },
+      onCancel: () => () => Get.back(),
     );
+  }
+  
+  // CartItemModel convertToCartItem(ProductModel product, int quantity){
+  //   if(product.productType == ProductType.single.toString()){
+  //     variationController.resetSelectedAttributes();
+  //   }
+  //   final variation = variationController.selectedVariation.value;
+  //   final isVariation = variation.id.isNotEmpty;
+  //   final price = isVariation
+  //       ? variation.salePrice > 0.0
+  //           ? variation.salePrice
+  //           : variation.price
+  //       : product.salePrice > 0.0
+  //           ? product.salePrice
+  //           : product.price;
+  //   return CartItemModel(
+  //     productId: product.id,
+  //     title: product.title,
+  //     price: product.price,
+  //
+  //   );
+  //
+  //
+  // }
+
+  void updateAlreadyAddedProductCount(ProductModel product){
+    if(product.productType == ProductType.single.toString()){
+      productQuantityInCart.value = getProductQuantityInCart(product.id);
+    }else{
+      final variationId = variationController.selectedVariation.value.id;
+      if(variationId.isNotEmpty){
+        productQuantityInCart.value = getVariationQuantityInCart(product.id, variationId);
+      }else{
+        productQuantityInCart.value = 0;
+      }
+    }
   }
 }

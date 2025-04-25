@@ -28,7 +28,13 @@ class CheckoutScreen extends StatelessWidget {
           child: Column(
             children: [
               /// Items in Cart
-              const CartItems(showAddRemoveButtons: false,),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.45, // hoặc giá trị bạn muốn
+                ),
+                child: const CartItems(showAddRemoveButtons: false),
+              ),
+
               const SizedBox(height: TSizes.spaceBtwItems,),
 
               /// Coupon TextField

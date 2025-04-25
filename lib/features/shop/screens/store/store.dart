@@ -31,8 +31,8 @@ class StoreScreen extends StatelessWidget {
       child: Scaffold(
         appBar: TAppBar(
           title: Text('Cửa hàng', style: Theme.of(context).textTheme.headlineMedium,),
-          actions: [
-            TCartCounterIcon(onPressed: () => Get.offAll(() => NavigationMenuScreen(selectedIndex: 2,))),
+          actions: const [
+            TCartCounterIcon(iconColor: TColors.white, counterBgColor: TColors.black, counterTextColor: TColors.white,),
           ],
         ),
         body: NestedScrollView(

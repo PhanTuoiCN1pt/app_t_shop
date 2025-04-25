@@ -9,13 +9,11 @@ import 'package:iconsax/iconsax.dart';
 class TCartCounterIcon extends StatelessWidget {
   const TCartCounterIcon({
     super.key,
-    required this.onPressed,
     this.iconColor,
     this.counterBgColor,
     this.counterTextColor,
   });
 
-  final VoidCallback onPressed;
   final Color? iconColor, counterBgColor, counterTextColor;
 
 
@@ -25,7 +23,7 @@ class TCartCounterIcon extends StatelessWidget {
 
     return Stack(
       children: [
-        IconButton(onPressed: onPressed, icon: Icon(Iconsax.shopping_cart, color: TColors.error.withOpacity(0.8) )),
+        IconButton(onPressed: () => Get.to(() => const CartScreen()), icon: Icon(Iconsax.shopping_cart, color: TColors.error.withOpacity(0.8) )),
         Positioned(
           right: 0,
           child: Container(

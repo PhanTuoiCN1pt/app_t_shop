@@ -1,8 +1,10 @@
 import 'package:app_t_shop/common/widgets/products/cart/add_remove_button.dart';
 import 'package:app_t_shop/common/widgets/products/cart/cart_item.dart';
 import 'package:app_t_shop/common/widgets/texts/product_price_text.dart';
+import 'package:app_t_shop/features/shop/controllers/cart_controller.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CartItems extends StatelessWidget {
   const CartItems({
@@ -14,32 +16,47 @@ class CartItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      separatorBuilder: (_, __) => const SizedBox(height: TSizes.spaceBtwSections,),
-      itemCount: 2,
-      itemBuilder: (_, index) => Column(
-        children: [
-          /// Cart Item
-          const CartItem(),
-          if(showAddRemoveButtons) const SizedBox(height: TSizes.spaceBtwItems,),
+    final cartController = CartController.instance;
 
-          /// Add Remove Button Row with total Price
-          if(showAddRemoveButtons)
-            const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+    return Obx(
+      () => ListView.separated(
+        shrinkWrap: true,
+        separatorBuilder: (_, __) => const SizedBox(height: TSizes.spaceBtwSections,),
+        itemCount: cartController.cartItems.length,
+        itemBuilder: (_, index) => Obx(
+            () {
+              final item = cartController.cartItems[index];
+              return Column(
                 children: [
-                  SizedBox(width: 70,),
-                  /// Add Remove Buttons
-                  ProductAddRemoveButton(),
+
+                  /// Cart Item
+                  CartItem(cartItem: item,),
+                  if(showAddRemoveButtons) const SizedBox(
+                    height: TSizes.spaceBtwItems,),
+
+                  /// Add Remove Button Row with total Price
+                  if(showAddRemoveButtons)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            const SizedBox(width: 70,),
+
+                            /// Add Remove Buttons
+                            ProductAddRemoveButton(
+                              quantity: item.quantity,
+                              add: () => cartController.addOneToCart(item),
+                              remove: () => cartController.removeOneFromCart(item),
+                            ),
+                          ],
+                        ),
+                        ProductPriceText(price: (item.price * item.quantity).toStringAsFixed(1)),
+                      ],
+                    ),
                 ],
-              ),
-              ProductPriceText(price: '256'),
-            ],
-          ),
-        ],
+              );
+            }),
       ),
     );
   }

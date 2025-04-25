@@ -24,6 +24,18 @@ class TCircularIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  IconButton(onPressed: onPressed, icon: Icon(icon, color: color,size: size,));
+    return Container(
+      width: width ?? 40,
+      height: height ?? 40,
+      decoration: BoxDecoration(
+        color: backgroundColor ?? Colors.grey.shade200,
+        shape: BoxShape.circle,
+      ),
+      child: IconButton(
+        onPressed: onPressed,
+        icon: Icon(icon, color: color, size: size),
+      ),
+    );
   }
+
 }
