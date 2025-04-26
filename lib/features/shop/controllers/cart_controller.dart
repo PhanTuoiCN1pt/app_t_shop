@@ -14,6 +14,7 @@ class CartController extends GetxController {
   RxInt productQuantityInCart = 0.obs;
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
   final variationController = VariationController.instance;
+  final stock = VariationController.instance.selectedVariation.value.stock;
 
   CartController(){
     loadCartItems();
@@ -71,6 +72,17 @@ class CartController extends GetxController {
     }
     updateCart();
     TLoaders.customToast(message: 'Đã thêm vào giỏ hàng.');
+  }
+
+  void addOneToCartNoNotification(CartItemModel item){
+    int index = cartItems.indexWhere((cartItems) => cartItems.productId == item.productId && cartItems.variationId == item.variationId);
+
+    if(index >= 0){
+      cartItems[index].quantity += 1;
+    }else{
+      cartItems.add(item);
+    }
+    updateCart();
   }
 
   void removeOneFromCart(CartItemModel item){

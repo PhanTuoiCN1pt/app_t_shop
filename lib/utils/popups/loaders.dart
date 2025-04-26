@@ -29,9 +29,6 @@ class TLoaders {
     );
   }
 
-
-
-
   static successSnackBar({required title, message = '', duration = 2}) {
     Get.snackbar(
       title,
@@ -55,7 +52,7 @@ class TLoaders {
       shouldIconPulse: true,
       colorText: TColors.white,
       backgroundColor: Colors.orange,
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: SnackPosition.TOP,
       duration: const Duration(seconds: 3),
       margin: const EdgeInsets.all(20),
       icon: const Icon(Iconsax.warning_2, color: TColors.white),
@@ -70,7 +67,7 @@ class TLoaders {
       shouldIconPulse: true,
       colorText: TColors.white,
       backgroundColor: Colors.red.shade600,
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: SnackPosition.TOP,
       duration: const Duration(seconds: 3),
       margin: const EdgeInsets.all(20),
       icon: const Icon(Iconsax.warning_2, color: TColors.white),

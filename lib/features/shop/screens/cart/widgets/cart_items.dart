@@ -2,6 +2,9 @@ import 'package:app_t_shop/common/widgets/products/cart/add_remove_button.dart';
 import 'package:app_t_shop/common/widgets/products/cart/cart_item.dart';
 import 'package:app_t_shop/common/widgets/texts/product_price_text.dart';
 import 'package:app_t_shop/features/shop/controllers/cart_controller.dart';
+import 'package:app_t_shop/features/shop/controllers/product/product_controller.dart';
+import 'package:app_t_shop/features/shop/controllers/product/variation_controller.dart';
+import 'package:app_t_shop/features/shop/models/product_model.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +20,7 @@ class CartItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartController = CartController.instance;
+    final variationController = VariationController.instance;
 
     return Obx(
       () => ListView.separated(
@@ -39,17 +43,19 @@ class CartItems extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            const SizedBox(width: 70,),
-
-                            /// Add Remove Buttons
-                            ProductAddRemoveButton(
-                              quantity: item.quantity,
-                              add: () => cartController.addOneToCart(item),
-                              remove: () => cartController.removeOneFromCart(item),
-                            ),
-                          ],
+                        Obx(
+                        () => Row(
+                            children: [
+                              const SizedBox(width: 70,),
+                              /// Add Remove Buttons
+                              ProductAddRemoveButton(
+                                quantity: item.quantity,
+                                maxQuantity: variationController.selectedVariation.value.stock,
+                                add: () => cartController.addOneToCartNoNotification(item),
+                                remove: () => cartController.removeOneFromCart(item),
+                              ),
+                            ],
+                          ),
                         ),
                         ProductPriceText(price: (item.price * item.quantity).toStringAsFixed(1)),
                       ],

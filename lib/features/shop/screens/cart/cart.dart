@@ -42,7 +42,6 @@ class CartScreen extends StatelessWidget {
                 padding: EdgeInsets.all(TSizes.defaultSpace),
                 child: CartItems(),
               );
-
             }
           }),
 
