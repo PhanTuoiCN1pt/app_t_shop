@@ -1,4 +1,6 @@
+import 'package:app_t_shop/features/shop/controllers/cart_controller.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
+import 'package:app_t_shop/utils/helpers/pricing_calculator.dart';
 import 'package:flutter/material.dart';
 
 class BillingAmountSection extends StatelessWidget {
@@ -6,6 +8,9 @@ class BillingAmountSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartController = CartController.instance;
+    final subTotal = cartController.totalCartPrice.value;
+
     return Column(
       children: [
         /// Tổng phụ
@@ -13,7 +18,7 @@ class BillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Tổng phụ', style: Theme.of(context).textTheme.bodyMedium,),
-            Text('\₫353', style: Theme.of(context).textTheme.bodyMedium,),
+            Text('\₫$subTotal', style: Theme.of(context).textTheme.bodyMedium,),
           ],
         ),
 
@@ -23,7 +28,7 @@ class BillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Phí vận chuyển', style: Theme.of(context).textTheme.bodyMedium,),
-            Text('\₫6', style: Theme.of(context).textTheme.labelLarge,),
+            Text('\₫${TPricingCalculator.calculateShippingCost(subTotal, 'US')}', style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
 
@@ -33,7 +38,7 @@ class BillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Thuế', style: Theme.of(context).textTheme.bodyMedium,),
-            Text('\₫6', style: Theme.of(context).textTheme.labelLarge,),
+            Text('\₫${TPricingCalculator.calculateTax(subTotal, 'US')}', style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
 
@@ -43,7 +48,7 @@ class BillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Tổng đơn hàng', style: Theme.of(context).textTheme.bodyMedium,),
-            Text('\₫6', style: Theme.of(context).textTheme.labelLarge,),
+            Text('\₫${TPricingCalculator.calculateTotalPrice(subTotal, 'US')}', style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
       ],
