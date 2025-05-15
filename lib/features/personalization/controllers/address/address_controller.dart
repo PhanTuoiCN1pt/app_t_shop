@@ -1,10 +1,16 @@
+import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
 import 'package:app_t_shop/data/repositories/address/address_repository.dart';
 import 'package:app_t_shop/features/personalization/models/address_model.dart';
+import 'package:app_t_shop/features/personalization/screens/address/add_new_address.dart';
+import 'package:app_t_shop/features/personalization/screens/address/widgets/single_address.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
+import 'package:app_t_shop/utils/constants/sizes.dart';
+import 'package:app_t_shop/utils/helpers/cloud_helper_functions.dart';
 import 'package:app_t_shop/utils/helpers/network_manager.dart';
 import 'package:app_t_shop/utils/popups/full_screen_loader.dart';
 import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddressController extends GetxController{
@@ -96,6 +102,45 @@ class AddressController extends GetxController{
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Lỗi', message: e.toString());
     }
+  }
+  ///  Hiển thị địa chỉ mới
+  Future<dynamic> selectedNewAddressPopup(BuildContext context){
+    return showModalBottomSheet(
+        context: context,
+        builder: (_) => Container(
+          padding: EdgeInsets.all(TSizes.lg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const TSectionHeading(title: 'Chọn địa chỉ'),
+              FutureBuilder(
+                  future: getAllUserAddresses(),
+                  builder: (_, snapshot){
+                    final response = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
+                    if(response != null) return response;
+
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (_, index) => SingleAddress(
+                        address: snapshot.data![index],
+                          onTap: () async{
+                            await selectAddress(snapshot.data![index]);
+                            Get.back();
+                          },
+                      ),
+                    );
+                  }
+              ),
+              SizedBox(height: TSizes.defaultSpace * 2,),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(onPressed: () => Get.to(() => AddNewAddressScreen()), child: Text('Thêm địa chỉ')),
+              ),
+            ],
+          ),
+        )
+    );
   }
   void resetFormFields(){
     name.clear();

@@ -2,6 +2,7 @@ import 'package:app_t_shop/common/widgets/appbar/appbar.dart';
 import 'package:app_t_shop/common/widgets/images/rounded_container.dart';
 import 'package:app_t_shop/common/widgets/products/cart/coupon_widget.dart';
 import 'package:app_t_shop/common/widgets/success_screen/success_screen.dart';
+import 'package:app_t_shop/features/shop/controllers/order_controller.dart';
 import 'package:app_t_shop/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:app_t_shop/features/shop/screens/checkout/widgets/billing_adrress_section.dart';
 import 'package:app_t_shop/features/shop/screens/checkout/widgets/billing_amount_section.dart';
@@ -11,8 +12,12 @@ import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
+import 'package:app_t_shop/utils/helpers/pricing_calculator.dart';
+import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../controllers/cart_controller.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({Key? key}) : super(key: key);
@@ -20,6 +25,10 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
+    final cartController = CartController.instance;
+    final subTotal = cartController.totalCartPrice.value;
+    final orderController = Get.put(OrderController());
+    final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'VND');
     return Scaffold(
       appBar: TAppBar(showBackArrow: true,title: Text('Đánh giá',style: Theme.of(context).textTheme.headlineSmall,),),
       body: SingleChildScrollView(
@@ -78,14 +87,10 @@ class CheckoutScreen extends StatelessWidget {
             backgroundColor: TColors.colorApp,
             side: const BorderSide(color: TColors.colorApp),
           ),
-          onPressed: ()=>Get.to(()=>SuccessScreen(
-              image: TImages.successfulPaymentIcon,
-              title: 'Thanh toán thành công!',
-              subTitle: 'Đơn hàng của bạn sẽ được gửi đến sớm!',
-              onPressed: () => Get.to(() => const NavigationMenuScreen(selectedIndex: 1,)) ,
-          )
-          ),
-          child: const Text('Giá \₫256'),
+          onPressed: subTotal > 0
+          ? () =>  orderController.processOrder(totalAmount)
+          : () => TLoaders.warningSnackBar(title: 'Giỏ trống', message: 'Thêm sản phẩm vào giỏ hàng để thanh toán'),
+          child: Text('Giá \₫$totalAmount'),
         ),
       ),
     );

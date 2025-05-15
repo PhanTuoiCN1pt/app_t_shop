@@ -3,7 +3,9 @@ import 'package:app_t_shop/data/repositories/authentication/authentication_repos
 import 'package:app_t_shop/features/personalization/controllers/user_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/banner_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/brand_controller.dart';
+import 'package:app_t_shop/features/shop/controllers/cart_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/category_controller.dart';
+import 'package:app_t_shop/features/shop/controllers/order_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/product/checkout_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/product/favourite_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/product/product_controller.dart';
@@ -38,6 +40,5 @@ Future<void> main() async {
   Get.put(BannerController());
   Get.put(VariationController());
   Get.put(CheckoutController());
-
   runApp(const App());
 }
