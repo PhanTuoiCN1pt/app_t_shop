@@ -10,14 +10,12 @@ class OrderRepository extends GetxController {
 
   Future<List<OrderModel>> fetchUserOrders() async {
     try {
-      final user = AuthenticationRepository.instance.authUser;
-      if (user == null || user.uid.isEmpty) {
-        throw 'Không hiển thị thông tin người dùng, vui lòng đợi trong giây lát';
-      }
+      final userId = AuthenticationRepository.instance.authUser!.uid;
+      if(userId.isEmpty) throw 'Doi trong giay lat';
 
       final result = await _db
           .collection('Users')
-          .doc(user.uid)
+          .doc(userId)
           .collection('Orders')
           .get();
 

@@ -61,7 +61,7 @@ class OrderModel{
         orderDate: (data ['orderDate'] as Timestamp).toDate(),
         paymentMethod: data['paymentMethod'] as String,
         address: AddressModel.fromMap(data['address'] as Map<String, dynamic>),
-        deliveryDate: data['deliveryDate'] == null ? null : (data['delivery'] as Timestamp).toDate(),
+        deliveryDate: data['deliveryDate'] == null ? null : (data['deliveryDate'] as Timestamp).toDate(),
         items: (data['items'] as List<dynamic>).map((itemData) => CartItemModel.fromJson(itemData as Map<String, dynamic>)).toList()
     );
   }

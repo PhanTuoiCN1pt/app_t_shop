@@ -32,7 +32,6 @@ Future<void> main() async {
         (FirebaseApp value) => Get.put(AuthenticationRepository()),
   );
 
-
   Get.put(UserController());
   Get.put(ProductController());
   Get.put(CategoryController());

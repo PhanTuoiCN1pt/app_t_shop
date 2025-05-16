@@ -1,5 +1,6 @@
 import 'package:app_t_shop/common/widgets/images/rounded_container.dart';
 import 'package:app_t_shop/features/shop/controllers/order_controller.dart';
+import 'package:app_t_shop/features/shop/screens/home/home.dart';
 import 'package:app_t_shop/navigation_menu.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
@@ -26,17 +27,17 @@ class OrderListItems extends StatelessWidget {
           animation: TImages.orderComplete,
           showAction: true,
           actionText: 'Thêm ngay',
-          onActionPressed: () => Get.off(() => const NavigationMenuScreen()),
+          onActionPressed: () => Get.off(() => const NavigationMenuScreen(selectedIndex: 0,)),
         );
         final response = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot,nothingFound: emptyWidget);
 
-        if (response!=null) return response;
+        if (response != null) return response;
 
         final orders = snapshot.data!;
         return ListView.separated(
           shrinkWrap: true,
           itemCount: orders.length,
-          separatorBuilder: (_, __) => const SizedBox(height: TSizes.spaceBtwItems,),
+          separatorBuilder: (_, index) => const SizedBox(height: TSizes.spaceBtwItems,),
           itemBuilder: (_, index) {
             final order = orders[index];
             return TRoundedContainer(

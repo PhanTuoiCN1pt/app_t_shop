@@ -28,7 +28,7 @@ class OrderController extends GetxController{
       final userOrders = await orderRepository.fetchUserOrders();
       return userOrders;
     }catch(e){
-      TLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
+      TLoaders.warningSnackBar(title: 'Oh Sn!', message: e.toString());
       return [];
     }
   }
@@ -36,13 +36,8 @@ class OrderController extends GetxController{
     try {
       TFullScreenLoader.openLoadingDialog('Đang cập nhật đơn hàng của bạn', TImages.emptyAnimation);
 
-      final user = AuthenticationRepository.instance.authUser;
-      if (user == null || user.uid.isEmpty) {
-        TFullScreenLoader.stopLoading();
-        Get.snackbar('Lỗi', 'Không thể xác định người dùng. Vui lòng đăng nhập lại.');
-        return;
-      }
-      final userId = user.uid;
+      final userId = AuthenticationRepository.instance.authUser!.uid;
+      if(userId.isEmpty) return;
 
       final order = OrderModel(
         id: UniqueKey().toString(),
