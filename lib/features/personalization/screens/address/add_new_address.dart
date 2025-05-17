@@ -33,7 +33,7 @@ class AddNewAddressScreen extends StatelessWidget {
                 TextFormField(
                   controller: controller.name,
                   validator: (value)=> TValidator.validateEmptyText('Tên', value),
-                  decoration: const InputDecoration(prefixIcon: Icon(Iconsax.user), labelText: 'Tên'),
+                  decoration: const InputDecoration(prefixIcon: Icon(Iconsax.user_add), labelText: 'Tên'),
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
                 TextFormField(
@@ -42,52 +42,50 @@ class AddNewAddressScreen extends StatelessWidget {
                   decoration: const InputDecoration(prefixIcon: Icon(Iconsax.mobile),labelText: 'Số điện thoại'),
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
+                TextFormField(
+                  controller: controller.postalCode,
+                  validator: (value) => TValidator.validateEmptyText('Mã bưu điện(Không bắt buộc)', value),
+                  decoration: const InputDecoration(prefixIcon: Icon(Iconsax.code),labelText: 'Mã bưu điện(Không bắt buộc)'),
+                ),
+                const SizedBox(height: TSizes.spaceBtwInputFields,),
                 Row(
                   children: [
                     Expanded(
                         child: TextFormField(
                           controller: controller.street,
                           validator: (value) => TValidator.validateEmptyText('Địa chỉ', value),
-                          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.building_31), labelText: 'Địa chỉ'),
-                        )
-                    ),
-                    const SizedBox(width: TSizes.spaceBtwInputFields,),
-                    Expanded(
-                        child: TextFormField(
-                          controller: controller.postalCode,
-                          validator: (value) => TValidator.validateEmptyText('Mã bưu điện', value),
-                          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.code),labelText: 'Mã bưu điện'),
-                        )
-                    ),
-                  ],
-                ),
-                const SizedBox(height: TSizes.spaceBtwInputFields,),
-                Row(
-                  children: [
-                    Expanded(
-                        child: TextFormField(
-                          controller: controller.city,
-                          validator: (value) => TValidator.validateEmptyText('Thành phố', value),
-                          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.building), labelText: 'Thành phố'),
-                        )
-                    ),
-                    const SizedBox(width: TSizes.spaceBtwInputFields,),
-                    Expanded(
-                        child: TextFormField(
-                          controller: controller.state,
-                          validator: (value) => TValidator.validateEmptyText('Huyện', value),
-                          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.activity),labelText: 'Huyện'),
+                          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.location),labelText: 'Địa chỉ'),
                         )
                     ),
                   ],
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
                 TextFormField(
-                  controller: controller.country,
-                  validator: (value) => TValidator.validateEmptyText('Quốc gia', value),
-                  decoration: const InputDecoration(prefixIcon: Icon(Iconsax.global),labelText: 'Quốc gia'),
+                  controller: controller.city,
+                  validator: (value) => TValidator.validateEmptyText('Tỉnh/Thành phố', value),
+                  decoration: const InputDecoration(prefixIcon: Icon(Iconsax.building), labelText: 'Tỉnh/Thành phố'),
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
+                Row(
+                  children: [
+                    Expanded(
+                        child: TextFormField(
+                          controller: controller.state,
+                          validator: (value) => TValidator.validateEmptyText('Quận/Huyện', value),
+                          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.activity),labelText: 'Quận/Huyện'),
+                        )
+                    ),
+                    const SizedBox(width: TSizes.spaceBtwInputFields,),
+                    Expanded(
+                        child: TextFormField(
+                          controller: controller.country,
+                          validator: (value) => TValidator.validateEmptyText('Phường/Xã', value),
+                          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.map),labelText: 'Phường/Xã'),
+                        )
+                    ),
+                  ],
+                ),
+                const SizedBox(height: TSizes.spaceBtwInputFields*3,),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
