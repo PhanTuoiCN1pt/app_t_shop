@@ -93,11 +93,12 @@ class CheckoutScreen extends StatelessWidget {
             side: const BorderSide(color: TColors.colorApp),
           ),
           onPressed: subTotal > 0
-              ? () => orderController.processOrder(totalAmount)
+              ? () => orderController.processOrder(itemsToCheckout: itemsToCalculate,)
               : () => TLoaders.warningSnackBar(
             title: 'Giỏ trống',
             message: 'Thêm sản phẩm vào giỏ hàng để thanh toán',
           ),
+
           child: Text('Giá \₫$totalAmount'),
         ),
       ),

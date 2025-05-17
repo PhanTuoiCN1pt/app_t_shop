@@ -14,6 +14,7 @@ import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../models/cart_item_model.dart';
 import '../models/order_model.dart';
 import '../screens/order/success_order_screen.dart';
 
@@ -34,12 +35,18 @@ class OrderController extends GetxController{
       return [];
     }
   }
-  void processOrder(double totalAmount) async {
+  void processOrder({required List<CartItemModel> itemsToCheckout}) async {
     try {
       TFullScreenLoader.openLoadingDialog('Đang cập nhật đơn hàng của bạn', TImages.emptyAnimation);
 
-      final userId = AuthenticationRepository.instance.authUser!.uid;
-      if(userId.isEmpty) return;
+      final userId = AuthenticationRepository.instance.authUser?.uid ?? '';
+      if (userId.isEmpty) return;
+
+      // Tính tổng tiền chỉ cho sản phẩm thanh toán
+      final double totalAmount = itemsToCheckout.fold(
+        0.0,
+            (sum, item) => sum + item.price * item.quantity,
+      );
 
       final order = OrderModel(
         id: UniqueKey().toString(),
@@ -50,12 +57,20 @@ class OrderController extends GetxController{
         paymentMethod: checkoutController.selectedPaymentMethod.value.name,
         address: addressController.selectedAddress.value,
         deliveryDate: DateTime.now(),
-        items: cartController.cartItems.toList(),
+        items: itemsToCheckout,
       );
 
       await orderRepository.saveOrder(order, userId);
 
-      cartController.clearCart();
+      // Xóa chỉ các sản phẩm được chọn
+      for (var item in itemsToCheckout) {
+        cartController.cartItems.removeWhere((cartItem) =>
+        cartItem.productId == item.productId &&
+            cartItem.variationId == item.variationId
+        );
+      }
+
+      cartController.updateCart();
 
       TFullScreenLoader.stopLoading();
 
@@ -70,5 +85,6 @@ class OrderController extends GetxController{
       Get.snackbar('Lỗi', 'Đã xảy ra lỗi khi xử lý đơn hàng');
     }
   }
+
 
 }
