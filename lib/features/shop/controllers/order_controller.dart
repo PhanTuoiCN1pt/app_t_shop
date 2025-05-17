@@ -5,6 +5,7 @@ import 'package:app_t_shop/features/personalization/controllers/address/address_
 import 'package:app_t_shop/features/shop/controllers/cart_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/product/checkout_controller.dart';
 import 'package:app_t_shop/features/shop/screens/home/home.dart';
+import 'package:app_t_shop/features/shop/screens/order/order.dart';
 import 'package:app_t_shop/navigation_menu.dart';
 import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../models/order_model.dart';
+import '../screens/order/success_order_screen.dart';
 
 class OrderController extends GetxController{
   static OrderController get instance => Get.find();
@@ -57,7 +59,7 @@ class OrderController extends GetxController{
 
       TFullScreenLoader.stopLoading();
 
-      Get.off(() => SuccessScreen(
+      Get.off(() => SuccessOrderScreen(
         image: TImages.orderComplete,
         title: 'Thanh toán thành công',
         subTitle: 'Đơn hàng của bạn sẽ sớm được giao đến',

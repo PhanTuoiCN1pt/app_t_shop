@@ -18,59 +18,62 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/cart_controller.dart';
+import '../../models/cart_item_model.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  const CheckoutScreen({Key? key}) : super(key: key);
+  final List<CartItemModel>? customCartItems;
+
+  const CheckoutScreen({Key? key, this.customCartItems}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     final cartController = CartController.instance;
-    final subTotal = cartController.totalCartPrice.value;
     final orderController = Get.put(OrderController());
+
+    final itemsToCalculate = customCartItems ?? cartController.cartItems;
+    final subTotal = itemsToCalculate.fold<double>(0, (sum, item) => sum + item.price * item.quantity);
+    final double customSubTotal = customCartItems?.fold(0.0, (sum, item) => sum! + item.price * item.quantity) ?? cartController.totalCartPrice.value;
     final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'VND');
+
     return Scaffold(
-      appBar: TAppBar(showBackArrow: true,title: Text('Đánh giá',style: Theme.of(context).textTheme.headlineSmall,),),
+      appBar: TAppBar(
+        showBackArrow: true,
+        title: Text(
+          'Đánh giá',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              /// Items in Cart
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxHeight: MediaQuery.of(context).size.height * 0.45, // hoặc giá trị bạn muốn
+                  maxHeight: MediaQuery.of(context).size.height * 0.45,
                 ),
-                child: const CartItems(showAddRemoveButtons: false),
+                child: CartItems(
+                  showAddRemoveButtons: false,
+                  customCartItems: customCartItems,
+                ),
               ),
-
-              const SizedBox(height: TSizes.spaceBtwItems,),
-
-              /// Coupon TextField
+              const SizedBox(height: TSizes.spaceBtwItems),
               const CouponCode(),
-              const SizedBox(height: TSizes.spaceBtwItems,),
-
-              /// Billing Section
+              const SizedBox(height: TSizes.spaceBtwItems),
               TRoundedContainer(
                 showBorder: true,
                 padding: const EdgeInsets.all(TSizes.md),
                 backgroundColor: dark ? TColors.black : TColors.white,
-                child: const Column(
+                child: Column(
                   children: [
-                    /// Pricing
-                    BillingAmountSection(),
-                    SizedBox(height: TSizes.spaceBtwItems,),
-
-                    /// Divider
-                    Divider(),
-                    SizedBox(height: TSizes.spaceBtwItems,),
-
-                    /// Payment Methods
-                    BillingPaymentSection(),
-                    SizedBox(height: TSizes.spaceBtwItems,),
-
-                    /// Address
-                    BillingAddressSection(),
+                    BillingAmountSection(subTotal: customSubTotal),
+                    const SizedBox(height: TSizes.spaceBtwItems),
+                    const Divider(),
+                    const SizedBox(height: TSizes.spaceBtwItems),
+                    const BillingPaymentSection(),
+                    const SizedBox(height: TSizes.spaceBtwItems),
+                    const BillingAddressSection(),
                   ],
                 ),
               ),
@@ -78,22 +81,28 @@ class CheckoutScreen extends StatelessWidget {
           ),
         ),
       ),
-
-      /// Checkout Button
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(right: TSizes.defaultSpace,left: TSizes.defaultSpace,bottom: TSizes.defaultSpace),
+        padding: const EdgeInsets.only(
+          right: TSizes.defaultSpace,
+          left: TSizes.defaultSpace,
+          bottom: TSizes.defaultSpace,
+        ),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: TColors.colorApp,
             side: const BorderSide(color: TColors.colorApp),
           ),
           onPressed: subTotal > 0
-          ? () =>  orderController.processOrder(totalAmount)
-          : () => TLoaders.warningSnackBar(title: 'Giỏ trống', message: 'Thêm sản phẩm vào giỏ hàng để thanh toán'),
+              ? () => orderController.processOrder(totalAmount)
+              : () => TLoaders.warningSnackBar(
+            title: 'Giỏ trống',
+            message: 'Thêm sản phẩm vào giỏ hàng để thanh toán',
+          ),
           child: Text('Giá \₫$totalAmount'),
         ),
       ),
     );
   }
+
 }
 

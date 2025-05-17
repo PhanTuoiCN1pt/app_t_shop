@@ -1,5 +1,6 @@
 import 'package:app_t_shop/common/widgets/icons/cicular_icon.dart';
 import 'package:app_t_shop/features/shop/controllers/cart_controller.dart';
+import 'package:app_t_shop/features/shop/screens/cart/cart.dart';
 import 'package:app_t_shop/features/shop/screens/checkout/checkout.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../../utils/constants/enums.dart';
 import '../../../controllers/product/variation_controller.dart';
 import '../../../models/product_model.dart';
 
@@ -49,33 +51,91 @@ class BottomAddToCart extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 final variationController = VariationController.instance;
-                final variation = variationController.selectedVariation.value;
+                final productType = product.productType;
 
-                if (variation.stock <= 0) {
-                  TLoaders.customToast(message: 'Ohh!!! Hết hàng rồi',);
-                }else{
+                if (productType == ProductType.variable.toString()) {
+                  // Sản phẩm có biến thể
+                  final variation = variationController.selectedVariation.value;
+
+                  if (variationController.selectedAttributes.isEmpty) {
+                    TLoaders.customToast(message: 'Vui lòng chọn thuộc tính (màu, size,...)');
+                    return;
+                  }
+
+                  if (variation.stock <= 0 ) {
+                    TLoaders.customToast(message: 'Sp đã hết hàng');
+                    return;
+                  }
+
+                  final cartItem = controller.convertToCartItem(product, 1);
+                  controller.addOneToCart(cartItem);
+
+                } else {
+                  // Sản phẩm đơn lẻ
+                  if (product.stock <= 0) {
+                    TLoaders.customToast(message: 'Ohh!!! Hết hàng rồi');
+                    return;
+                  }
+
                   final cartItem = controller.convertToCartItem(product, 1);
                   controller.addOneToCart(cartItem);
                 }
               },
-
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 backgroundColor: Colors.teal.withOpacity(0.75),
                 side: BorderSide(color: Colors.teal.withOpacity(0.75)),
                 shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
               ),
               child: Column(
-                children: [
+                children: const [
                   Icon(Iconsax.shopping_cart),
-                  Text('Thêm vào Giỏ hàng',style: TextStyle(fontSize: 11),),
+                  Text('Thêm vào Giỏ hàng', style: TextStyle(fontSize: 11)),
                 ],
               ),
             ),
           ),
+
           Expanded(
             child: ElevatedButton(
-              onPressed: () => Get.to(() => const CheckoutScreen() ),
+              onPressed: () {
+                final variationController = VariationController.instance;
+                final productType = product.productType;
+
+                if (productType == ProductType.variable.toString()) {
+                  // Sản phẩm có biến thể
+                  final variation = variationController.selectedVariation.value;
+
+                  if (variationController.selectedAttributes.isEmpty) {
+                    TLoaders.customToast(message: 'Vui lòng chọn thuộc tính (màu, size,...)');
+                    return;
+                  }
+
+                  if (variation.stock <= 0 ) {
+                    TLoaders.customToast(message: 'Sản phẩm đã hết hàng');
+                    return;
+                  }
+
+                  final cartItem = controller.convertToCartItem(product, 1);
+                  controller.addOneToCart(cartItem);
+
+                  // 👉 Điều hướng đến giỏ hàng
+                  Get.to(() => CheckoutScreen(customCartItems: [cartItem]));
+
+                } else {
+                  // Sản phẩm đơn lẻ
+                  if (product.stock <= 0) {
+                    TLoaders.customToast(message: 'Ohh!!! Hết hàng rồi');
+                    return;
+                  }
+
+                  final cartItem = controller.convertToCartItem(product, 1);
+                  controller.addOneToCart(cartItem);
+
+                  // 👉 Điều hướng đến giỏ hàng
+                  Get.to(() => CheckoutScreen(customCartItems: [cartItem]));
+                }
+              },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 17.0),
                 backgroundColor: TColors.error,
@@ -85,6 +145,7 @@ class BottomAddToCart extends StatelessWidget {
               child: const Text('Mua ngay'),
             ),
           ),
+
         ],
       ),
     );

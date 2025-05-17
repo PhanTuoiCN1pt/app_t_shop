@@ -192,7 +192,19 @@ class CartController extends GetxController {
       onCancel: () => () => Get.back(),
     );
   }
-  
+
+  void removeItemFromCart(CartItemModel item) {
+    int index = cartItems.indexWhere(
+          (cartItem) => cartItem.productId == item.productId && cartItem.variationId == item.variationId,
+    );
+    if (index >= 0) {
+      cartItems.removeAt(index);
+      updateCart();
+    }
+  }
+
+
+
   // CartItemModel convertToCartItem(ProductModel product, int quantity){
   //   if(product.productType == ProductType.single.toString()){
   //     variationController.resetSelectedAttributes();
