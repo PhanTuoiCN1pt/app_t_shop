@@ -104,44 +104,64 @@ class AddressController extends GetxController{
     }
   }
   ///  Hiển thị địa chỉ mới
-  Future<dynamic> selectedNewAddressPopup(BuildContext context){
+  Future<dynamic> selectedNewAddressPopup(BuildContext context) {
     return showModalBottomSheet(
-        context: context,
-        builder: (_) => Container(
-          padding: EdgeInsets.all(TSizes.lg),
+      isScrollControlled: true,
+      context: context,
+      builder: (_) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.8,
+        minChildSize: 0.5,
+        maxChildSize: 0.95,
+        builder: (_, scrollController) => SingleChildScrollView(
+          controller: scrollController,
+          padding: const EdgeInsets.all(TSizes.lg),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const TSectionHeading(title: 'Chọn địa chỉ'),
-              FutureBuilder(
-                  future: getAllUserAddresses(),
-                  builder: (_, snapshot){
-                    final response = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
-                    if(response != null) return response;
+              const SizedBox(height: TSizes.spaceBtwItems),
 
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => SingleAddress(
-                        address: snapshot.data![index],
-                          onTap: () async{
-                            await selectAddress(snapshot.data![index]);
-                            Get.back();
-                          },
-                      ),
-                    );
-                  }
+              /// Danh sách địa chỉ người dùng
+              FutureBuilder(
+                future: getAllUserAddresses(),
+                builder: (_, snapshot) {
+                  final response = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
+                  if (response != null) return response;
+
+                  final addresses = snapshot.data!;
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(), // scroll chỉ dùng ở ngoài
+                    itemCount: addresses.length,
+                    itemBuilder: (_, index) => SingleAddress(
+                      address: addresses[index],
+                      onTap: () async {
+                        await selectAddress(addresses[index]);
+                        Get.back();
+                      },
+                    ),
+                  );
+                },
               ),
-              SizedBox(height: TSizes.defaultSpace * 2,),
+
+              const SizedBox(height: TSizes.spaceBtwItems * 2),
+
+              /// Nút thêm địa chỉ mới
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(onPressed: () => Get.to(() => AddNewAddressScreen()), child: Text('Thêm địa chỉ')),
+                child: ElevatedButton(
+                  onPressed: () => Get.to(() => const AddNewAddressScreen()),
+                  child: const Text('Thêm địa chỉ'),
+                ),
               ),
             ],
           ),
-        )
+        ),
+      ),
     );
   }
+
   void resetFormFields(){
     name.clear();
     phoneNumber.clear();
