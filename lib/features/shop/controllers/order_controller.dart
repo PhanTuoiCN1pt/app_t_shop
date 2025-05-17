@@ -35,18 +35,18 @@ class OrderController extends GetxController{
       return [];
     }
   }
-  void processOrder({required List<CartItemModel> itemsToCheckout}) async {
+  void processOrder({List<CartItemModel>? itemsToCheckout}) async {
     try {
       TFullScreenLoader.openLoadingDialog('Đang cập nhật đơn hàng của bạn', TImages.emptyAnimation);
 
       final userId = AuthenticationRepository.instance.authUser?.uid ?? '';
       if (userId.isEmpty) return;
 
-      // Tính tổng tiền chỉ cho sản phẩm thanh toán
-      final double totalAmount = itemsToCheckout.fold(
-        0.0,
-            (sum, item) => sum + item.price * item.quantity,
-      );
+      // Nếu không truyền gì thì lấy toàn bộ giỏ hàng
+      final items = itemsToCheckout ?? cartController.cartItems.toList();
+
+      // Tính tổng tiền
+      final double totalAmount = items.fold(0.0, (sum, item) => sum + item.price * item.quantity);
 
       final order = OrderModel(
         id: UniqueKey().toString(),
@@ -57,21 +57,19 @@ class OrderController extends GetxController{
         paymentMethod: checkoutController.selectedPaymentMethod.value.name,
         address: addressController.selectedAddress.value,
         deliveryDate: DateTime.now(),
-        items: itemsToCheckout,
+        items: items,
       );
 
       await orderRepository.saveOrder(order, userId);
 
-      // Xóa chỉ các sản phẩm được chọn
-      for (var item in itemsToCheckout) {
+      // Xoá từng sản phẩm đã thanh toán khỏi giỏ hàng
+      for (var item in items) {
         cartController.cartItems.removeWhere((cartItem) =>
         cartItem.productId == item.productId &&
-            cartItem.variationId == item.variationId
-        );
+            cartItem.variationId == item.variationId);
       }
 
       cartController.updateCart();
-
       TFullScreenLoader.stopLoading();
 
       Get.off(() => SuccessOrderScreen(
@@ -85,6 +83,7 @@ class OrderController extends GetxController{
       Get.snackbar('Lỗi', 'Đã xảy ra lỗi khi xử lý đơn hàng');
     }
   }
+
 
 
 }

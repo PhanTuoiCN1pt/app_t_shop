@@ -93,7 +93,15 @@ class CheckoutScreen extends StatelessWidget {
             side: const BorderSide(color: TColors.colorApp),
           ),
           onPressed: subTotal > 0
-              ? () => orderController.processOrder(itemsToCheckout: itemsToCalculate,)
+              ? () {
+            // Nếu customCartItems có giá trị -> thanh toán sản phẩm được chọn
+            if (customCartItems != null && customCartItems!.isNotEmpty) {
+              orderController.processOrder(itemsToCheckout: customCartItems!);
+            } else {
+              // Ngược lại, thanh toán toàn bộ giỏ hàng
+              orderController.processOrder();
+            }
+          }
               : () => TLoaders.warningSnackBar(
             title: 'Giỏ trống',
             message: 'Thêm sản phẩm vào giỏ hàng để thanh toán',
