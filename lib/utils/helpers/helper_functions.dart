@@ -4,40 +4,66 @@ import 'package:intl/intl.dart';
 
 class THelperFunctions {
   static Color? getColor(String value) {
-    /// Define your product specific colors here and it will match the attribute colors and show specific 🟠🟡🟢🔵🟣🟤
+    switch (value) {
+      case 'Xanh Lá':
+        return Colors.green;
+      case 'Xanh Dương':
+      case 'Xanh':
+        return Colors.blue;
+      case 'Xanh Biển':
+        return Colors.cyan;
+      case 'Xanh Ngọc':
+        return Colors.teal;
+      case 'Xanh Rêu':
+        return Color(0xFF3B5323);
+      case 'Xanh Đậm':
+        return Colors.indigo;
+      case 'Xanh Nhạt':
+      case 'Xanh Sáng':
+        return Colors.lightGreen;
+      case 'Xanh Da Trời':
+        return Colors.lightBlue;
+      case 'Xanh Nước Biển':
+        return Colors.blueAccent;
 
-    if (value == 'Green') {
-      return Colors.green;
-    } else if (value == 'Green') {
-      return Colors.green;
-    } else if (value == 'Red') {
-      return Colors.red;
-    } else if (value == 'Blue') {
-      return Colors.blue;
-    } else if (value == 'Pink') {
-      return Colors.pink;
-    } else if (value == 'Grey') {
-      return Colors.grey;
-    } else if (value == 'Purple') {
-      return Colors.purple;
-    } else if (value == 'Black') {
-      return Colors.black;
-    } else if (value == 'White') {
-      return Colors.white;
-    } else if (value == 'Yellow') {
-      return Colors.yellow;
-    } else if (value == 'Orange') {
-      return Colors.deepOrange;
-    } else if (value == 'Brown') {
-      return Colors.brown;
-    } else if (value == 'Teal') {
-      return Colors.teal;
-    } else if (value == 'Indigo') {
-      return Colors.indigo;
-    } else {
-      return null;
+      case 'Đỏ':
+        return Colors.red;
+      case 'Hồng':
+      case 'Hổng':
+        return Colors.pink;
+      case 'Tím':
+        return Colors.purple;
+      case 'Đen':
+        return Colors.black;
+      case 'Trắng':
+        return Colors.white;
+      case 'Xám':
+        return Colors.grey;
+      case 'Bạc':
+        return Color(0xFFC0C0C0);
+      case 'Be':
+        return Color(0xFFF5F5DC);
+      case 'Kem':
+        return Color(0xFFFFFDD0);
+
+      case 'Vàng':
+        return Colors.yellow;
+      case 'Vàng Đồng':
+        return Color(0xFFDAA520);
+      case 'Cam':
+        return Colors.deepOrange;
+      case 'Cam Đất':
+        return Color(0xFFCC6600);
+      case 'Nâu':
+        return Colors.brown;
+      case 'Nâu Đất':
+        return Color(0xFF8B4513); // SaddleBrown
+
+      default:
+        return null;
     }
   }
+
 
   static void showSnackBar(String message) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(
@@ -94,7 +120,7 @@ class THelperFunctions {
     return MediaQuery.of(Get.context!).size.width;
   }
 
-  static String getFormattedDate(DateTime date, {String format = 'dd MMM yyyy'}) {
+  static String getFormattedDate(DateTime date, {String format = 'dd/MM/yyyy'}) {
     return DateFormat(format).format(date);
   }
 

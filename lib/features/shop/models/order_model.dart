@@ -32,10 +32,10 @@ class OrderModel{
   String get formatterDeliveryDate => deliveryDate != null ? THelperFunctions.getFormattedDate(deliveryDate!) : '';
 
   String get orderStatusText => status == OrderStatus.delivered
-      ? 'Delivered'
+      ? 'Đã giao hàng'
       : status == OrderStatus.shipped
-        ? 'Shipment on the way'
-        : 'Processing';
+        ? 'Đang vận chuyển'
+        : 'Đang xử lý';
   Map<String, dynamic> toJson(){
     return {
       'id': id,
