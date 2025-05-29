@@ -11,6 +11,7 @@ import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
 import 'package:app_t_shop/utils/popups/full_screen_loader.dart';
 import 'package:app_t_shop/utils/popups/loaders.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -48,6 +49,7 @@ class OrderController extends GetxController{
       // Tính tổng tiền
       final double totalAmount = items.fold(0.0, (sum, item) => sum + item.price * item.quantity);
 
+      // Tạo doc ref mới để lấy ID chuẩn
       final order = OrderModel(
         id: UniqueKey().toString(),
         userId: userId,
@@ -83,6 +85,7 @@ class OrderController extends GetxController{
       Get.snackbar('Lỗi', 'Đã xảy ra lỗi khi xử lý đơn hàng');
     }
   }
+
 
 
 

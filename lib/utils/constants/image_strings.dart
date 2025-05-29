@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 
 /// This class contains all the App Images in String formats.
 class TImages {
-
   // -- App Logos
   static const String darkAppLogo = "assets/logos/logo.jpg";
   static const String lightAppLogo = "assets/logos/logo.jpg";
