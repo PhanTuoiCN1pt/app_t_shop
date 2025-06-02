@@ -1,5 +1,6 @@
 import 'package:app_t_shop/common/widgets/images/rounded_container.dart';
 import 'package:app_t_shop/features/shop/controllers/order_controller.dart';
+import 'package:app_t_shop/features/shop/models/order_model.dart';
 import 'package:app_t_shop/features/shop/screens/home/home.dart';
 import 'package:app_t_shop/navigation_menu.dart';
 import 'package:app_t_shop/utils/constants/colors.dart';
@@ -11,7 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../../utils/constants/enums.dart';
 import '../../../../../utils/constants/image_strings.dart';
+import 'order_detail.dart';
 
 class OrderListItems extends StatelessWidget {
   const OrderListItems({super.key});
@@ -62,8 +65,12 @@ class OrderListItems extends StatelessWidget {
                           children: [
                             Text(
                               order.orderStatusText,
-                              style: Theme.of(context).textTheme.bodyLarge!.apply(color: TColors.colorApp),
+                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                color: order.statusColor,
+                              ),
                             ),
+
+
                             Text(order.formatterOrderDate, style: Theme.of(context).textTheme.headlineSmall,),
                           ],
                         ),
@@ -71,7 +78,7 @@ class OrderListItems extends StatelessWidget {
 
 
                       /// 3 -- Biểu tượng
-                      IconButton(onPressed: (){}, icon: const Icon(Iconsax.arrow_right_34, size: TSizes.iconSm,)),
+                      IconButton( onPressed: () => Get.to(() => OrderDetailScreen(order: order)), icon: const Icon(Iconsax.arrow_right_34, size: TSizes.iconSm,)),
                     ],
                   ),
                   const SizedBox(height: TSizes.spaceBtwItems,),
@@ -92,7 +99,7 @@ class OrderListItems extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Đơn hàng', style: Theme.of(context).textTheme.labelMedium,maxLines: 1,),
+                                  Text('Mã đơn', style: Theme.of(context).textTheme.labelMedium,maxLines: 1,),
                                   Text(order.id, style: Theme.of(context).textTheme.titleMedium,maxLines: 1,),
                                 ],
                               ),
@@ -113,8 +120,12 @@ class OrderListItems extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Ngày giao hàng', style: Theme.of(context).textTheme.labelMedium,maxLines: 1,),
-                                  Text(order.formatterDeliveryDate, style: Theme.of(context).textTheme.titleMedium,maxLines: 1,),
+                                  Text(
+                                    order.status == OrderStatus.delivered
+                                        ? 'Đã giao: ${order.formatterEstimatedDeliveryDate}'
+                                        : 'Dự kiến giao hàng: ${order.formatterEstimatedDeliveryDate}',
+                                    style: Theme.of(context).textTheme.bodyMedium,
+                                  ),
                                 ],
                               ),
                             ),

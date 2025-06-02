@@ -36,6 +36,28 @@ class OrderController extends GetxController{
       return [];
     }
   }
+
+  /// Hủy đơn hàng
+  Future<void> cancelOrder(String orderId) async {
+    try {
+      final userId = AuthenticationRepository.instance.authUser?.uid ?? '';
+      if (userId.isEmpty) throw 'Không tìm thấy người dùng';
+
+      TFullScreenLoader.openLoadingDialog('Đang hủy đơn hàng...', TImages.loading);
+
+      await orderRepository.cancelOrder(orderId: orderId, userId: userId);
+
+      TFullScreenLoader.stopLoading();
+      TLoaders.successSnackBar(title: 'Thành công', message: 'Đơn hàng đã được hủy.');
+
+      // Optional: Gọi lại fetchUserOrders() nếu bạn có danh sách đơn hàng đang hiển thị.
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Lỗi', message: e.toString());
+    }
+  }
+
+
   void processOrder({List<CartItemModel>? itemsToCheckout}) async {
     try {
       TFullScreenLoader.openLoadingDialog('Đang cập nhật đơn hàng của bạn', TImages.emptyAnimation);

@@ -8,10 +8,11 @@ class OrderRepository extends GetxController {
 
   final _db = FirebaseFirestore.instance;
 
+  /// Lấy tất cả đơn hàng của user
   Future<List<OrderModel>> fetchUserOrders() async {
     try {
       final userId = AuthenticationRepository.instance.authUser!.uid;
-      if(userId.isEmpty) throw 'Doi trong giay lat';
+      if (userId.isEmpty) throw 'Doi trong giay lat';
 
       final result = await _db
           .collection('Users')
@@ -27,12 +28,44 @@ class OrderRepository extends GetxController {
     }
   }
 
-
-  Future<void> saveOrder(OrderModel order, String userId) async{
-    try{
-      await _db.collection('Users').doc(userId).collection('Orders').add(order.toJson());
-    }catch(e){
+  /// Lưu đơn hàng mới
+  Future<void> saveOrder(OrderModel order, String userId) async {
+    try {
+      await _db
+          .collection('Users')
+          .doc(userId)
+          .collection('Orders')
+          .add(order.toJson());
+    } catch (e) {
       throw 'Thi thoảng sẽ có lỗi, vui lòng đợi trong giây lát';
+    }
+  }
+
+  /// 🔴 Hủy đơn hàng bằng cách cập nhật trạng thái
+  Future<void> cancelOrder({
+    required String orderId,
+    required String userId,
+  }) async {
+    try {
+      final query = await _db
+          .collection('Users')
+          .doc(userId)
+          .collection('Orders')
+          .where('id', isEqualTo: orderId)
+          .get();
+
+      if (query.docs.isEmpty) throw 'Không tìm thấy đơn hàng để hủy';
+
+      final docId = query.docs.first.id;
+
+      await _db
+          .collection('Users')
+          .doc(userId)
+          .collection('Orders')
+          .doc(docId)
+          .update({'status': 'OrderStatus.canceled'});
+    } catch (e) {
+      throw 'Không thể hủy đơn hàng vào lúc này.';
     }
   }
 }

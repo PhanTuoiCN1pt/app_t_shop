@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:app_t_shop/features/personalization/models/address_model.dart';
 import 'package:app_t_shop/features/shop/models/cart_item_model.dart';
 import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:app_t_shop/utils/helpers/helper_functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class OrderModel{
   final String id;
@@ -27,15 +30,47 @@ class OrderModel{
     required this.items
   });
 
+  Color get statusColor {
+    switch (status) {
+      case OrderStatus.processing:
+        return Colors.orange;
+      case OrderStatus.shipped:
+        return Colors.blue;
+      case OrderStatus.delivered:
+        return Colors.green;
+      case OrderStatus.pending:
+        return Colors.black;
+      case OrderStatus.canceled:
+        return Colors.red;
+    }
+  }
+
+
+  String get orderStatusText {
+    switch (status) {
+      case OrderStatus.processing:
+        return 'Đang xử lý';
+      case OrderStatus.shipped:
+        return 'Đang giao hàng';
+      case OrderStatus.delivered:
+        return 'Giao hàng thành công';
+      case OrderStatus.pending:
+        return 'Chờ xác nhận';
+      case OrderStatus.canceled:
+        return 'Đơn hàng bị hủy';
+    }
+  }
+
+  /// Getter ngày giao dự kiến = ngày đặt + 3 ngày
+  DateTime get estimatedDeliveryDate => orderDate.add(const Duration(days: 3));
+
+  // Thay đổi phần formatterDeliveryDate nếu muốn dùng estimatedDeliveryDate:
+  String get formatterEstimatedDeliveryDate => THelperFunctions.getFormattedDate(estimatedDeliveryDate);
+
   String get formatterOrderDate => THelperFunctions.getFormattedDate(orderDate);
 
   String get formatterDeliveryDate => deliveryDate != null ? THelperFunctions.getFormattedDate(deliveryDate!) : '';
 
-  String get orderStatusText => status == OrderStatus.delivered
-      ? 'Đã giao hàng'
-      : status == OrderStatus.shipped
-        ? 'Đang vận chuyển'
-        : 'Đang xử lý';
   Map<String, dynamic> toJson(){
     return {
       'id': id,
@@ -65,4 +100,6 @@ class OrderModel{
         items: (data['items'] as List<dynamic>).map((itemData) => CartItemModel.fromJson(itemData as Map<String, dynamic>)).toList()
     );
   }
+
+
 }
