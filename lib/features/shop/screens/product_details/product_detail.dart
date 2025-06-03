@@ -1,4 +1,5 @@
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
+import 'package:app_t_shop/features/shop/controllers/review_controller.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
 import 'package:app_t_shop/features/shop/screens/product_details/widgets/bottom_add_to_cart_widget.dart';
 import 'package:app_t_shop/features/shop/screens/product_details/widgets/product_attributes.dart';
@@ -23,6 +24,9 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final reviewController = Get.put(ReviewController());
+    reviewController.fetchReviewsByProduct(product.id); // Gọi fetch nhưng KHÔNG gán
+
     return Scaffold(
       bottomNavigationBar: BottomAddToCart(product: product,),
       body: SingleChildScrollView(
@@ -74,13 +78,20 @@ class ProductDetail extends StatelessWidget {
                   /// - Đánh giá
                   const Divider(),
                   const SizedBox(height: TSizes.spaceBtwItems,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const TSectionHeading(title: 'Đánh giá (199)', showActionButton: false,),
-                      IconButton(onPressed: () => Get.to(() => const ProductReviewsScreen()), icon: const Icon(Iconsax.arrow_right_3)),
-                    ],
-                  ),
+                  Obx(() {
+                    final total = reviewController.reviews.length;
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TSectionHeading(title: 'Đánh giá ($total)', showActionButton: false),
+                        IconButton(
+                          onPressed: () => Get.to(() => ProductReviewsScreen(productId: product.id)),
+                          icon: const Icon(Iconsax.arrow_right_3),
+                        ),
+                      ],
+                    );
+                  }),
+
                   const SizedBox(height: TSizes.spaceBtwItems,)
                 ],
               ),

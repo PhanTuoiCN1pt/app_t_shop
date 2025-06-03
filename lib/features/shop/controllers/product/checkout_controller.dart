@@ -3,6 +3,7 @@ import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -16,7 +17,7 @@ class CheckoutController extends GetxController {
 
   @override
   void onInit() {
-    selectedPaymentMethod.value = PaymentMethodModel(image: TImages.paypal, name: 'Paypal');
+    selectedPaymentMethod.value = PaymentMethodModel(image: TImages.codPay, name: 'Thanh toán khi nhận hàng');
     super.onInit();
   }
 
@@ -32,22 +33,13 @@ class CheckoutController extends GetxController {
               children: [
                 TSectionHeading(title: 'Chọn phương thức thanh toán', showActionButton: false,),
                 SizedBox(height: TSizes.spaceBtwItems,),
-                PaymentTile(paymentMethod: PaymentMethodModel(image: TImages.paypal, name: 'Paypal')),
+                PaymentTile(paymentMethod: PaymentMethodModel(image: TImages.codPay, name: 'Thanh toán khi nhận hàng')),
                 SizedBox(height: TSizes.spaceBtwItems/2,),
                 PaymentTile(paymentMethod: PaymentMethodModel(image: TImages.googlePay, name: 'Google Pay')),
                 SizedBox(height: TSizes.spaceBtwItems/2,),
-                PaymentTile(paymentMethod: PaymentMethodModel(image: TImages.applePay, name: 'Momo')),
+                PaymentTile(paymentMethod: PaymentMethodModel(image: TImages.momoPay, name: 'Momo')),
                 SizedBox(height: TSizes.spaceBtwItems/2,),
-                PaymentTile(paymentMethod: PaymentMethodModel(image: TImages.visa, name: 'VISA')),
-                SizedBox(height: TSizes.spaceBtwItems/2,),
-                PaymentTile(paymentMethod: PaymentMethodModel(image: TImages.masterCard, name: 'Master Card')),
-                SizedBox(height: TSizes.spaceBtwItems/2,),
-                PaymentTile(paymentMethod: PaymentMethodModel(image: TImages.creditCard, name: 'Credit Card')),
-                SizedBox(height: TSizes.spaceBtwItems/2,),
-                PaymentTile(paymentMethod: PaymentMethodModel(image: TImages.paystack, name: 'Paystack')),
-                SizedBox(height: TSizes.spaceBtwItems/2,),
-                PaymentTile(paymentMethod: PaymentMethodModel(image: TImages.paytm, name: 'Paytm')),
-                SizedBox(height: TSizes.spaceBtwItems/2,),
+
               ],
             ),
           ),
