@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../utils/constants/enums.dart';
+import '../../../../../utils/helpers/helper_functions.dart';
 
 class OrderDetailScreen extends StatelessWidget {
   final OrderModel order;
@@ -96,7 +97,7 @@ class OrderDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwItems / 2),
             Text(
-              'Tổng đơn: ${order.totalAmount.toStringAsFixed(0)} ₫',
+              'Tổng đơn: ${THelperFunctions.formatNumber(order.totalAmount)},000 đ',
               style: Theme.of(context).textTheme.titleLarge,
             ),
 
@@ -147,7 +148,7 @@ class OrderDetailScreen extends StatelessWidget {
                       ],
                     ),
                     trailing: Text(
-                      '${item.price.toStringAsFixed(0)} ₫',
+                      '${THelperFunctions.formatNumber(item.price)},000 đ',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   );
@@ -192,27 +193,6 @@ class OrderDetailScreen extends StatelessWidget {
                     );
                   },
                   label: const Text('Hủy đơn hàng'),
-                ),
-              ),
-
-            /// Nút Đánh giá
-            if (canReview)
-              Center(
-                child: ElevatedButton.icon(
-                  icon: const Icon(Iconsax.star),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-                  ),
-                  onPressed: () {
-                    // TODO: Navigate đến màn hình đánh giá
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Đi đến đánh giá sản phẩm.')),
-                    );
-                  },
-                  label: const Text('Đánh giá sản phẩm'),
                 ),
               ),
           ],

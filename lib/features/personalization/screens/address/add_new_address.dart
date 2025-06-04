@@ -42,12 +42,12 @@ class AddNewAddressScreen extends StatelessWidget {
                   decoration: const InputDecoration(prefixIcon: Icon(Iconsax.mobile),labelText: 'Số điện thoại'),
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
-                TextFormField(
-                  controller: controller.postalCode,
-                  validator: (value) => TValidator.validateEmptyText('Mã bưu điện(Không bắt buộc)', value),
-                  decoration: const InputDecoration(prefixIcon: Icon(Iconsax.code),labelText: 'Mã bưu điện(Không bắt buộc)'),
-                ),
-                const SizedBox(height: TSizes.spaceBtwInputFields,),
+                // TextFormField(
+                //   controller: controller.postalCode,
+                //   validator: (value) => TValidator.validateEmptyText('Mã bưu điện(Không bắt buộc)', value),
+                //   decoration: const InputDecoration(prefixIcon: Icon(Iconsax.code),labelText: 'Mã bưu điện(Không bắt buộc)'),
+                // ),
+                // const SizedBox(height: TSizes.spaceBtwInputFields,),
                 Row(
                   children: [
                     Expanded(
@@ -60,22 +60,8 @@ class AddNewAddressScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputFields,),
-                TextFormField(
-                  controller: controller.city,
-                  validator: (value) => TValidator.validateEmptyText('Tỉnh/Thành phố', value),
-                  decoration: const InputDecoration(prefixIcon: Icon(Iconsax.building), labelText: 'Tỉnh/Thành phố'),
-                ),
-                const SizedBox(height: TSizes.spaceBtwInputFields,),
                 Row(
                   children: [
-                    Expanded(
-                        child: TextFormField(
-                          controller: controller.state,
-                          validator: (value) => TValidator.validateEmptyText('Quận/Huyện', value),
-                          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.activity),labelText: 'Quận/Huyện'),
-                        )
-                    ),
-                    const SizedBox(width: TSizes.spaceBtwInputFields,),
                     Expanded(
                         child: TextFormField(
                           controller: controller.country,
@@ -83,7 +69,21 @@ class AddNewAddressScreen extends StatelessWidget {
                           decoration: const InputDecoration(prefixIcon: Icon(Iconsax.map),labelText: 'Phường/Xã'),
                         )
                     ),
+                    const SizedBox(width: TSizes.spaceBtwInputFields,),
+                    Expanded(
+                        child: TextFormField(
+                          controller: controller.state,
+                          validator: (value) => TValidator.validateEmptyText('Quận/Huyện', value),
+                          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.activity),labelText: 'Quận/Huyện'),
+                        )
+                    ),
                   ],
+                ),
+                const SizedBox(height: TSizes.spaceBtwInputFields,),
+                TextFormField(
+                  controller: controller.city,
+                  validator: (value) => TValidator.validateEmptyText('Tỉnh/Thành phố', value),
+                  decoration: const InputDecoration(prefixIcon: Icon(Iconsax.building), labelText: 'Tỉnh/Thành phố'),
                 ),
                 const SizedBox(height: TSizes.spaceBtwInputFields*3,),
                 SizedBox(

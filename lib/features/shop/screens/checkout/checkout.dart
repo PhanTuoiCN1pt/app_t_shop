@@ -40,7 +40,7 @@ class CheckoutScreen extends StatelessWidget {
       appBar: TAppBar(
         showBackArrow: true,
         title: Text(
-          'Đánh giá',
+          'Thanh toán',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
@@ -59,8 +59,8 @@ class CheckoutScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: TSizes.spaceBtwItems),
-              const CouponCode(),
-              const SizedBox(height: TSizes.spaceBtwItems),
+              // const CouponCode(),
+              // const SizedBox(height: TSizes.spaceBtwItems),
               TRoundedContainer(
                 showBorder: true,
                 padding: const EdgeInsets.all(TSizes.md),
@@ -107,7 +107,7 @@ class CheckoutScreen extends StatelessWidget {
             message: 'Thêm sản phẩm vào giỏ hàng để thanh toán',
           ),
 
-          child: Text('Giá \₫$totalAmount'),
+          child: Text('Giá ${THelperFunctions.formatNumber(totalAmount)},000 đ'),
         ),
       ),
     );

@@ -108,7 +108,7 @@ class TProductCardVertical extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: TSizes.sm, bottom: TSizes.sm),
                           child: Text(
-                            product.price.toString(),
+                            '${THelperFunctions.formatNumber(product.price)},000 đ',
                             style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                           ),
                         ),

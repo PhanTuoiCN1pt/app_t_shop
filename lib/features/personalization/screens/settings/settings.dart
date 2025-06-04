@@ -62,31 +62,31 @@ class SettingScreen extends StatelessWidget {
 
                   /// App Setting
                   const SizedBox(height: TSizes.spaceBtwSections/2,),
-                  const TSectionHeading(title: 'Cài đặt ứng dụng', showActionButton: false,),
-                  const SizedBox(height: TSizes.spaceBtwItems/3,),
-                  SettingsMenuTile(
-                    icon: Iconsax.document_upload,
-                    title: 'Tải dữ liệu',
-                    onTap: () => Get.to(() => UploadDataScreen())
-                  ),
-
-                  SettingsMenuTile(
-                    icon: Iconsax.location,
-                    title: 'Vị trí địa lý',
-                    trailing: Switch(
-                        value: true,
-                        activeColor: TColors.colorApp,
-                        onChanged: (value) {}),
-                  ),
-                  SettingsMenuTile(
-                    icon: Iconsax.security,
-                    title: 'Chế độ an toàn',
-                    trailing: Switch(value: false, activeColor: TColors.colorApp, onChanged: (value) {}),),
-                  SettingsMenuTile(
-                    icon: Iconsax.image,
-                    title: 'Chất lượng hình ảnh',
-                    trailing: Switch(value: false, activeColor: TColors.colorApp, onChanged: (value) {}),
-                  ),
+                  // const TSectionHeading(title: 'Cài đặt ứng dụng', showActionButton: false,),
+                  // const SizedBox(height: TSizes.spaceBtwItems/3,),
+                  // SettingsMenuTile(
+                  //   icon: Iconsax.document_upload,
+                  //   title: 'Tải dữ liệu',
+                  //   onTap: () => Get.to(() => UploadDataScreen())
+                  // ),
+                  //
+                  // SettingsMenuTile(
+                  //   icon: Iconsax.location,
+                  //   title: 'Vị trí địa lý',
+                  //   trailing: Switch(
+                  //       value: true,
+                  //       activeColor: TColors.colorApp,
+                  //       onChanged: (value) {}),
+                  // ),
+                  // SettingsMenuTile(
+                  //   icon: Iconsax.security,
+                  //   title: 'Chế độ an toàn',
+                  //   trailing: Switch(value: false, activeColor: TColors.colorApp, onChanged: (value) {}),),
+                  // SettingsMenuTile(
+                  //   icon: Iconsax.image,
+                  //   title: 'Chất lượng hình ảnh',
+                  //   trailing: Switch(value: false, activeColor: TColors.colorApp, onChanged: (value) {}),
+                  // ),
                   const SizedBox(height: TSizes.spaceBtwSections,),
                   SizedBox(
                     width: double.infinity,

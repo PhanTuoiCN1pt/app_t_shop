@@ -12,6 +12,8 @@ import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils/helpers/helper_functions.dart';
+
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
 
@@ -56,7 +58,7 @@ class CartScreen extends StatelessWidget {
             side: const BorderSide(color: TColors.colorApp),
           ),
           onPressed: () => Get.to(() => const CheckoutScreen()),
-          child: Obx(() => Text('Thanh toán: \₫${controller.totalCartPrice.value}')),
+          child: Obx(() => Text('Thanh toán: ${THelperFunctions.formatNumber(controller.totalCartPrice.value)},000 đ')),
         ),
       ),
     );

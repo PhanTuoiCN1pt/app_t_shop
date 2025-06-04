@@ -4,6 +4,8 @@ import 'package:app_t_shop/utils/constants/enums.dart';
 import 'package:app_t_shop/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils/helpers/helper_functions.dart';
+
 class ProductController extends GetxController {
   static ProductController get instance => Get.find();
 
@@ -48,7 +50,7 @@ class ProductController extends GetxController {
     double largestPrice = 0.0;
 
     if(product.productType == ProductType.single.toString()) {
-      return (product.salePrice > 0 ? product.salePrice : product.price).toString();
+      return THelperFunctions.formatNumber(product.salePrice > 0 ? product.salePrice : product.price);
     }else {
       for(var variation in product.productVariations!){
         double priceToConsider = variation.salePrice > 0.0 ? variation.salePrice : variation.price;
@@ -60,9 +62,9 @@ class ProductController extends GetxController {
         }
        }
       if (smallestPrice.isEqual(largestPrice)){
-        return largestPrice.toString();
+        return '${THelperFunctions.formatNumber(largestPrice)},000 đ';
       } else {
-        return '$smallestPrice - \₫$largestPrice';
+        return '${THelperFunctions.formatNumber(smallestPrice)},000 - ${THelperFunctions.formatNumber(largestPrice)}';
       }
     }
   }

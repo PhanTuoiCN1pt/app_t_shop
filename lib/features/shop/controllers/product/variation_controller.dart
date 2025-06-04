@@ -4,6 +4,8 @@ import 'package:app_t_shop/features/shop/models/product_model.dart';
 import 'package:app_t_shop/features/shop/models/product_variation_model.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils/helpers/helper_functions.dart';
+
 class VariationController extends GetxController {
   static VariationController get instance => Get.find();
 
@@ -54,7 +56,7 @@ class VariationController extends GetxController {
   }
 
   String getVariationPrice() {
-    return (selectedVariation.value.salePrice > 0 ? selectedVariation.value.salePrice : selectedVariation.value.price).toString();
+    return THelperFunctions.formatNumber((selectedVariation.value.salePrice > 0 ? selectedVariation.value.salePrice : selectedVariation.value.price));
   }
 
   void getProductVariationStockStatus() {

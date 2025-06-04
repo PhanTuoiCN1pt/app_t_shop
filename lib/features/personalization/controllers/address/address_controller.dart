@@ -78,7 +78,7 @@ class AddressController extends GetxController{
           street: street.text.trim(),
           city: city.text.trim(),
           state: state.text.trim(),
-          postalCode: postalCode.text.trim(),
+          postalCode: '',
           country: country.text.trim(),
           selectedAddress: true,
       );

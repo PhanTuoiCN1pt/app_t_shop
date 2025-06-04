@@ -47,7 +47,7 @@ class ProductAttributes extends StatelessWidget {
 
                             /// Giá gốc
                             if (controller.selectedVariation.value.salePrice > 0)
-                              Text('\₫${controller.selectedVariation.value.price}', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
+                              Text('${THelperFunctions.formatNumber(controller.selectedVariation.value.price)},000', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
                             const SizedBox(width: TSizes.spaceBtwItems,),
 
                             /// Giá khuyến mãi

@@ -6,6 +6,7 @@ import 'package:app_t_shop/features/shop/controllers/product/product_controller.
 import 'package:app_t_shop/features/shop/controllers/product/variation_controller.dart';
 import 'package:app_t_shop/features/shop/models/cart_item_model.dart';
 import 'package:app_t_shop/utils/constants/sizes.dart';
+import 'package:app_t_shop/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -71,7 +72,7 @@ class CartItems extends StatelessWidget {
                   ),
                 ],
               ),
-              ProductPriceText(price: (item.price * item.quantity).toStringAsFixed(1)),
+              ProductPriceText(price: THelperFunctions.formatNumber(item.price * item.quantity)),
             ],
           ),
       ],

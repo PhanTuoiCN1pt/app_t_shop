@@ -64,6 +64,13 @@ class THelperFunctions {
     }
   }
 
+  static String formatNumber(double value) {
+    final formatter = NumberFormat('#,###'); // dùng dấu chấm
+    return formatter.format(value);
+  }
+
+
+
 
   static void showSnackBar(String message) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(
@@ -88,6 +95,8 @@ class THelperFunctions {
       },
     );
   }
+
+
 
   static void navigateToScreen(BuildContext context, Widget screen) {
     Navigator.push(

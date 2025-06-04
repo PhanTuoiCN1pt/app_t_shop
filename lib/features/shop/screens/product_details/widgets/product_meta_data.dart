@@ -39,7 +39,7 @@ class ProductMetaData extends StatelessWidget {
 
             /// Giá
             if(product.productType == ProductType.single.toString() && product.salePrice > 0)
-              Text('\₫${product.price}',style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
+              Text('${THelperFunctions.formatNumber(product.price)},000 đ',style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
             if(product.productType == ProductType.single.toString() && product.salePrice > 0)
               const SizedBox(width: TSizes.spaceBtwItems,),
             ProductPriceText(price: controller.getProductPrice(product),isLarge: true,),
