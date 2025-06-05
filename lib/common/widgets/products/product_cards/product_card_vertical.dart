@@ -131,7 +131,7 @@ class TProductCardVertical extends StatelessWidget {
                 //     ],
                 //   ),
                 // )
-                ProductCardAddToCartButton(product: product),
+                // ProductCardAddToCartButton(product: product),
               ],
             ),
           ],

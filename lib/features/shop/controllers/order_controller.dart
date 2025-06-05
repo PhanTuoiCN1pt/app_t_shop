@@ -76,7 +76,7 @@ class OrderController extends GetxController{
         id: UniqueKey().toString(),
         userId: userId,
         status: OrderStatus.pending,
-        totalAmount: totalAmount,
+        totalAmount: totalAmount + 50,
         orderDate: DateTime.now(),
         paymentMethod: checkoutController.selectedPaymentMethod.value.name,
         address: addressController.selectedAddress.value,
