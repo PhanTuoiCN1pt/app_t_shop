@@ -37,13 +37,14 @@ class OrderListItems extends StatelessWidget {
         if (response != null) return response;
 
         final orders = snapshot.data!;
+        orders.sort((a, b) => b.orderDate.compareTo(a.orderDate));
         return ListView.separated(
-          shrinkWrap: true,
-          itemCount: orders.length,
-          separatorBuilder: (_, index) => const SizedBox(height: TSizes.spaceBtwItems,),
-          itemBuilder: (_, index) {
-            final order = orders[index];
-            return TRoundedContainer(
+            shrinkWrap: true,
+            itemCount: orders.length,
+            separatorBuilder: (_, index) => const SizedBox(height: TSizes.spaceBtwItems,),
+            itemBuilder: (_, index) {
+              final order = orders[index];
+              return TRoundedContainer(
               showBorder: true,
               padding: const EdgeInsets.all(TSizes.md),
               backgroundColor: TColors.light,
