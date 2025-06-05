@@ -18,6 +18,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'features/shop/controllers/product/chat_controller.dart';
+
 Future<void> main() async {
   /// Khởi tạo Widgets Binding
   final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -38,8 +40,8 @@ Future<void> main() async {
   Get.put(CategoryController());
   Get.put(BrandController());
   Get.put(BannerController());
-  Get.put(VariationController());
   Get.put(CheckoutController());
   Get.put(ReviewController());
+  Get.put(ChatController());
   runApp(const App());
 }

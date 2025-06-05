@@ -20,6 +20,7 @@ class ProductAttributes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(VariationController());
+    controller.resetSelectedAttributes();
     final dark = THelperFunctions.isDarkMode(context);
     return Obx(
         () => Column(
@@ -34,9 +35,6 @@ class ProductAttributes extends StatelessWidget {
                 /// Tiêu đề, Giá, Tình trạng sản phẩm
                 Row(
                   children: [
-                    const TSectionHeading(title: 'Tình trạng:', showActionButton: false,),
-                    const SizedBox(width: TSizes.spaceBtwItems,),
-
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

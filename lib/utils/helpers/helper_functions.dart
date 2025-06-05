@@ -5,25 +5,25 @@ import 'package:intl/intl.dart';
 class THelperFunctions {
   static Color? getColor(String value) {
     switch (value) {
-      case 'Xanh Lá':
+      case 'Xanh lá':
         return Colors.green;
-      case 'Xanh Dương':
+      case 'Xanh dương':
       case 'Xanh':
         return Colors.blue;
-      case 'Xanh Biển':
+      case 'Xanh biển':
         return Colors.cyan;
-      case 'Xanh Ngọc':
+      case 'Xanh ngọc':
         return Colors.teal;
-      case 'Xanh Rêu':
+      case 'Xanh rêu':
         return Color(0xFF3B5323);
-      case 'Xanh Đậm':
+      case 'Xanh đậm':
         return Colors.indigo;
-      case 'Xanh Nhạt':
-      case 'Xanh Sáng':
+      case 'Xanh nhạt':
+      case 'Xanh sáng':
         return Colors.lightGreen;
-      case 'Xanh Da Trời':
+      case 'Xanh da trời':
         return Colors.lightBlue;
-      case 'Xanh Nước Biển':
+      case 'Xanh nước biển':
         return Colors.blueAccent;
 
       case 'Đỏ':
@@ -48,15 +48,15 @@ class THelperFunctions {
 
       case 'Vàng':
         return Colors.yellow;
-      case 'Vàng Đồng':
+      case 'Vàng đồng':
         return Color(0xFFDAA520);
       case 'Cam':
         return Colors.deepOrange;
-      case 'Cam Đất':
+      case 'Cam đất':
         return Color(0xFFCC6600);
       case 'Nâu':
         return Colors.brown;
-      case 'Nâu Đất':
+      case 'Nâu đất':
         return Color(0xFF8B4513); // SaddleBrown
 
       default:

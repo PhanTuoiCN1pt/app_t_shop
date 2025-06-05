@@ -14,6 +14,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../../utils/constants/enums.dart';
 import '../../../controllers/product/variation_controller.dart';
 import '../../../models/product_model.dart';
+import '../../chat/chat_screen.dart';
 
 class BottomAddToCart extends StatelessWidget {
   const BottomAddToCart({super.key, required this.product});
@@ -32,7 +33,9 @@ class BottomAddToCart extends StatelessWidget {
         children: [
           Expanded(
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => ChatScreen(product: product));
+              },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.only(top: 10),
                 backgroundColor: Colors.teal.withOpacity(0.75),

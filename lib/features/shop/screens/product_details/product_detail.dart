@@ -1,4 +1,6 @@
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
+import 'package:app_t_shop/features/shop/controllers/product/product_controller.dart';
+import 'package:app_t_shop/features/shop/controllers/product/variation_controller.dart';
 import 'package:app_t_shop/features/shop/controllers/review_controller.dart';
 import 'package:app_t_shop/features/shop/models/product_model.dart';
 import 'package:app_t_shop/features/shop/screens/product_details/widgets/bottom_add_to_cart_widget.dart';
@@ -24,6 +26,7 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ProductController());
     final reviewController = Get.put(ReviewController());
     reviewController.fetchReviewsByProduct(product.id); // Gọi fetch nhưng KHÔNG gán
 
