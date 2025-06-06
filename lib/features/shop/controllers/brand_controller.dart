@@ -36,7 +36,7 @@ class BrandController extends GetxController {
     }
   }
 
-  /// Get Brand for category
+  /// Thương hiệu và danh mục
   Future<List<BrandModel>> getBrandsForCategory(String categoryId) async {
     try {
       final brands = await brandRepository.getBrandsForCategory(categoryId);

@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:app_t_shop/data/dummy_data.dart';
 import 'package:app_t_shop/features/shop/controllers/banner_controller.dart';
 import 'package:app_t_shop/features/shop/models/banner_model.dart';
 import 'package:app_t_shop/utils/constants/image_strings.dart';
@@ -39,44 +38,6 @@ class BannerRepository extends GetxController {
   }
 
 
-  /// Tải lên danh mục vào đám mây Firebase
-  Future<void> uploadBanners() async {
-    final bannerController = Get.find<BannerController>();
 
-    try {
-      TFullScreenLoader.openLoadingDialog('Đang tải lên', TImages.docerAnimation);
-
-      // Tải lên danh mục
-      await uploadCategoriesToFirestore(TDummyData.banners);
-
-      TFullScreenLoader.stopLoading();
-      print("Tất cả danh mục đã được tải lên thành công!");
-
-      // Gọi phương thức fetchCategories để reload lại dữ liệu
-      await bannerController.fetchBanners();
-
-      // Hiển thị thông báo thành công cho người dùng
-      TLoaders.successSnackBar(title: 'Thành công', message: 'Tải dữ liệu thành công!');
-
-    } catch (e) {
-      print("Lỗi tải lên: $e");
-    }
-  }
-
-  Future<void> uploadCategoriesToFirestore(List<BannerModel> banners) async {
-    for (var banner in banners) {
-      try {
-        // Tạo một document với ID riêng hoặc sử dụng ID của category
-        await _firestore.collection('Banners').doc().set({
-          'ImageUrl': banner.imageUrl,
-          'TargetScreen': banner.targetScreen,
-          'Active': banner.active,
-        });
-        ///print('Đã tải: ${banner.name}');
-      } catch (e) {
-        ///print('Không tải được ${banner.name}: $e');
-      }
-    }
-  }
 
 }

@@ -3,7 +3,6 @@ import 'package:app_t_shop/common/widgets/custom_shapes/containers/primary_heade
 import 'package:app_t_shop/common/widgets/list_titles/settings_menu_title.dart';
 import 'package:app_t_shop/common/widgets/list_titles/user_profile_title.dart';
 import 'package:app_t_shop/common/widgets/texts/section_heading.dart';
-import 'package:app_t_shop/data/dummy_data.dart';
 import 'package:app_t_shop/data/repositories/authentication/authentication_repository.dart';
 import 'package:app_t_shop/features/personalization/controllers/user_controller.dart';
 import 'package:app_t_shop/features/personalization/screens/address/address.dart';
@@ -39,7 +38,7 @@ class SettingScreen extends StatelessWidget {
                     title: Text('Tài khoản', style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white),),
                   ),
 
-                  /// User Profile Card
+                  /// Thông tin người dùng
                   UserProfileTile(onPressed: () => Get.to(() => const ProfileScreen()),),
                   const SizedBox(height: TSizes.spaceBtwSections,),
                 ],
@@ -49,16 +48,16 @@ class SettingScreen extends StatelessWidget {
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
-                  /// Account Setting
+                  /// Cài đặt tài khoản
                   const TSectionHeading(title: 'Cài đặt tài khoản', showActionButton: false,),
                   const SizedBox(height: TSizes.spaceBtwSections/3,),
                   SettingsMenuTile(icon: Iconsax.safe_home, title: 'Địa chỉ', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () => Get.to(() => const UserAddressScreen()),),
                   SettingsMenuTile(icon: Iconsax.shopping_cart, title: 'Giỏ hàng', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () => Get.to(() => const CartScreen()),),
                   SettingsMenuTile(icon: Iconsax.bag_tick, title: 'Đơn hàng', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () => Get.to(() => const OrderScreen()),),
-                  SettingsMenuTile(icon: Iconsax.bank, title: 'Tài khoản', trailing: const Icon(Icons.arrow_forward_ios, size: 16),  onTap: () {},),
-                  SettingsMenuTile(icon: Iconsax.discount_shape, title: 'Phiếu giảm giá', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () {},),
-                  SettingsMenuTile(icon: Iconsax.notification, title: 'Thông báo', trailing: const Icon(Icons.arrow_forward_ios, size: 16),onTap: () {},),
-                  SettingsMenuTile(icon: Iconsax.security, title: 'Quyền riêng tư tài khoản', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () {},),
+                  // SettingsMenuTile(icon: Iconsax.bank, title: 'Tài khoản', trailing: const Icon(Icons.arrow_forward_ios, size: 16),  onTap: () {},),
+                  // SettingsMenuTile(icon: Iconsax.discount_shape, title: 'Phiếu giảm giá', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () {},),
+                  // SettingsMenuTile(icon: Iconsax.notification, title: 'Thông báo', trailing: const Icon(Icons.arrow_forward_ios, size: 16),onTap: () {},),
+                  // SettingsMenuTile(icon: Iconsax.security, title: 'Quyền riêng tư tài khoản', trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () {},),
 
                   /// App Setting
                   const SizedBox(height: TSizes.spaceBtwSections/2,),

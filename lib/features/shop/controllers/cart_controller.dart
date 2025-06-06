@@ -20,21 +20,17 @@ class CartController extends GetxController {
     loadCartItems();
   }
 
-
-  // Add items in the Cart
   void adaToCart(ProductModel product) {
-// Quantity Check
     if (productQuantityInCart.value < 1) {
       TLoaders.customToast(message: 'Chọn số lượng');
       return;
     }
-// Variation Selected?
+
     if (product.productType == ProductType.variable.toString() &&
         variationController.selectedVariation.value.id.isEmpty) {
       TLoaders.customToast(message: 'Chọn thể loại');
       return;
     }
-// Out of stock Status
     if (product.productType == ProductType.variable.toString()) {
       if (variationController.selectedVariation.value.stock < 1) {
         TLoaders.warningSnackBar(
@@ -98,14 +94,9 @@ class CartController extends GetxController {
     }
   }
 
-  // Convert the ProductModel to a CartItemModel with the given quantity
 
-
-
-  // Thís function convert a ProductModel to a CartItemModel
   CartItemModel convertToCartItem(ProductModel product, int quantity) {
     if (product.productType == ProductType.single.toString()){
-      // Reset Variation in case of single product type
       variationController.resetSelectedAttributes();
     }
 

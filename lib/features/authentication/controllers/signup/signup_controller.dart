@@ -14,15 +14,15 @@ class SignupController extends GetxController {
   SignupController();
 
   /// Biến
-  final hidePassword = true.obs; // Hiện thị xem mật khẩu
-  final privacyPolicy = false.obs; // Hiện thị đồng ý yêu cầu
-  final email = TextEditingController(); // Controller cho input email
+  final hidePassword = true.obs;
+  final privacyPolicy = false.obs;
+  final email = TextEditingController();
   final lastname = TextEditingController();
   final username = TextEditingController();
   final password = TextEditingController();
   final firstname = TextEditingController();
   final phoneNumber = TextEditingController();
-  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>(); // Khóa form để xác thực
+  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
 
   /// -- ĐĂNG KÝ
   Future<void> signup() async {

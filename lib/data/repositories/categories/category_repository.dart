@@ -1,4 +1,3 @@
-import 'package:app_t_shop/data/dummy_data.dart';
 import 'package:app_t_shop/data/services/firebase_storage_service.dart';
 import 'package:app_t_shop/features/shop/controllers/category_controller.dart';
 import 'package:app_t_shop/features/shop/models/category_model.dart';
@@ -34,39 +33,13 @@ class CategoryRepository extends GetxController {
     }
   }
 
-  /// Tải lên danh mục vào đám mây Firebase
-  Future<void> uploadCategories() async {
-    final categoryController = Get.find<CategoryController>();
-
-    try {
-      TFullScreenLoader.openLoadingDialog('Đang tải lên', TImages.docerAnimation);
-
-      // Tải lên danh mục
-      await uploadCategoriesToFirestore(TDummyData.categories);
-
-      TFullScreenLoader.stopLoading();
-      print("Tất cả danh mục đã được tải lên thành công!");
-
-      // Gọi phương thức fetchCategories để reload lại dữ liệu
-      await categoryController.fetchCategories();
-
-      // Hiển thị thông báo thành công cho người dùng
-      TLoaders.successSnackBar(title: 'Thành công', message: 'Tải dữ liệu thành công!');
-
-    } catch (e) {
-      print("Lỗi tải lên: $e");
-    }
-  }
-
 
   Future<List<CategoryModel>> getSubCategories(String categoryId) async {
     try {
-      print('Truy vấn danh mục con với ParentId: $categoryId');
       final snapshot = await _db.collection('Categories').where('ParentId', isEqualTo: categoryId).get();
 
       final result = snapshot.docs.map((e) => CategoryModel.fromSnapshot(e)).toList();
       print('Danh mục con tìm thấy: ${result.map((e) => e.name).toList()}');
-
       return result;
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
@@ -77,23 +50,6 @@ class CategoryRepository extends GetxController {
     }
   }
 
-
-  Future<void> uploadCategoriesToFirestore(List<CategoryModel> categories) async {
-    for (var category in categories) {
-      try {
-        // Tạo một document với ID riêng hoặc sử dụng ID của category
-        await _firestore.collection('Categories').doc(category.id).set({
-          'Name': category.name,
-          'Image': category.image,
-          'IsFeatured': category.isFeatured,
-          'ParentId': category.parentId,
-        });
-        print('Đã tải: ${category.name}');
-      } catch (e) {
-        print('Không tải được ${category.name}: $e');
-      }
-    }
-  }
 
 
 }

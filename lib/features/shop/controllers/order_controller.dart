@@ -32,7 +32,7 @@ class OrderController extends GetxController{
       final userOrders = await orderRepository.fetchUserOrders();
       return userOrders;
     }catch(e){
-      TLoaders.warningSnackBar(title: 'Oh Sn!', message: e.toString());
+      TLoaders.warningSnackBar(title: 'Lỗi hiển thị đơn hàng người dùng!', message: e.toString());
       return [];
     }
   }

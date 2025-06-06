@@ -36,7 +36,7 @@ class TProductCardVertical extends StatelessWidget {
         decoration: BoxDecoration(
           boxShadow: [TShadowStyle.verticalProductShadow],
           borderRadius: BorderRadius.circular(TSizes.productImageRadius),
-          color: dark ? TColors.darkGrey : TColors.white,
+          color: TColors.white,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,7 +44,7 @@ class TProductCardVertical extends StatelessWidget {
             TRoundedContainer(
               height: 165,
               width: double.infinity,
-              backgroundColor: dark ? TColors.dark : TColors.light,
+              backgroundColor:TColors.white,
               child: Stack(
                 children: [
                   /// Ảnh đại diện

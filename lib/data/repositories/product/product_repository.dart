@@ -126,7 +126,6 @@ class ProductRepository extends GetxController {
         }
         await productController.featuredProducts();
         await _db.collection("Products").doc(product.id).set(product.toJson());
-        print("Tất cả danh mục đã được tải lên thành công!");
         TLoaders.successSnackBar(title: 'Thành công', message: 'Tải dữ liệu thành công!');
         TFullScreenLoader.stopLoading();
       }

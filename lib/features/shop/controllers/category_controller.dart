@@ -59,7 +59,7 @@ class CategoryController extends GetxController {
       return products;
     } catch (e) {
       print('Lỗi khi lấy sản phẩm: $e');
-      return []; // Trả về danh sách trống nếu có lỗi
+      return [];
     }
   }
   Future<List<ProductModel>> getCategoryProductsStore({required String categoryId, int limit = 10}) async {
@@ -69,7 +69,7 @@ class CategoryController extends GetxController {
       return products;
     } catch (e) {
       print('Lỗi khi lấy sản phẩm: $e');
-      return []; // Trả về danh sách trống nếu có lỗi
+      return [];
     }
   }
 

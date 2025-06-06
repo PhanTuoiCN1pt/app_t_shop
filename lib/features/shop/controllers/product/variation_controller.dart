@@ -9,12 +9,12 @@ import '../../../../utils/helpers/helper_functions.dart';
 class VariationController extends GetxController {
   static VariationController get instance => Get.find();
 
-  /// Variation
+  /// thuộc tính
   RxMap selectedAttributes = {}.obs;
   RxString variationStockStatus = ''.obs;
   Rx<ProductVariationModel> selectedVariation = ProductVariationModel.empty().obs;
 
-  /// Selected Attribute and Variation
+  /// Chọn thuộc tính
   void onAttributeSelected(ProductModel product, attributeName, attributeValue) {
     final selectedAttributes = Map<String, dynamic>.from(this.selectedAttributes);
     selectedAttributes[attributeName] = attributeValue;
