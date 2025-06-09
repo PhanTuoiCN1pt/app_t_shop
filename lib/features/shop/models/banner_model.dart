@@ -11,7 +11,6 @@ class BannerModel {
     required this.active,
   });
 
-  /// Empty Helper
 
 
   Map<String, dynamic> toJson() {

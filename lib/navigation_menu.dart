@@ -11,7 +11,7 @@ import 'package:iconsax/iconsax.dart';
 
 class NavigationMenuScreen extends StatelessWidget {
   const NavigationMenuScreen({super.key,this.selectedIndex = 0, });
-  final int selectedIndex;// Mặc định là 0
+  final int selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +55,6 @@ class NavigationController extends GetxController {
   ];
 
   void navigateToSetting() {
-    selectedIndex.value; // Chỉ số của SettingScreen
+    selectedIndex.value;
   }
 }

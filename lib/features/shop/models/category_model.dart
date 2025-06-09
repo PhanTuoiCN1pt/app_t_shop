@@ -15,7 +15,6 @@ class CategoryModel {
     this.parentId = '',
   });
 
-  /// Empty Helper
   static CategoryModel empty() => CategoryModel(id: '', name: '', image: '', isFeatured: false);
 
   Map<String, dynamic> toJson() {

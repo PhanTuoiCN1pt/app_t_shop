@@ -7,7 +7,7 @@ class CartItemModel {
   String variationId;
   String? brandName;
   Map<String, String>? selectedVariation;
-  /// Constructor
+
   CartItemModel({
   required this.productId,
   required this.quantity,
@@ -21,7 +21,6 @@ class CartItemModel {
 
   static CartItemModel empty() => CartItemModel(productId: '', quantity: 0);
 
-  /// Convert a CartItem to a Json Map
   Map<String, dynamic> toJson () {
     return {
       'productId': productId,
@@ -35,7 +34,6 @@ class CartItemModel {
     };
   }
 
-  /// Create a CarItem from a JSON Map
   factory CartItemModel.fromJson(Map<String, dynamic> json){
     return CartItemModel(
       productId: json['productId'],
